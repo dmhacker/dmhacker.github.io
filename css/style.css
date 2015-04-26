@@ -1,0 +1,45 @@
+
+body {
+    /* background-color: #f1f1f1; */
+    margin: 0;
+}
+
+body {
+    -webkit-text-size-adjust: none;
+}
+
+#main-title {
+    font-family: 'Quicksand', sans-serif;
+    line-height: 70px;
+    padding-bottom: 80px;
+    font-size: 500%;
+}
+
+#main-body {
+    padding-top: 30px;
+    padding-bottom: 27px;
+}
+
+#secondary-title {
+    font-family: 'Quicksand', sans-serif;
+    padding-bottom: 30px;
+    font-size: 400%;
+}
+
+#profile-pic {
+    padding-top: 60px
+}
+
+#contact-body {
+    padding-top: 90px;
+    padding-bottom: 90px;
+}
+
+.centered {
+    text-align: center;
+}
+
+.lefted {
+    text-align: left;
+}
+

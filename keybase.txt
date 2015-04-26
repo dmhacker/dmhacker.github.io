@@ -1,0 +1,67 @@
+==================================================================
+https://keybase.io/dmhacker
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://dmhacker.github.io
+  * I am dmhacker (https://keybase.io/dmhacker) on keybase.
+  * I have a public key with fingerprint 5E80 36AA C210 250A 3AF6  42AC 5B80 0882 51CB 8F89
+
+To do so, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "fingerprint": "5e8036aac210250a3af642ac5b80088251cb8f89",
+            "host": "keybase.io",
+            "key_id": "5b80088251cb8f89",
+            "kid": "01019a48f3308eaa22da63155687f7af0d3fa6c97d8c2f19abd3101894ce018da8fe0a",
+            "uid": "c69cd7ca00209b68832ea20db752ce19",
+            "username": "dmhacker"
+        },
+        "service": {
+            "hostname": "dmhacker.github.io",
+            "protocol": "https:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1429096759,
+    "expire_in": 157680000,
+    "prev": "2caf5d90a1d912e27de2afc8fd9504d55d2d6f8dea2858b0c5a8bb307a214d1b",
+    "seqno": 11,
+    "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.0.8
+Comment: https://keybase.io/crypto
+
+yMIeAnicZZJrSBRRFMfXNNuVsjWCUujBFPoh0zt3dmburGVhSa8PYVhSFMude+/s
+Dls7686slSbSg6UPkREZ9jEoLLSQHrYhhIXRQ5Ayo+j9Tsro+aGQHnesvtSnwz3n
+//+dew6nd0KmJyfjJfQvzOxQJmX0XVya9KwuWaY2CLpFtwrBBiHKRoNhxsIsEU+Y
+MUcICjJDQFIwJlAEUAZYwoYSgJjIOgIAISiLREcG0oRiIWLZroNjdGyzEtPiOf4I
+mdTl/K+PjhaACEQNB5AhSQAxjCGkWJFEWVaQaqjYAFQysEI0lSICDS7VqcQtSAsQ
+xgPFyGAAc1xyFEcUjVCVYAAg0HQFIQkyDAHVVRkSJrp9kzZLxPAmxtV0UwSTKEsI
+jcUCz9aZhLkrcCf5R1ESNp1IUv89VTxhORaxNvJ6xHHidtD1O1vjrmEz00N/UCHd
+jFG+Te6oYwnbtGJCUORK4pguWwxADWiKKmvFAtsSNxMsZLoKWVX4rgBw+7A6joQE
+GzLVABapJkIGVcogNggyqCaDAJVlCqliIMoHRTLSAZEx0nUJqBiKASrqgjtcbczi
+bJH/E4c50zbDMewkE0xovNSzPsuTkePJHjvGPQhPjs//90yqU17PgxMQTwzt9I8c
+6WqdrRZMrmn3jJR9SjcfFvvfVnb3ncuscKaUL11XtadyoK3iWfst365UDV1yvHBR
+0c3XH1HXm3m7p+d8X/zz9rSmmvi9g+d6P318ue1LwaxX/V0XjmX3yt/m5tImb3qg
+foMxyztEr6xwLlflRY4fm187g/T4K/yPho9OTV/qn1RkrKqe83675fHuP0l/XAtX
+Px//4Wdp6t3M9FnoCwzdGT7SeWiKvff13eDKJzcK8q4Wfm3uHjrQVpoVWSXkr+ko
+rd9wJvv6i9YX32L06OPW8hF/S9nkBd2p0zvuP8hvPJWK3lu/9rbvoT01N7dvX+e4
+82XLnw62DDZ+Pmj/AllHJ7k=
+=Lddp
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/dmhacker
+
+==================================================================
