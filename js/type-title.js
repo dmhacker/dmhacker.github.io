@@ -1,7 +1,7 @@
 
 var BLINKSPEED = 300;
-var TYPESPEED = 250;
-var STARTTIMEOUT = 5000;
+var TYPESPEED = 200;
+var STARTTIMEOUT = 4000;
 var MIDTIMEOUT = 900;
 
 var title = document.getElementById("main-title").innerHTML;
