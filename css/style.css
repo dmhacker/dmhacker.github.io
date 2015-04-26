@@ -16,23 +16,38 @@ body {
 }
 
 #main-body {
-    padding-top: 30px;
-    padding-bottom: 27px;
+    padding-top: 55px;
+    padding-bottom: 55px;
 }
 
-#secondary-title {
+#about-title {
     font-family: 'Quicksand', sans-serif;
     padding-bottom: 30px;
     font-size: 400%;
+}
+
+#about-body {
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
 
 #profile-pic {
     padding-top: 60px
 }
 
+#contact-title {
+    font-family: 'Quicksand', sans-serif;
+    padding-bottom: 60px;
+    font-size: 400%;
+}
+
 #contact-body {
-    padding-top: 90px;
-    padding-bottom: 90px;
+    padding-top: 70px;
+    padding-bottom: 100px;
+}
+
+#badge-separator {
+    padding-top: 35px;
 }
 
 .centered {
