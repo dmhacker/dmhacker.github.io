@@ -1,0 +1,81 @@
+/*
+================ MY CSS ================
+*/
+
+@import url(https://fonts.googleapis.com/css?family=Quicksand);
+@import url(http://fonts.googleapis.com/css?family=Ubuntu:400,500);
+
+body {
+    /* background-color: #f1f1f1; */
+    margin: 0;
+}
+
+body {
+    -webkit-text-size-adjust: none;
+    font-family: "Ubuntu", sans-serif;
+}
+
+#main-block {
+    background: url('../images/lazers.gif') no-repeat;
+    background-size: cover;
+}
+
+#main-title{
+    font-family: 'Quicksand', sans-serif;
+    line-height: 70px;
+    padding-top: 35px;
+    padding-bottom: 35px;
+    font-size: 500%;
+}
+
+.cursor-blink {
+    opacity: 0.4;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink{
+    to{opacity: .0;}
+}
+
+#main-body {
+    padding-top: 55px;
+    padding-bottom: 55px;
+}
+
+#about-title {
+    font-family: 'Quicksand', sans-serif;
+    padding-bottom: 30px;
+    font-size: 400%;
+}
+
+#about-body {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+#profile-pic {
+    padding-top: 60px;
+}
+
+#contact-title {
+    font-family: 'Quicksand', sans-serif;
+    padding-bottom: 60px;
+    font-size: 400%;
+}
+
+#contact-body {
+    padding-top: 70px;
+    padding-bottom: 100px;
+}
+
+.padding-35 {
+    padding-top: 35px;
+}
+
+.centered {
+    text-align: center;
+}
+
+.lefted {
+    text-align: left;
+}
