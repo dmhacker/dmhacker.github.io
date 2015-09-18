@@ -8,7 +8,7 @@ function entry() {
 function algorithm(text) {
     var wordsToSentences = wordCount(text) / sentenceCount(text);
     var syllablesToWords = syllableCount(text) / wordCount(text);
-    // Flesch Kincaid readability
+    // Flesch Kincaid readability algorithm
     var ease = Math.round(206.835 - 1.015 * wordsToSentences - 84.6 * syllablesToWords);
     var gradeLevel = Math.round(0.39 * wordsToSentences + 11.8 * syllablesToWords - 15.59);
     display(ease, gradeLevel);
@@ -29,7 +29,7 @@ function display(ease, gradeLevel) {
         easeDesc = "Easy."
     }
     else if (ease > 90) {
-        eascDesc = "Super easy!"
+        easeDesc = "Super easy!"
     }
 
     $("#statsEaseDesc").text(easeDesc);
