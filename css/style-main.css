@@ -2,7 +2,8 @@
 ================ MY CSS ================
 */
 
-@import url(https://fonts.googleapis.com/css?family=Quicksand);
+/* @import url(https://fonts.googleapis.com/css?family=Quicksand); */
+@import url(https://fonts.googleapis.com/css?family=Raleway:300);
 @import url(http://fonts.googleapis.com/css?family=Ubuntu:400,500);
 
 body {
@@ -23,7 +24,7 @@ body {
 }
 
 #main-title{
-    font-family: 'Quicksand', sans-serif;
+    font-family: 'Raleway', sans-serif;
     line-height: 70px;
     padding-top: 35px;
     padding-bottom: 35px;
@@ -45,7 +46,7 @@ body {
 }
 
 #about-title {
-    font-family: 'Quicksand', sans-serif;
+    font-family: 'Raleway', sans-serif;
     padding-bottom: 30px;
     font-size: 400%;
 }
@@ -60,7 +61,7 @@ body {
 }
 
 #contact-title {
-    font-family: 'Quicksand', sans-serif;
+    font-family: 'Raleway', sans-serif;
     padding-bottom: 60px;
     font-size: 400%;
 }
@@ -71,7 +72,7 @@ body {
 }
 
 #reading-title {
-    font-family: 'Quicksand', sans-serif;
+    font-family: 'Raleway', sans-serif;
     padding-bottom: 30px;
     font-size: 400%;
     line-height: 100%;
