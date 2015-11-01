@@ -5,7 +5,7 @@ var TYPESPEED = 100,
     STARTTIMEOUT = 3000,
     MIDTIMEOUT = 900,
 
-    element = document.getElementById("main-heading"),
+    element = document.getElementById("top-heading"),
     title = element.innerHTML,
     new_title = "David Hacker",
     backspace,

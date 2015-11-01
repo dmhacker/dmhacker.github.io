@@ -16,12 +16,14 @@
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 
     <!-- CSS -->
-    <link type="text/css" rel="stylesheet" href="css/bijou.min.css">
+    <link type="text/css" rel="stylesheet" href="css/uikit.min.css">
+    <link type="text/css" rel="stylesheet" href="css/sticky.min.css">
     <link type="text/css" rel="stylesheet" href="css/site.css">
 
     <!-- JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+    <script src="js/uikit.min.js"></script>
+    <script src="js/sticky.min.js"></script>
 
     <!-- Analytics -->
     <script async>
@@ -38,57 +40,52 @@
 </head>
 <body>
 
-    <div class="navbar">
-        <h4 class="pull-left">Home</h4>
-        <ul class='pull-right'>
-            <li><a href="#profile">Profile</a></li>
-            <li><a href="https://github.com/dmhacker">Work</a></li>
-            <li><a>Résumé</a></li>
+    <nav class="uk-navbar" data-uk-sticky>
+        <ul class="uk-navbar-nav">
+            <li class="uk-active"><a href="#top">Home</a></li>
         </ul>
-    </div>
+        <div class="uk-navbar-flip">
+            <ul class="uk-navbar-nav">
+                <li><a href="#profile">Profile</a></li>
+                <li><a href="https://github.com/dmhacker">Work</a></li>
+                <li><a>Résumé</a></li>
+            </ul>
+        </div>
+    </nav>
 
-    <div id="main">
+    <div id="top">
         <div class="container">
-            <h1 id="main-heading">Avid Hacker?</h1>
+            <h1 id="top-heading">Avid Hacker?</h1>
         </div>
     </div>
 
     <hr>
 
-    <div id="profile">
-        <div class="row">
-            <div class="span six">
-                <img class="profile-image" src="images/david-hacker.jpg">
-            </div>
-            <div class="span six profile-desc">
-                <h2 class="profile-heading">What defines me?</h2>
-                <p>
-                    A student in appearance,
-                </p>
-                <p>
-                   A writer in thought,
-                </p>
-                <p>
-                    A developer in mind,
-                </p>
-                <p>
-                    A minimalist at heart.
-                </p>
-                <!-- p>&nbsp;</p>
-                <p>
-                    “He who has a why to live for can bear almost any how.”
-                </p>
-                <p>
-                    <i> - Friedrich Nietzsche</i>
-                </p -->
-            </div>
+    <div id="profile" class="uk-grid">
+        <div class="uk-width-1-2">
+            <img class="profile-image" src="images/david-hacker.jpg">
+        </div>
+        <div class="uk-width-1-2">
+            <h2 class="profile-heading">What am I?</h2>
+            <p>
+                A student in appearance,
+            </p>
+            <p>
+                A writer in thought,
+            </p>
+            <p>
+                A developer in mind,
+            </p>
+            <p>
+                A minimalist at heart.
+            </p>
         </div>
     </div>
 
     <hr>
 
-    <div id="footer">
-        <div class="row inline-images">
+    <div id="footer" class="uk-grid">
+        <div class="uk-width-large-1-1  inline-images">
             <a href="https://plus.google.com/105366104728639800876" class="footer-image-a">
                 <img src="images/google+.png" class="footer-image">
             </a>
