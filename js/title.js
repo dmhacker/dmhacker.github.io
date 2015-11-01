@@ -5,7 +5,8 @@ var TYPESPEED = 100,
     STARTTIMEOUT = 3000,
     MIDTIMEOUT = 900,
 
-    title = document.getElementById("main-title").innerHTML,
+    element = document.getElementById("main-heading"),
+    title = element.innerHTML,
     new_title = "David Hacker",
     backspace,
     forwards,
@@ -16,7 +17,7 @@ var TYPESPEED = 100,
 main()
 
 function main() {
-    document.getElementById("main-title").innerHTML = title + delimiter;
+    element.innerHTML = title + delimiter;
     window.setTimeout(function() {start()}, STARTTIMEOUT);
 }
 
@@ -27,7 +28,7 @@ function start() {
 
 function startBackspace() {
     title = title.substr(0, title.length - 1);
-    document.getElementById("main-title").innerHTML = title + delimiter;
+    element.innerHTML = title + delimiter;
     if (title.length === 0) {
         removeBackspace();
     }
@@ -40,7 +41,7 @@ function removeBackspace() {
 
 function startTyping() {
     title = new_title.substr(0, types++);
-    document.getElementById("main-title").innerHTML = title + delimiter;
+    element.innerHTML = title + delimiter;
     if (title === new_title) {
         endTyping();
     }
@@ -48,5 +49,5 @@ function startTyping() {
 
 function endTyping() {
     window.clearInterval(forwards);
-    document.getElementById("main-title").innerHTML = title + delimiter;
+    element.innerHTML = title + delimiter;
 }

@@ -1,0 +1,121 @@
+
+@import url(https://fonts.googleapis.com/css?family=Tangerine);
+@import url(https://fonts.googleapis.com/css?family=Arimo);
+
+body {
+    background: whitesmoke;
+    overflow-x: hidden;
+}
+
+.navbar {
+    padding-left: 6em;
+    padding-right: 6em;
+    background-color: lightgray;
+}
+
+a:link {
+    color: firebrick;
+}
+
+a:visited {
+    color: firebrick;
+}
+
+a:hover {
+    color: red;
+}
+
+hr {
+    display: block;
+    position: relative;
+    margin: 0px auto;
+    height: 0;
+    width: 100%;
+    max-height: 0;
+    font-size: 1px;
+    line-height: 0;
+    clear: both;
+    border: none;
+    border-top: 1px solid #aaaaaa;
+}
+
+#main {
+    text-align: center;
+}
+
+#main-heading {
+    padding-top: 170px;
+    padding-bottom: 170px;
+    display: block; text-decoration: none;
+    font: 150px Helvetica, Arial, Sans-Serif; letter-spacing: -5px;
+    text-align: center;
+    color: #999; text-shadow: 0px 3px 8px #2a2a2a;
+}
+
+.cursor-blink {
+    opacity: 0.4;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink{
+    to{opacity: .0;}
+}
+
+
+#profile {
+    padding-top: 5em;
+    padding-bottom: 5em;
+
+    text-align: center;
+}
+
+.profile-image {
+    border-radius: 50%;
+    height: 45%;
+    width: 45%;
+}
+
+.profile-desc {
+    text-align: center;
+    font-family: 'Arimo', sans-serif;
+}
+
+.profile-heading {
+    padding-bottom: 1em;
+    line-height: normal;
+}
+
+@media only screen and (min-width: 800px) {
+    .profile-heading {
+        padding-top: 1em;
+    }
+}
+
+
+#footer {
+    background-color: dimgrey;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.inline-images {
+    display: inline-block;
+    margin: 0 40px 0 0;
+    text-align: center;
+}
+
+.footer-image-a:hover{
+    opacity: 0.7;
+}
+
+.footer-image {
+    max-width: 48px;
+    max-height: 48px;
+}
+
+
+
+
+
+
+

@@ -10,14 +10,14 @@
     <meta name="author" content="David Hacker">
 
     <!-- Title -->
-    <title>David Hacker &middot; Home</title>
+    <title>David Hacker</title>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 
     <!-- CSS -->
-    <link type="text/css" rel="stylesheet" href="css/style-base.css">
-    <link type="text/css" rel="stylesheet" href="css/style-main.css">
+    <link type="text/css" rel="stylesheet" href="css/bijou.min.css">
+    <link type="text/css" rel="stylesheet" href="css/site.css">
 
     <!-- JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -37,64 +37,69 @@
     </script>
 </head>
 <body>
-    <section class="banner" id="main-block" >
-        <header class="header">
-            <div class="container clear">
-                <input type="checkbox" class="menu-toggle" id="navigation" name="navigation">
-                <label class="menu-label animated fade-in-right" for="navigation" id="toggle-menu"><span class="menu-label-inner">Menu</span></label>
-                <div class="navigation" id="menu">
-                    <nav class="menu container">
-                        <ul class="menu-inner">
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="about">About</a></li>
-                            <li><a href="contact">Contact</a></li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
-        </header>
-        <div class="container">
-            <div class="lead-block">
-                <p id="main-title">Avid Hacker?</p>
-                <ul class="action-buttons">
-                    <li><a class="button button-primary animated zoom-in-left" href="about">About Me</span></a></li>
-                    <li><a class="button button-link animated zoom-in-right" href="https://github.com/dmhacker"><span class="button-link-inner">GitHub<span class="no-mobile show-tablet-inline"> Projects</span></span></a></li>
-                </ul>
-            </div>
-        </div>
-    </section>
 
-    <section id="main-body">
-        <div class="container">
-            <ul class="features-block-inner row clear">
-                <li class="feature-item animated fade-in-up delay-1">
-                    <h3>Student</h3>
-                    <p>Currently in high school.</p>
-                </li>
-                <li class="feature-item animated fade-in-up delay-2">
-                    <h3>Programmer</h3>
-                    <p>Favorite languages are Python, Go, and Javascript.</p>
-                </li>
-                <li class="feature-item animated fade-in-up delay-3">
-                    <h3>Writer</h3>
-                    <p>I magically create stories!</p>
-                </li>
-            </ul>
-        </div>
-    </section>
+    <div class="navbar">
+        <h4 class="pull-left"><a href="#main">Home</a></h4>
+        <ul class='pull-right'>
+            <li><a href="#profile">Profile</a></li>
+            <li><a href="https://github.com/dmhacker">Work</a></li>
+            <li><a>Résumé</a></li>
+        </ul>
+    </div>
 
-    <footer class="footer">
+    <div id="main">
         <div class="container">
-            <div class="footer-inner clear">
-                <div class="col-desktop-6">
-                    <p>Copyright © 2015 David Hacker.</p>
-                </div>
-                <div class="col-desktop-6">
-                    <p><a href="http://getbase.org">Framework</a> developed by Matthew Hartman.</p>
-                </div>
+            <h1 id="main-heading">Avid Hacker?</h1>
+        </div>
+    </div>
+
+    <hr>
+
+    <div id="profile">
+        <div class="row">
+            <div class="span six">
+                <img class="profile-image" src="images/david-hacker.jpg">
+            </div>
+            <div class="span six profile-desc">
+                <h2 class="profile-heading">What defines me?</h2>
+                <p>
+                    A student in appearance,
+                </p>
+                <p>
+                   A writer in thought,
+                </p>
+                <p>
+                    A developer in mind,
+                </p>
+                <p>
+                    A minimalist at heart.
+                </p>
+                <!-- p>&nbsp;</p>
+                <p>
+                    “He who has a why to live for can bear almost any how.”
+                </p>
+                <p>
+                    <i> - Friedrich Nietzsche</i>
+                </p -->
             </div>
         </div>
-    </footer>
+    </div>
+
+    <hr>
+
+    <div id="footer">
+        <div class="row inline-images">
+            <a href="https://plus.google.com/105366104728639800876" class="footer-image-a">
+                <img src="images/google+.png" class="footer-image">
+            </a>
+            <a href="https://www.reddit.com/u/dmhacker" class="footer-image-a">
+                <img src="images/reddit.png" class="footer-image">
+            </a>
+            <a href="https://www.twitter.com/amursoc" class="footer-image-a">
+                <img src="images/twitter.png" class="footer-image">
+            </a>
+        </div>
+    </div>
 
     <script src="js/title.js"></script>
 </body>
