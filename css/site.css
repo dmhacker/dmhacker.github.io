@@ -1,6 +1,6 @@
 
-@import url(https://fonts.googleapis.com/css?family=Tangerine);
 @import url(https://fonts.googleapis.com/css?family=Arimo);
+@import url(https://fonts.googleapis.com/css?family=Raleway);
 
 body {
     background: whitesmoke;
@@ -47,7 +47,8 @@ hr {
     padding-top: 170px;
     padding-bottom: 170px;
     display: block; text-decoration: none;
-    font: 150px Helvetica, Arial, Sans-Serif; letter-spacing: -5px;
+    font: 150px 'Raleway', sans-serif;
+    letter-spacing: -5px;
     text-align: center;
     color: #999; text-shadow: 0px 3px 8px #2a2a2a;
 }
