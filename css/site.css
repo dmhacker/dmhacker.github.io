@@ -30,17 +30,18 @@ hr {
 }
 
 #top-heading {
-    padding-top: 170px;
-    padding-bottom: 170px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    font: 5em 'Raleway', sans-serif;
     display: block; text-decoration: none;
-    font: 500% 'Raleway', sans-serif;
-    letter-spacing: -5px;
     text-align: center;
     color: #999; text-shadow: 0px 3px 8px #2a2a2a;
 }
 
 @media only screen and (min-width: 800px) {
     #top-heading {
+        padding-top: 200px;
+        padding-bottom: 200px;
         font: 10em 'Raleway', sans-serif;
     }
 }
