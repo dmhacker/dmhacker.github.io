@@ -9,6 +9,7 @@ body {
 
 .uk-navbar {
     background-color: lightgray;
+    padding: 0.5em;
 }
 
 hr {
@@ -54,7 +55,6 @@ hr {
 @keyframes blink{
     to{opacity: .0;}
 }
-
 
 #profile {
     padding-top: 5em;
