@@ -4,12 +4,6 @@ body {
     margin: 0;
 }
 
-#droids-meme {
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-}
-
 h1 {
     font-family: 'Raleway', sans-serif;
     font-size: 500%;
@@ -21,15 +15,21 @@ h2 {
     text-align: center;
 }
 
-#go-home {
+a:hover {
+    color: #FF0000;
+}
+
+#404-image {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+#home {
     font-family: 'Raleway', sans-serif;
     text-align: center;
 }
 
 #home-link {
     text-decoration: none;
-}
-
-a:hover {
-    color: #FF0000;
 }
