@@ -19,10 +19,11 @@ a:hover {
     color: #FF0000;
 }
 
-#404-image {
+#amusing-image {
     margin-left: auto;
     margin-right: auto;
     display: block;
+    text-align: center;
 }
 
 #home {
