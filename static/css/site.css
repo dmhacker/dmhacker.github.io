@@ -78,25 +78,23 @@ hr {
     padding-top: 5em;
     padding-bottom: 5em;
 
+    font-family: 'Lato', sans-serif;
     text-align: center;
 }
 
-.profile-image {
+#profile-image {
     border-radius: 50%;
 }
 
-.profile-heading {
+#profile-heading {
     padding-bottom: 1em;
     line-height: normal;
     font-size: 200%;
 }
 
-.profile-desc {
-    text-align: center;
-    font-family: 'Arimo', sans-serif;
-    font-size: 200%;
+#profile-description {
+    font-size: 125%;
 }
-
 
 #footer {
     background-color: dimgrey;
