@@ -5,7 +5,7 @@ function main() {
     var d = new Date();
     var year = d.getFullYear();
     var copyright = document.getElementById(element_name);
-    copyright.innerHTML = "Copyright © "+year+" David Hacker";
+    copyright.innerHTML = "Copyright © "+year+" &middot David Hacker";
 }
 
 main();
