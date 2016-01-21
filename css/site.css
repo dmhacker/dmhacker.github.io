@@ -44,6 +44,28 @@ hr {
     }
 }
 
+/* http://webdesignerhut.com/5-animations-using-css-keyframes/ */
+@-webkit-keyframes pulse {
+    0% { -webkit-transform: scale(1); }
+    50% { -webkit-transform: scale(1.1); }
+    100% { -webkit-transform: scale(1); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+/* End animation */
+
+#logo-image:hover {
+    -webkit-animation-name: pulse;
+	-webkit-animation-duration: 1s;
+	-webkit-transform-origin: 50% 50%;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-timing-function: linear;
+}
+
 .cursor-blink {
     opacity: 0.4;
     animation: blink 1s infinite;
