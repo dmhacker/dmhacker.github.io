@@ -120,7 +120,7 @@ hr {
 
 .roll {
     display: inline-block;
-    overflow: hidden;
+    overflow: hidden; /* Consider possibly removing this */
 
     vertical-align: top;
 
@@ -141,7 +141,7 @@ hr {
 .roll span {
     display: block;
     position: relative;
-    padding: 0 2px;
+    padding: 0 7px;
 
     -webkit-transition: all 400ms ease;
     -moz-transition: all 400ms ease;
@@ -167,7 +167,7 @@ hr {
     position: absolute;
     left: 0;
     top: 0;
-    padding: 0 2px;
+    padding: 0 7px;
 
     color: #fff;
     background: hsl(0, 100%, 5%);
