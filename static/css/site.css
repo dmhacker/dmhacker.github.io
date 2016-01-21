@@ -22,6 +22,10 @@ hr {
     opacity: 0.96;
 }
 
+.uk-navbar-nav > li > a {
+    font-family: 'Lato', sans-serif;
+}
+
 #top {
     text-align: center;
 }
@@ -43,20 +47,6 @@ hr {
     }
 }
 
-/* http://webdesignerhut.com/5-animations-using-css-keyframes/ */
-@-webkit-keyframes pulse {
-    0% { -webkit-transform: scale(1); }
-    50% { -webkit-transform: scale(1.1); }
-    100% { -webkit-transform: scale(1); }
-}
-
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
-}
-/* End animation */
-
 #logo-image:hover {
     -webkit-animation-name: pulse;
 	-webkit-animation-duration: 1s;
@@ -70,8 +60,10 @@ hr {
     animation: blink 1s infinite;
 }
 
-@keyframes blink{
-    to{opacity: .0;}
+@keyframes blink {
+    to {
+        opacity: .0; 
+    }
 }
 
 #profile {
@@ -128,6 +120,21 @@ hr {
     font-family: 'Indie Flower', cursive;
 }
 
+/* http://webdesignerhut.com/5-animations-using-css-keyframes/ */
+@-webkit-keyframes pulse {
+    0% { -webkit-transform: scale(1); }
+    50% { -webkit-transform: scale(1.1); }
+    100% { -webkit-transform: scale(1); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+/* End animation */
+
+/* http://jsfiddle.net/hakim/Ht6Ym/ */
 .roll {
     display: inline-block;
     overflow: hidden; /* Consider possibly removing this */
@@ -142,10 +149,6 @@ hr {
     
     color: hsl(0, 100%, 0%);
     text-decoration: none;
-}
-
-.roll-fix {
-    background-color: lightgray;
 }
 
 .roll span {
@@ -188,6 +191,7 @@ hr {
     -webkit-transform: translate3d( 0px, 105%, 0px ) rotateX( -90deg );
     -moz-transform: translate3d( 0px, 105%, 0px ) rotateX( -90deg );
 }
+/* End animation */
 
 
 
