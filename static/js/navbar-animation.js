@@ -1,11 +1,42 @@
 
-var has3d = 'WebKitCSSMatrix' in window && 'm11' in new WebKitCSSMatrix();
+/* var has3d = 'WebKitCSSMatrix' in window && 'm11' in new WebKitCSSMatrix(); */
+
+function has3d() {
+    if (!window.getComputedStyle) {
+        return false;
+    }
+
+    var el = document.createElement('p'), 
+        has3d,
+        transforms = {
+            'webkitTransform':'-webkit-transform',
+            'OTransform':'-o-transform',
+            'msTransform':'-ms-transform',
+            'MozTransform':'-moz-transform',
+            'transform':'transform'
+        };
+
+    // Add it to the body to get the computed style.
+    document.body.insertBefore(el, null);
+
+    for (var t in transforms) {
+        if (el.style[t] !== undefined) {
+            el.style[t] = "translate3d(1px,1px,1px)";
+            has3d = window.getComputedStyle(el).getPropertyValue(transforms[t]);
+        }
+    }
+
+    document.body.removeChild(el);
+
+    return (has3d !== undefined && has3d.length > 0 && has3d !== "none");
+}
 
 function main() {
+    var supported = has3d();
     var nodes = document.querySelectorAll('.roll');
     for(var i = 0; i < nodes.length; i++) {
         var node = nodes[i];
-        if (has3d) {
+        if (supported) {
             node.innerHTML = '<span data-title="'+ node.text +'">' + node.innerHTML + '</span>';
         }
         else {
@@ -14,7 +45,7 @@ function main() {
         }
     }
     var sheet = document.createElement('style');
-    if (has3d) {
+    if (supported) {
         sheet.innerHTML = ".uk-navbar-nav > li:hover > a, .uk-navbar-nav > li > a:focus, .uk-navbar-nav > li.uk-open > a { background-color: lightgray; color: #444444; outline: none; }";
     }
     else {
