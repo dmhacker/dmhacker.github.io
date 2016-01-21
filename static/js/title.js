@@ -5,7 +5,8 @@ var TYPESPEED = 100,
     STARTTIMEOUT = 3000,
     MIDTIMEOUT = 900,
 
-    element = document.getElementById("top-heading"),
+    element_name = "top-heading",
+    element = document.getElementById(element_name),
     title = element.innerHTML,
     new_title = "David Hacker",
     backspace,
@@ -13,8 +14,6 @@ var TYPESPEED = 100,
     types = 1,
 
     delimiter = "<span class=\"cursor-blink\">|</span>";
-
-main()
 
 function main() {
     element.innerHTML = title + delimiter;
@@ -51,3 +50,5 @@ function endTyping() {
     window.clearInterval(forwards);
     element.innerHTML = title + delimiter;
 }
+
+main()

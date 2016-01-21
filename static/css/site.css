@@ -119,13 +119,13 @@ hr {
     max-height: 48px;
 }
 
+.footer-text-container {
+    padding-top: 20px;
+}
+
 .footer-text {
     text-align: center;
     color: white;
-}
-
-.footer-text-container {
-    padding-top: 20px;
     font-size: 130%;
     font-family: 'Indie Flower', cursive;
 }

@@ -23,5 +23,4 @@ function main() {
     document.getElementsByTagName('body')[0].appendChild(sheet);
 }
 
-
 main();
