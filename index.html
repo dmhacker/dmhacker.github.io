@@ -14,16 +14,16 @@
     <title>David Hacker</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon">
 
     <!-- Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
     <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css' rel='stylesheet' type='text/css'>
-
+    
     <!-- CSS -->
-    <link type="text/css" rel="stylesheet" href="css/uikit.min.css">
-    <link type="text/css" rel="stylesheet" href="css/site.css">
+    <link type="text/css" rel="stylesheet" href="/static/lib/uikit.css">
+    <link type="text/css" rel="stylesheet" href="/static/css/site.css">
     
     <!-- Inline CSS -->
     <style>
@@ -49,15 +49,15 @@
     <nav class="uk-navbar" data-uk-sticky>
         <ul class="uk-navbar-nav">
             <a href="" class="uk-navbar-brand uk-hidden-small">
-                <img id="logo-image" src="images/logo.png">
+                <img id="logo-image" src="/static/images/logo.png">
             </a>
         </ul>
         <div class="uk-navbar-flip">
             <ul class="uk-navbar-nav uk-hidden-small">
-                <li><a href="#top">Home</a></li>
-                <li><a href="#profile">Profile</a></li>
-                <li><a href="https://github.com/dmhacker">Work</a></li>
-                <li><a href="http://careers.stackoverflow.com/dmhacker">Résumé</a></li>
+                <li><a href="#top" class="roll">Home</a></li>
+                <li><a href="#profile" class="roll">Profile</a></li>
+                <li><a href="https://github.com/dmhacker" class="roll">Work</a></li>
+                <li><a href="http://careers.stackoverflow.com/dmhacker" class="roll">Résumé</a></li>
             </ul>
         </div>
         <a href="#offcanvas-navbar" class="uk-navbar-toggle uk-visible-small" data-uk-offcanvas></a>
@@ -72,7 +72,7 @@
                 <li><a href="#profile">Profile</a></li>
                 <li class="uk-nav-header">Beyond This Site</li>
                 <li><a href="https://github.com/dmhacker">Work</a></li>
-                <li><a>Résumé</a></li>
+                <li><a href="http://careers.stackoverflow.com/dmhacker">Résumé</a></li>
             </ul>
         </div>
     </div>
@@ -89,7 +89,7 @@
     <!-- About me/profile -->
     <div id="profile" class="uk-grid">
         <div class="uk-width-1-2">
-            <img class="profile-image" src="images/david-hacker.jpg">
+            <img class="profile-image" src="/static/images/david-hacker.jpg">
         </div>
         <div class="uk-width-1-2">
             <h2 class="profile-heading">Who am I?</h2>
@@ -114,24 +114,25 @@
     <div id="footer" class="uk-grid">
         <div class="uk-width-large-1-1 inline-images">
             <a href="https://plus.google.com/105366104728639800876" class="footer-image-a">
-                <img src="images/google-plus42.png" class="footer-image" height="42" width="42">
+                <img src="/static/images/google-plus42.png" class="footer-image" height="42" width="42">
             </a>
             <a href="https://www.instagram.com/amursoc/" class="footer-image-a">
-                <img src="images/instagram42.png" class="footer-image" height="42" width="42">
+                <img src="/static/images/instagram42.png" class="footer-image" height="42" width="42">
             </a>
             <a href="https://twitter.com/amursoc" class="footer-image-a">
-                <img src="images/twitter42.png" class="footer-image" height="42" width="42">
+                <img src="/static/images/twitter42.png" class="footer-image" height="42" width="42">
             </a>
             <a href="http://stackoverflow.com/users/5516314/david-hacker" class="footer-image-a">
-                <img src="images/stack-overflow42.png" class="footer-image" height="42" width="42">
+                <img src="/static/images/stack-overflow42.png" class="footer-image" height="42" width="42">
             </a>
         </div>
     </div>
 
     <!-- JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="js/uikit.min.js"></script>
-    <script src="js/sticky.min.js"></script>
-    <script src="js/title.js"></script>
+    <script src="/static/lib/uikit.min.js"></script>
+    <script src="/static/lib/sticky.min.js"></script>
+    <script src="/static/js/supports3d.js"></script>
+    <script src="/static/js/title.js"></script>
 </body>
 </html>
