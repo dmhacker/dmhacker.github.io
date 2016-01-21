@@ -19,6 +19,7 @@ hr {
 .uk-navbar {
     background-color: lightgray;
     padding: 0.5em;
+    opacity: 0.96;
 }
 
 #top {
