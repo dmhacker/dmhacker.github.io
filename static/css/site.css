@@ -130,7 +130,7 @@ hr {
     -webkit-perspective-origin: 50% 50%;
     -moz-perspective-origin: 50% 50%;
     
-    color: hsl(0, 100%, 60%); /*hsl(206, 80%, 50%);*/
+    color: hsl(0, 100%, 0%);
     text-decoration: none;
 }
 
@@ -170,7 +170,7 @@ hr {
     padding: 0 2px;
 
     color: #fff;
-    background: hsl(0, 100%, 40%); /*hsl(206, 80%, 30%);*/
+    background: hsl(0, 100%, 5%);
 
     -webkit-transform-origin: 50% 0%;
     -moz-transform-origin: 50% 0%;
