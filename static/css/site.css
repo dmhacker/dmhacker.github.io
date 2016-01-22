@@ -98,8 +98,10 @@ body {
 }
 
 .footer-image {
-    max-width: 48px;
-    max-height: 48px;
+    margin-left: 8px;
+    margin-right: 8px;
+    max-width: 42px;
+    max-height: 42px;
 }
 
 .footer-text-container {
