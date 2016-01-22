@@ -140,12 +140,12 @@ hr {
 /* http://jsfiddle.net/hakim/Ht6Ym/ */
 .roll {
     display: inline-block;
-    overflow: hidden; /* Consider possibly removing this */
+    overflow: hidden;
 
     vertical-align: top;
 
-    -webkit-perspective: 400px;
-    -moz-perspective: 400px;
+    -webkit-perspective: 600px;
+    -moz-perspective: 600px;
 
     -webkit-perspective-origin: 50% 50%;
     -moz-perspective-origin: 50% 50%;
@@ -157,7 +157,7 @@ hr {
 .roll span {
     display: block;
     position: relative;
-    padding: 0 7px;
+    padding: 0px 7px;
 
     -webkit-transition: all 400ms ease;
     -moz-transition: all 400ms ease;
@@ -195,8 +195,6 @@ hr {
     -moz-transform: translate3d( 0px, 105%, 0px ) rotateX( -90deg );
 }
 /* End animation */
-
-
 
 
 
