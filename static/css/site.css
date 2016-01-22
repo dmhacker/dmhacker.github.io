@@ -4,7 +4,7 @@ body {
 
 .uk-navbar {
     background-color: lightgray;
-    padding: 1em;
+    padding: 0.5em;
     /* http://www.cssmatic.com/box-shadow */
     -webkit-box-shadow: 0px 5px 18px 1px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 5px 18px 1px rgba(0,0,0,0.75);
@@ -29,7 +29,7 @@ body {
 #top-heading {
     padding-top: 50px;
     padding-bottom: 50px;
-    font: 5em 'Raleway', sans-serif;
+    font: 6em 'Raleway', sans-serif;
     display: block; text-decoration: none;
     text-align: center;
     color: #b30000; text-shadow: 0px 3px 8px #2a2a2a;
@@ -41,14 +41,6 @@ body {
         padding-bottom: 200px;
         font: 10em 'Raleway', sans-serif;
     }
-}
-
-#logo-image:hover {
-    -webkit-animation-name: pulse;
-	-webkit-animation-duration: 1s;
-	-webkit-transform-origin: 50% 50%;
-	-webkit-animation-iteration-count: infinite;
-	-webkit-animation-timing-function: linear;
 }
 
 .cursor-blink {
