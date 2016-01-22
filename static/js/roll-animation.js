@@ -1,6 +1,3 @@
-
-/* var has3d = 'WebKitCSSMatrix' in window && 'm11' in new WebKitCSSMatrix(); */
-
 function has3d() {
     if (!window.getComputedStyle) {
         return false;
@@ -31,15 +28,20 @@ function has3d() {
     return (has3d !== undefined && has3d.length > 0 && has3d !== "none");
 }
 
-function main() {
+function main(no_link_nodes, no_link_text) {
     var supported = has3d();
     var nodes = document.querySelectorAll('.roll');
     for(var i = 0; i < nodes.length; i++) {
         var node = nodes[i];
         if (supported) {
-            node.innerHTML = '<span data-title="'+ node.text +'">' + node.innerHTML + '</span>';
+            var node_text = node.text;
+            if (no_link_nodes.indexOf(node_text) > -1) {
+                node_text = no_link_text;
+            }
+            console.log(node_text);
+            node.innerHTML = '<span data-title="'+ node_text +'">' + node.innerHTML + '</span>';
         }
-        else {
+        else { 
             node.className = node.className.replace("roll", "");
             node.className.trim();
         }
@@ -54,4 +56,4 @@ function main() {
     document.getElementsByTagName('body')[0].appendChild(sheet);
 }
 
-main();
+main(["Résumé"], "Not yet!");
