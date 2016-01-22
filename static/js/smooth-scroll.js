@@ -2,8 +2,8 @@
 // Credits to http://stackoverflow.com/questions/10063380/javascript-smooth-scroll-without-the-use-of-jquery
 
 function main() {
-    var speed = 500;
-    var moving_frequency = 15; // Affects performance !
+    var speed = 300; // In milliseconds
+    var moving_frequency = 1; // Affects performance !
     var links = document.getElementsByTagName('a');
     var href;
     for(var i=0; i<links.length; i++)

@@ -55,4 +55,4 @@ function main(no_link_nodes, no_link_text) {
     document.getElementsByTagName('body')[0].appendChild(sheet);
 }
 
-main(["Résumé"], "Not yet!");
+main([], "Not yet!");
