@@ -38,7 +38,6 @@ function main(no_link_nodes, no_link_text) {
             if (no_link_nodes.indexOf(node_text) > -1) {
                 node_text = no_link_text;
             }
-            console.log(node_text);
             node.innerHTML = '<span data-title="'+ node_text +'">' + node.innerHTML + '</span>';
         }
         else { 
