@@ -2,23 +2,9 @@ body {
     overflow-x: hidden;
 }
 
-hr {
-    display: block;
-    position: relative;
-    margin: 0px auto;
-    height: 0;
-    width: 100%;
-    max-height: 0;
-    font-size: 1px;
-    line-height: 0;
-    clear: both;
-    border: none;
-    border-top: 1px solid #aaaaaa;
-}
-
 .uk-navbar {
     background-color: lightgray;
-    padding: 0.5em;
+    padding: 1em;
     /* http://www.cssmatic.com/box-shadow */
     -webkit-box-shadow: 0px 5px 18px 1px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 5px 18px 1px rgba(0,0,0,0.75);
@@ -26,11 +12,18 @@ hr {
 }
 
 .uk-navbar-nav > li > a {
-    font-family: 'Lato', sans-serif;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 140%;
 }
 
 #top {
     text-align: center;
+    /* http://stackoverflow.com/questions/5662735/stretch-background-image-css */
+    background: url('/static/images/background.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 #top-heading {
@@ -39,7 +32,7 @@ hr {
     font: 5em 'Raleway', sans-serif;
     display: block; text-decoration: none;
     text-align: center;
-    color: #999; text-shadow: 0px 3px 8px #2a2a2a;
+    color: #b30000; text-shadow: 0px 3px 8px #2a2a2a;
 }
 
 @media only screen and (min-width: 800px) {
@@ -73,7 +66,7 @@ hr {
     padding-top: 5em;
     padding-bottom: 5em;
 
-    font-family: 'Lato', sans-serif;
+    font-family: 'Open Sans Condensed', sans-serif;
     text-align: center;
 }
 
@@ -84,11 +77,11 @@ hr {
 #profile-heading {
     padding-bottom: 1em;
     line-height: normal;
-    font-size: 200%;
+    font-size: 250%;
 }
 
 #profile-description {
-    font-size: 125%;
+    font-size: 150%;
 }
 
 #footer {
@@ -120,7 +113,7 @@ hr {
     text-align: center;
     color: white;
     font-size: 130%;
-    font-family: 'Indie Flower', cursive;
+    font-family: 'Open Sans Condensed', sans-serif;
 }
 
 /* http://webdesignerhut.com/5-animations-using-css-keyframes/ */
@@ -150,7 +143,7 @@ hr {
     -webkit-perspective-origin: 50% 50%;
     -moz-perspective-origin: 50% 50%;
     
-    color: hsl(0, 100%, 0%);
+    color: hsl(0, 100%, 30%);
     text-decoration: none;
 }
 
@@ -186,7 +179,7 @@ hr {
     padding: 0 7px;
 
     color: #fff;
-    background: hsl(0, 100%, 5%);
+    background: #b30000;
 
     -webkit-transform-origin: 50% 0%;
     -moz-transform-origin: 50% 0%;
