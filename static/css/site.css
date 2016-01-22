@@ -67,6 +67,7 @@ body {
 }
 
 #profile-image {
+    padding-top: 20px;
     border-radius: 50%;
 }
 
