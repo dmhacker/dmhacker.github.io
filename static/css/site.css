@@ -32,7 +32,7 @@ body {
 #main-heading {
     padding-top: 50px;
     padding-bottom: 50px;
-    font: 5.5em 'Raleway', sans-serif;
+    font: 11em 'Raleway', sans-serif;
     display: block; text-decoration: none;
     text-align: center;
     color: #b30000; text-shadow: 0px 3px 8px #2a2a2a;
@@ -42,7 +42,6 @@ body {
     #main-heading {
         padding-top: 200px;
         padding-bottom: 200px;
-        font: 11em 'Raleway', sans-serif;
     }
 }
 
