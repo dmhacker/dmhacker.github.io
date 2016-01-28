@@ -66,9 +66,20 @@ body {
     text-align: center;
 }
 
-#profile-image {
+#profile-image-wrapper {
     padding-top: 20px;
+}
+
+#profile-image {
+    max-width: 100%;
+    height: auto;
     border-radius: 50%;
+}
+
+@media only screen and (min-width: 1000px) {
+    #profile-image {
+        max-width: 35%;
+    }
 }
 
 #profile-heading {
