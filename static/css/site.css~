@@ -1,0 +1,210 @@
+body {
+    overflow-x: hidden;
+}
+
+.uk-navbar {
+    background-color: lightgray;
+    padding: 1.0em;
+    /* http://www.cssmatic.com/box-shadow */
+    -webkit-box-shadow: 0px 5px 18px 1px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 5px 18px 1px rgba(0,0,0,0.75);
+    -ms-box-shadow: 0px 5px 18px 1px rgba(0,0,0,0.75);
+    -o-box-shadow: 0px 5px 18px 1px rgba(0,0,0,0.75);
+    box-shadow: 0px 5px 18px 1px rgba(0,0,0,0.75);
+}
+
+.uk-navbar-nav > li > a {
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 140%;
+}
+
+#main {
+    text-align: center;
+    /* http://stackoverflow.com/questions/5662735/stretch-background-image-css */
+    background: url('/static/images/background.jpg') no-repeat center center scroll;
+    background-size: cover;
+}
+
+#main-heading {
+    display: block; text-decoration: none;
+    text-align: center;
+    color: hsl(0, 100%, 35%); text-shadow: 0px 3px 8px #2a2a2a;
+    
+    padding-top: 150px;
+    padding-bottom: 150px;
+    font: 6em 'Raleway', sans-serif;
+}
+
+@media only screen and (min-width: 800px) {
+    #main-heading {
+        padding-top: 200px;
+        padding-bottom: 200px;
+        font: 11em 'Raleway', sans-serif;
+    }
+}
+
+.cursor-blink {
+    opacity: 0.4;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    to {
+        opacity: .0; 
+    }
+}
+
+#profile {
+    padding-top: 5em;
+    padding-bottom: 5em;
+
+    font-family: 'Open Sans Condensed', sans-serif;
+    text-align: center;
+}
+
+#profile-image-wrapper {
+    padding-top: 20px;
+}
+
+#profile-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 50%;
+}
+
+@media only screen and (min-width: 1000px) {
+    #profile-image {
+        max-width: 35%;
+    }
+}
+
+#profile-heading {
+    padding-bottom: 1em;
+    line-height: normal;
+    font-size: 250%;
+}
+
+#profile-description {
+    font-size: 150%;
+}
+
+#footer {
+    background-color: dimgrey;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.inline-images {
+    display: inline-block;
+    margin: 0 40px 0 0;
+    text-align: center;
+}
+
+.footer-image-a:hover{
+    opacity: 0.7;
+}
+
+.footer-image {
+    margin-left: 8px;
+    margin-right: 8px;
+    max-width: 42px;
+    max-height: 42px;
+}
+
+.footer-text-container {
+    padding-top: 20px;
+}
+
+.footer-text {
+    text-align: center;
+    color: whitesmoke;
+    font-size: 130%;
+    font-family: 'Open Sans Condensed', sans-serif;
+}
+
+/* http://jsfiddle.net/hakim/Ht6Ym/ */
+.roll {
+    display: inline-block;
+    overflow: hidden;
+
+    vertical-align: top;
+
+    -webkit-perspective: 600px;
+    -moz-perspective: 600px;
+    -ms-perspective: 600px;
+    -o-perspective: 600px;
+    perspective: 600px;
+
+    -webkit-perspective-origin: 50% 50%;
+    -moz-perspective-origin: 50% 50%;
+    -ms-perspective-origin: 50% 50%;
+    -o-perspective-origin: 50% 50%;
+    perspective-origin: 50% 50%;
+    
+    color: hsl(0, 100%, 20%);
+    text-decoration: none;
+}
+
+.roll span {
+    display: block;
+    position: relative;
+    padding: 0px 7px;
+
+    -webkit-transition: all 400ms ease;
+    -moz-transition: all 400ms ease;
+    -ms-transition: all 400ms ease;
+    -o-transition: all 400ms ease;
+    transition: all 400ms ease;
+    
+    -webkit-transform-origin: 50% 0%;
+    -moz-transform-origin: 50% 0%;
+    -ms-transform-origin: 50% 0%;
+    -o-transform-origin: 50% 0%;
+    transform-origin: 50% 0%;
+    
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    -o-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+
+.roll:hover span {
+    background: #111;
+
+    -webkit-transform: translate3d( 0px, 0px, -30px ) rotateX( 90deg );
+    -moz-transform: translate3d( 0px, 0px, -30px ) rotateX( 90deg );
+    -ms-transform: translate3d( 0px, 0px, -30px ) rotateX( 90deg );
+    -o-transform: translate3d( 0px, 0px, -30px ) rotateX( 90deg );
+    transform: translate3d( 0px, 0px, -30px ) rotateX( 90deg );
+}
+
+.roll span:after {
+    content: attr(data-title);
+
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 0 7px;
+
+    color: #fff;
+    background: hsl(0, 100%, 35%);
+
+    -webkit-transform-origin: 50% 0%;
+    -moz-transform-origin: 50% 0%;
+    -ms-transform-origin: 50% 0%;
+    -o-transform-origin: 50% 0%;
+    transform-origin: 50% 0%;
+
+    -webkit-transform: translate3d( 0px, 105%, 0px ) rotateX( -90deg );
+    -moz-transform: translate3d( 0px, 105%, 0px ) rotateX( -90deg );
+    -ms-transform: translate3d( 0px, 105%, 0px ) rotateX( -90deg );
+    -o-transform: translate3d( 0px, 105%, 0px ) rotateX( -90deg );
+    transform: translate3d( 0px, 105%, 0px ) rotateX( -90deg );
+}
+/* End animation */
+
+
+
+
