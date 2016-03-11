@@ -39,6 +39,10 @@ body {
     margin-top: 100px;
 }
 
+.main-card-title {
+    padding-bottom: 0.5em;
+}
+
 .profile-card-title {
     padding-top: 2em;
 }
