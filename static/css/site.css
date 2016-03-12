@@ -43,7 +43,6 @@ body {
 
 #timeline {
     padding-top: 70px;
-    padding-bottom: 70px; /* Remove later when contact is added */
 }
 
 .timeline-item {
@@ -53,8 +52,8 @@ body {
 /* CONTACT */
 
 #contact {
-    margin-top: 50px;
-    margin-bottom: 50px;
+    padding-top: 70px;
+    padding-bottom: 70px;
 }
 
 /* FOOTER */

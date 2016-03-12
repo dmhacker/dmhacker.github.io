@@ -26,7 +26,7 @@
 </head>
 
 <body>
-    
+
     <!--- Fixed Navbar --->
     <!--- Unfortunately, with the way Materialize works, I have to create two navbars so this one will be at the fixed top rather than the fixed middle --->
     <div id="navbar-main-fixed" class="navbar-fixed hide">
@@ -34,14 +34,14 @@
             <div class="nav-wrapper red darken-4 z-depth-2">
                 <a href="#" data-activates="navbar-mobile" class="button-collapse"><i class="material-icons right">menu</i></a>
                 <ul class="left hide-on-med-and-down">
-                    <li id="profile-item"><a href="#profile" class="waves-effect waves-red">Profile</a></li>
-                    <li id="timeline-item"><a href="#timeline" class="waves-effect waves-red">Timeline</a></li>
-                    <li id="contact-item"><a href="#contact" class="waves-effect waves-red">Contact</a></li>
+                    <li id="profile-item"><a href="#profile" class="waves-effect">Profile</a></li>
+                    <li id="timeline-item"><a href="#timeline" class="waves-effect">Achievements</a></li>
+                    <li id="contact-item"><a href="#contact" class="waves-effect">Contact</a></li>
                 </ul>
                 <ul class="right hide-on-med-and-down">
-                    <li><a href="https://github.com/dmhacker" class="waves-effect waves-red">Projects</a></li>
-                    <li><a href="http://pinnaclecoding.co" class="waves-effect waves-red">Company</a></li>
-                    <li><a href="https://careers.stackoverflow.com/dmhacker" class="waves-effect waves-red">Resume</a></li>
+                    <li><a href="https://github.com/dmhacker" class="waves-effect">Projects</a></li>
+                    <li><a href="http://pinnaclecoding.co" class="waves-effect">Company</a></li>
+                    <li><a href="https://careers.stackoverflow.com/dmhacker" class="waves-effect">Resume</a></li>
                 </ul>
             </div>
         </nav>
@@ -80,14 +80,14 @@
             <div class="nav-wrapper red darken-4 z-depth-2">
                 <a href="#" data-activates="navbar-mobile" class="button-collapse"><i class="material-icons right">menu</i></a>
                 <ul class="left hide-on-med-and-down">
-                    <li><a href="#profile" class="waves-effect waves-red">Profile</a></li>
-                    <li><a href="#timeline" class="waves-effect waves-red">Timeline</a></li>
-                    <li><a href="#contact" class="waves-effect waves-red">Contact</a></li>
+                    <li><a href="#profile" class="waves-effect">Profile</a></li>
+                    <li><a href="#timeline" class="waves-effect">Achivements</a></li>
+                    <li><a href="#contact" class="waves-effect">Contact</a></li>
                 </ul>
                 <ul class="right hide-on-med-and-down">
-                    <li><a href="https://github.com/dmhacker" class="waves-effect waves-red">Projects</a></li>
-                    <li><a href="http://pinnaclecoding.co" class="waves-effect waves-red">Company</a></li>
-                    <li><a href="https://careers.stackoverflow.com/dmhacker" class="waves-effect waves-red">Resume</a></li>
+                    <li><a href="https://github.com/dmhacker" class="waves-effect">Projects</a></li>
+                    <li><a href="http://pinnaclecoding.co" class="waves-effect">Company</a></li>
+                    <li><a href="https://careers.stackoverflow.com/dmhacker" class="waves-effect">Resume</a></li>
                 </ul>
             </div>
         </nav>
@@ -96,7 +96,7 @@
     <!--- Mobile Navbar --->
     <ul class="side-nav" id="navbar-mobile">
         <li><a href="#profile">Profile</a></li>
-        <li><a href="#timeline">Timeline</a></li>
+        <li><a href="#timeline">Achievements</a></li>
         <li><a href="#contact">Contact</a></li>
         <li><a href="https://github.com/dmhacker">Projects</a></li>
         <li><a href="http://pinnaclecoding.co">Company</a></li>
@@ -113,14 +113,14 @@
                             <img src="/static/images/code.png">
                         </div>
                         <div class="card-content">
-                            <p class="card-title"><b>What I'm best at ...</b></p>
+                            <p class="card-title"><b>Skills</b></p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col s12 m4">
                             <div class="card hoverable clickable" onclick="location.href='https://www.google.com/design/spec/material-design/introduction.html';">
                                 <div class="profile-card-title">
-                                    <p><i>Specialty</i></p>
+                                    <p><i>Frontend</i></p>
                                     <span class="card-title">Material Design</span>
                                 </div>
                                 <div class="card-content">
@@ -138,7 +138,7 @@
                         <div class="col s12 m4">
                             <div class="card hoverable clickable" onclick="location.href='http://mean.io';">
                                 <div class="profile-card-title">
-                                    <p><i>Specialty</i></p>
+                                    <p><i>Backend</i></p>
                                     <span class="card-title">MEAN Stack</span>
                                 </div>
                                 <div class="card-content">
@@ -156,7 +156,7 @@
                         <div class="col s12 m4">
                             <div class="card hoverable clickable" onclick="location.href='https://www.firebase.com';">
                                 <div class="profile-card-title">
-                                    <p><i>Specialty</i></p>
+                                    <p><i>Database</i></p>
                                     <span class="card-title">Firebase</span>
                                 </div>
                                 <div class="card-content">
@@ -182,46 +182,98 @@
         <div class="container">
             <div class="card">
                 <div class="card-content">
-                    <p class="card-title"><b>A Timeline of My Life</b></p>
+                    <p class="card-title center-align"><b>Achievements</b></p>
+                    <ul id="timeline-list" class="collapsible popout" data-collapsible="accordion">
+                        <li class="timeline-item">
+                            <div class="collapsible-header"><i class="material-icons">supervisor_account</i>March 2016</div>
+                            <div class="collapsible-body">
+                                <p>I began working as the development lead under the software firm <a href="http://pinnaclecoding.co" target="_blank">Pinnacle Coding</a>, which was started by my colleague, <a href="https://mitchellsayer.github.io" target="_blank">Mitchell Sayer</a>. I began working on company projects, such as Android app development for <a href="http://blinks.io" target="_blank">Blinks</a>, real time database software for <a href="http://playbookfive.com" target="_blank">Playbook Five</a>, and others.</p>
+                            </div>
+                        </li>
+                        <li class="timeline-item">
+                            <div class="collapsible-header"><i class="material-icons">business</i>February 2016</div>
+                            <div class="collapsible-body">
+                                <p>I landed my first job working for <a href="http://indieu.com" target="_blank">IndieU</a>. I was hired as a full stack developer, meaning that I maintained their existing backend MEAN stack server and implemented new features when requested.</p>
+                            </div>
+                        </li>
+                        <li class="timeline-item">
+                            <div class="collapsible-header"><i class="material-icons">new_releases</i>January 2016</div>
+                            <div class="collapsible-body">
+                                <p>After several months of hard work, the <a href="http://zerorobotics.mit.edu" target="_blank">Zero Robotics</a> team that I was on made it to the finals using the strategies I had developed. We got to see our code run live on the ISS!</p>
+                            </div>
+                        </li>
+                        <li class="timeline-item">
+                            <div class="collapsible-header"><i class="material-icons">code</i>September 2014</div>
+                            <div class="collapsible-body">
+                                <p>I got into website development. The first framework I used for my site was Yahoo's <a href="http://purecss.io" target="_blank">Pure framework</a>.</p>
+                            </div>
+                        </li>
+                        <li class="timeline-item">
+                            <div class="collapsible-header"><i class="material-icons">code</i>September 2014</div>
+                            <div class="collapsible-body">
+                                <p>I learned Python. I used it in <a href="https://robotgame.net/user/8867" target="_blank">an artificial intelligence competition</a> that is still running to this date. My best bot remains in the top 10 out of over 1000.</p>
+                            </div>
+                        </li>
+                        <li class="timeline-item">
+                            <div class="collapsible-header"><i class="material-icons">code</i>December 2012</div>
+                            <div class="collapsible-body">
+                                <p>I wrote my first program in Java. Unfortunately, it has since been lost ... and to be honest, I'm not sure what exactly it was about too. It might have been a simple truth test.</p>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
-            <ul id="timeline-list" class="collapsible popout" data-collapsible="accordion">
-                <li class="timeline-item">
-                    <div class="collapsible-header"><i class="material-icons">supervisor_account</i>March 2016</div>
-                    <div class="collapsible-body">
-                        <p>I began working as the development lead under the software firm <a href="http://pinnaclecoding.co" target="_blank">Pinnacle Coding</a>, which was started by my colleague, <a href="https://mitchellsayer.github.io" target="_blank">Mitchell Sayer</a>. I began working on company projects, such as Android app development for <a href="http://blinks.io" target="_blank">Blinks</a>, real time database software for <a href="http://playbookfive.com" target="_blank">Playbook Five</a>, and others.</p>
-                    </div>
-                </li>
-                <li class="timeline-item">
-                    <div class="collapsible-header"><i class="material-icons">business</i>January 2016</div>
-                    <div class="collapsible-body">
-                        <p>I landed my first job working for <a href="http://indieu.com" target="_blank">IndieU</a>. I was hired as a full stack developer, meaning that I maintained their existing backend MEAN stack server and implemented new features when requested.</p>
-                    </div>
-                </li>
-                <li class="timeline-item">
-                    <div class="collapsible-header"><i class="material-icons">code</i>September 2014</div>
-                    <div class="collapsible-body">
-                        <p>I got into website development. The first framework I used for my site was Yahoo's <a href="http://purecss.io" target="_blank">Pure framework</a>.</p>
-                    </div>
-                </li>
-                <li class="timeline-item">
-                    <div class="collapsible-header"><i class="material-icons">code</i>September 2014</div>
-                    <div class="collapsible-body">
-                        <p>I learned Python. I used it in <a href="https://robotgame.net/user/8867" target="_blank">an artificial intelligence competition</a> that is still running to this date. My best bot remains in the top 10 out of over 1000.</p>
-                    </div>
-                </li>
-                <li class="timeline-item">
-                    <div class="collapsible-header"><i class="material-icons">code</i>December 2012</div>
-                    <div class="collapsible-body">
-                        <p>I wrote my first program in Java. Unfortunately, it has since been lost ... and to be honest, I'm not sure what exactly it was about too. It might have been a simple truth test.</p>
-                    </div>
-                </li>
-            </ul>
         </div>
     </div>
 
     <div id="contact">
-        <!--- TODO --->
+        <div class="container">
+            <div class="card">
+                <div class="card-content center-align">
+                    <p class="card-title"><b>Contact</b></p>
+                    <p>P: (805) 368-5071</p>
+                    <p>E: dmhacker@yahoo.com</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="row">
+                    <div class="col s12">
+                        <h3 class="flow-text center-align"><b>Leave a Comment</b></h3>
+                        <div class="container">
+                            <form id="commentForm">
+                                <div class="row">
+                                    <div class="input-field col s6">
+                                        <input id="fname" type="text" class="validate" required>
+                                        <label for="fname">First Name</label>
+                                    </div>
+                                    <div class="input-field col s6">
+                                        <input id="lname" type="text" class="validate" required>
+                                        <label for="lname">Last Name</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input id="email" type="email" class="validate">
+                                        <label for="email">Optional Email</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <textarea id="comment" class="materialize-textarea" required></textarea>
+                                        <label for="comment">Comment</label>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col s12 center-align">
+                                        <button type="submit" form="commentForm" id="commentSubmit" class="waves-effect red darken-4 btn-large">Send!</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!--- Footer --->
@@ -248,7 +300,7 @@
         </div>
         <div class="footer-copyright red darken-1">
             <div class="container">
-                <p id="copyright-text"></p>
+                <p id="copyright-text">&copy; 2016 David Hacker &mdash; All Rights Reserved</p>
             </div>
         </div>
     </footer>
@@ -259,9 +311,8 @@
     <script src="https://cdn.jsdelivr.net/anijs/0.9.3/anijs-min.js"></script>
     <script src="https://cdn.firebase.com/js/client/2.4.1/firebase.js"></script>
     <script src="/static/js/jquery.scrollfire.min.js"></script>
-    <script src="/static/js/copyright-updater.js"></script>
     <script src="/static/js/smooth-scroll.js"></script>
-    <script src="/static/js/materialize-scroll.js"></script>
+    <script src="/static/js/site.js"></script>
 
     <!-- Analytics -->
     <script>
