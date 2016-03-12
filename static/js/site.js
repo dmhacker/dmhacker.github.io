@@ -91,7 +91,7 @@ $(document).ready(function () {
         var $inputs = $('#commentForm :input');
         var values = {};
         $inputs.each(function () {
-            if (this.id.length) {
+            if (this.id.length && this.id !== 'commentSubmit') {
                 values[this.id] = $(this).val();
             }
         });
