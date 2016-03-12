@@ -95,12 +95,12 @@
 
     <!--- Mobile Navbar --->
     <ul class="side-nav" id="navbar-mobile">
-        <li><a href="#profile" class="waves-effect waves-red">Profile</a></li>
-        <li><a href="#timeline" class="waves-effect waves-red">Timeline</a></li>
-        <li><a href="#contact" class="waves-effect waves-red">Contact</a></li>
-        <li><a href="https://github.com/dmhacker" class="waves-effect waves-red">Projects</a></li>
-        <li><a href="http://pinnaclecoding.co" class="waves-effect waves-red">Company</a></li>
-        <li><a href="https://careers.stackoverflow.com/dmhacker" class="waves-effect waves-red">Resume</a></li>
+        <li><a href="#profile">Profile</a></li>
+        <li><a href="#timeline">Timeline</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="https://github.com/dmhacker">Projects</a></li>
+        <li><a href="http://pinnaclecoding.co">Company</a></li>
+        <li><a href="https://careers.stackoverflow.com/dmhacker">Resume</a></li>
     </ul>
 
     <!--- Profile/Technologies --->
@@ -257,82 +257,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
     <script src="https://cdn.jsdelivr.net/anijs/0.9.3/anijs-min.js"></script>
+    <script src="https://cdn.firebase.com/js/client/2.4.1/firebase.js"></script>
     <script src="/static/js/jquery.scrollfire.min.js"></script>
-    <script src="/static/js/smooth-scroll.js"></script>
     <script src="/static/js/copyright-updater.js"></script>
-
-    <!-- Inline JS -->
-    <script>
-        $(document).ready(function () {
-            $(".button-collapse").sideNav();
-            $('#top').scrollfire({
-                bottomOffset: 50,
-                onTopHidden: function (elm) {
-                    $('#navbar-main').addClass('hide');
-                    $('#navbar-main-fixed').removeClass('hide');
-                },
-
-                onBottomHidden: function (elm) {
-                    $('#navbar-main').addClass('hide');
-                    $('#navbar-main-fixed').removeClass('hide');
-                },
-
-                onTopIn: function (elm) {
-                    $('#navbar-main-fixed').addClass('hide');
-                    $('#navbar-main').removeClass('hide');
-                },
-
-                onBottomIn: function (elm) {
-                    $('#navbar-main-fixed').addClass('hide');
-                    $('#navbar-main').removeClass('hide');
-                },
-            });
-            $('#profile').scrollfire({
-                bottomOffset: 50,
-                onTopIn: function (elm) {
-                    $('#profile-item').addClass('active');
-                },
-
-                onBottomIn: function (elm) {
-                    $('#profile-item').addClass('active');
-                },
-                
-                onTopHidden: function (elm) {
-                    $('#profile-item').removeClass('active');
-                },
-                
-                onBottomHidden: function (elm) {
-                    $('#profile-item').removeClass('active');
-                }
-            });
-            $('#timeline').scrollfire({
-                onTopIn: function (elm) {
-                    $('#timeline-item').addClass('active');
-                },
-
-                onBottomIn: function (elm) {
-                    $('#timeline-item').addClass('active');
-                },
-                
-                onTopHidden: function (elm) {
-                    $('#timeline-item').removeClass('active');
-                },
-                
-                onBottomHidden: function (elm) {
-                    $('#timeline-item').removeClass('active');
-                }
-            });
-            
-        });
-        var options = [
-            {
-                selector: '#timeline',
-                offset: 100,
-                callback: 'Materialize.showStaggeredList("#timeline-list")'
-            }
-        ];
-        Materialize.scrollFire(options);
-    </script>
+    <script src="/static/js/smooth-scroll.js"></script>
+    <script src="/static/js/materialize-scroll.js"></script>
 
     <!-- Analytics -->
     <script>
