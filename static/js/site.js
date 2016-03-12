@@ -26,6 +26,7 @@ $(document).ready(function () {
             $('#navbar-main').removeClass('hide');
         },
     });
+    /*
     $('#profile').scrollfire({
         bottomOffset: 50,
         onTopIn: function (elm) {
@@ -78,6 +79,7 @@ $(document).ready(function () {
             $('#contact-item').removeClass('active');
         }
     });
+    */
     $("#commentForm").submit(function (event) {
         event.preventDefault();
         
