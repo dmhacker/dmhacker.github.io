@@ -1,8 +1,12 @@
+
+html {
+    font-family: 'Gudea', sans-serif;
+}
+
 body {
     overflow-x: hidden;
-    font-family: 'Work Sans', sans-serif;
-    font-weight: 400;
     background-color: whitesmoke;
+    font-weight: 400;
 }
 
 .clickable {
