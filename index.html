@@ -26,7 +26,28 @@
 </head>
 
 <body>
+    
+    <!--- Fixed Navbar --->
+    <!--- Unfortunately, with the way Materialize works, I have to create two navbars so this one will be at the fixed top rather than the fixed middle --->
+    <div id="navbar-main-fixed" class="navbar-fixed hide">
+        <nav>
+            <div class="heading-navbar nav-wrapper z-depth-2">
+                <a href="#" data-activates="header-mobile" class="button-collapse"><i class="material-icons right">menu</i></a>
+                <ul class="left hide-on-med-and-down">
+                    <li><a href="#profile">Profile</a></li>
+                    <li><a href="#timeline">Timeline</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="https://github.com/dmhacker">Projects</a></li>
+                    <li><a href="http://pinnaclecoding.co">Company</a></li>
+                    <li><a href="https://careers.stackoverflow.com/dmhacker">Resume</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
 
+    <!--- Header --->
     <div id="top">
         <div class="heading-container hide-on-med-and-down">
             <div class="container">
@@ -36,7 +57,7 @@
                     </div>
                     <div class="col s9 center-align">
                         <h1 class="header-text white-text">David Hacker</h1>
-                        <a href="http://pinnaclecoding.co" id="header-button-id" class="header-button white-text waves-effect waves-light btn hoverable"  data-anijs="if: mouseover, do: pulse animated">Development Lead @ Pinnacle Coding</a>
+                        <a href="http://pinnaclecoding.co" id="header-button-id" class="header-button white-text waves-effect waves-light btn hoverable" data-anijs="if: mouseover, do: pulse animated">Development Lead @ Pinnacle Coding</a>
                     </div>
                 </div>
             </div>
@@ -53,54 +74,57 @@
         </div>
     </div>
 
-    <nav>
-        <div class="heading-navbar nav-wrapper z-depth-2">
-            <a href="#" data-activates="header-mobile" class="button-collapse"><i class="material-icons right">menu</i></a>
-            <ul class="left hide-on-med-and-down">
-                <li><a href="#profile">Profile</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <ul class="right hide-on-med-and-down">
-                <li><a href="https://github.com/dmhacker">Projects</a></li>
-                <li><a href="http://pinnaclecoding.co">Company</a></li>
-                <li><a href="https://careers.stackoverflow.com/dmhacker">Resume</a></li>
-            </ul>
-        </div>
-    </nav>
+    <!--- Relative Navbar --->
+    <div id="navbar-main">
+        <nav>
+            <div class="heading-navbar nav-wrapper z-depth-2">
+                <a href="#" data-activates="header-mobile" class="button-collapse"><i class="material-icons right">menu</i></a>
+                <ul class="left hide-on-med-and-down">
+                    <li><a href="#profile">Profile</a></li>
+                    <li><a href="#timeline">Timeline</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="https://github.com/dmhacker">Projects</a></li>
+                    <li><a href="http://pinnaclecoding.co">Company</a></li>
+                    <li><a href="https://careers.stackoverflow.com/dmhacker">Resume</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
 
+    <!--- Mobile Navbar --->
     <ul class="side-nav" id="header-mobile">
         <li><a href="#profile">Profile</a></li>
+        <li><a href="#timeline">Timeline</a></li>
         <li><a href="#contact">Contact</a></li>
         <li><a href="https://github.com/dmhacker">Projects</a></li>
         <li><a href="http://pinnaclecoding.co">Company</a></li>
         <li><a href="https://careers.stackoverflow.com/dmhacker">Resume</a></li>
     </ul>
 
+    <!--- Profile/Technologies --->
     <div id="profile">
         <div class="container">
             <div class="row">
                 <div class="col s12 center-align">
-                    <div class="card hoverable">
-                        <div class="card-image waves-effect waves-block waves-light">
-                            <img class="activator" src="/static/images/code.png">
+                    <div class="card">
+                        <div class="card-image">
+                            <img src="/static/images/code.png">
                         </div>
-                        <div class="card-content activator">
-                            <p class="card-title activator"><b>About Me</b></p>
-                        </div>
-                        <div class="card-reveal">
-                            <p class="card-title main-card-title"><b>About Me</b></p>
-                            <div class="divider"></div>
+                        <div class="card-content">
+                            <p class="card-title"><b>What I'm best at ...</b></p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col s12 m4">
                             <div class="card hoverable clickable" onclick="location.href='https://www.google.com/design/spec/material-design/introduction.html';">
                                 <div class="profile-card-title">
-                                    <p><i>Technology</i></p>
+                                    <p><i>Specialty</i></p>
                                     <span class="card-title">Material Design</span>
                                 </div>
                                 <div class="card-content">
-                                    <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+                                    <p>When it comes to building websites, aesthetics are just as important as functionality. I use Google's Material Design specifications to build responsive and sleek sites.</p>
                                 </div>
                                 <div class="card-action">
                                     <i class="material-icons red-text">grade</i>
@@ -114,11 +138,11 @@
                         <div class="col s12 m4">
                             <div class="card hoverable clickable" onclick="location.href='http://mean.io';">
                                 <div class="profile-card-title">
-                                    <p><i>Technology</i></p>
+                                    <p><i>Specialty</i></p>
                                     <span class="card-title">MEAN Stack</span>
                                 </div>
                                 <div class="card-content">
-                                    <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+                                    <p>In order to deliver content to the user, a website must be supported by a capable backend. I use MEAN (MongoDB, Express.js, Angular.js, Node.js) for this purpose.</p>
                                 </div>
                                 <div class="card-action">
                                     <i class="material-icons red-text">grade</i>
@@ -130,13 +154,13 @@
                             </div>
                         </div>
                         <div class="col s12 m4">
-                            <div class="card hoverable clickable" onclick="location.href='http://mean.io';">
+                            <div class="card hoverable clickable" onclick="location.href='https://www.firebase.com';">
                                 <div class="profile-card-title">
-                                    <p><i>Technology</i></p>
-                                    <span class="card-title">Android</span>
+                                    <p><i>Specialty</i></p>
+                                    <span class="card-title">Firebase</span>
                                 </div>
                                 <div class="card-content">
-                                    <p>I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.</p>
+                                    <p>Often, websites require real time updating of data. I use Firebase and its bindings to ensure that content seen by the user is always accurate and up to date.</p>
                                 </div>
                                 <div class="card-action">
                                     <i class="material-icons red-text">grade</i>
@@ -153,10 +177,54 @@
         </div>
     </div>
 
+    <!--- Work Timeline --->
+    <div id="timeline">
+        <div class="container">
+            <div class="card">
+                <div class="card-content">
+                    <p class="card-title"><b>A Timeline of My Life</b></p>
+                </div>
+            </div>
+            <ul id="timeline-list" class="collapsible popout" data-collapsible="accordion">
+                <li class="timeline-item">
+                    <div class="collapsible-header"><i class="material-icons">supervisor_account</i>March 2016</div>
+                    <div class="collapsible-body">
+                        <p>I began working as the development lead under the software firm <a href="http://pinnaclecoding.co" target="_blank">Pinnacle Coding</a>, which was started by my colleague, <a href="https://mitchellsayer.github.io" target="_blank">Mitchell Sayer</a>. I began working on company projects, such as Android app development for <a href="http://blinks.io" target="_blank">Blinks</a>, real time database software for <a href="http://playbookfive.com" target="_blank">Playbook Five</a>, and others.</p>
+                    </div>
+                </li>
+                <li class="timeline-item">
+                    <div class="collapsible-header"><i class="material-icons">business</i>January 2016</div>
+                    <div class="collapsible-body">
+                        <p>I landed my first job working for <a href="http://indieu.com" target="_blank">IndieU</a>. I was hired as a full stack developer, meaning that I maintained their existing backend MEAN stack server and implemented new features when requested.</p>
+                    </div>
+                </li>
+                <li class="timeline-item">
+                    <div class="collapsible-header"><i class="material-icons">code</i>September 2014</div>
+                    <div class="collapsible-body">
+                        <p>I got into website development. The first framework I used for my site was Yahoo's <a href="http://purecss.io" target="_blank">Pure framework</a>.</p>
+                    </div>
+                </li>
+                <li class="timeline-item">
+                    <div class="collapsible-header"><i class="material-icons">code</i>September 2014</div>
+                    <div class="collapsible-body">
+                        <p>I learned Python. I used it in <a href="https://robotgame.net/user/8867" target="_blank">an artificial intelligence competition</a> that is still running to this date. My best bot remains in the top 10 out of over 1000.</p>
+                    </div>
+                </li>
+                <li class="timeline-item">
+                    <div class="collapsible-header"><i class="material-icons">code</i>December 2012</div>
+                    <div class="collapsible-body">
+                        <p>I wrote my first program in Java. Unfortunately, it has since been lost ... and to be honest, I'm not sure what exactly it was about too. It might have been a simple truth test.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
     <div id="contact">
         <!--- TODO --->
     </div>
 
+    <!--- Footer --->
     <footer class="page-footer red center-align">
         <div class="container">
             <div class="row">
@@ -190,6 +258,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
     <script src="https://cdn.jsdelivr.net/anijs/0.9.3/anijs-min.js"></script>
+    <script src="/static/js/jquery.scrollfire.min.js"></script>
     <script src="/static/js/smooth-scroll.js"></script>
     <script src="/static/js/copyright-updater.js"></script>
 
@@ -197,7 +266,38 @@
     <script>
         $(document).ready(function () {
             $(".button-collapse").sideNav();
+            $('#top').scrollfire({
+                bottomOffset: 50,
+                onTopHidden: function (elm) {
+                    $('#navbar-main').addClass('hide');
+                    $('#navbar-main-fixed').removeClass('hide');
+                },
+
+                onBottomHidden: function (elm) {
+                    $('#navbar-main').addClass('hide');
+                    $('#navbar-main-fixed').removeClass('hide');
+                },
+
+                onTopIn: function (elm) {
+                    $('#navbar-main-fixed').addClass('hide');
+                    $('#navbar-main').removeClass('hide');
+                },
+
+                onBottomIn: function (elm) {
+                    $('#navbar-main-fixed').addClass('hide');
+                    $('#navbar-main').removeClass('hide');
+                },
+
+            });
         });
+        var options = [
+            {
+                selector: '#timeline',
+                offset: 100,
+                callback: 'Materialize.showStaggeredList("#timeline-list")'
+            }
+        ];
+        Materialize.scrollFire(options);
     </script>
 
     <!-- Analytics -->

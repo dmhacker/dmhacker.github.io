@@ -36,19 +36,20 @@ body {
 }
 
 #profile {
-    margin-top: 100px;
+    padding-top: 100px;
 }
 
-.main-card-title {
-    padding-bottom: 0.5em;
+#timeline {
+    margin-top: 50px;
+}
+
+#contact {
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 .profile-card-title {
     padding-top: 2em;
-}
-
-.activator {
-    cursor: pointer;
 }
 
 .copyright-padding {
@@ -69,4 +70,8 @@ body {
 
 .clickable {
     cursor: pointer;
+}
+
+.timeline-item {
+    opacity: 0;
 }
