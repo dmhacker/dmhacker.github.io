@@ -34,9 +34,9 @@
             <div class="nav-wrapper red darken-4 z-depth-2">
                 <a href="#" data-activates="navbar-mobile" class="button-collapse"><i class="material-icons right">menu</i></a>
                 <ul class="left hide-on-med-and-down">
-                    <li><a href="#profile" class="waves-effect waves-red">Profile</a></li>
-                    <li><a href="#timeline" class="waves-effect waves-red">Timeline</a></li>
-                    <li><a href="#contact" class="waves-effect waves-red">Contact</a></li>
+                    <li id="profile-item"><a href="#profile" class="waves-effect waves-red">Profile</a></li>
+                    <li id="timeline-item"><a href="#timeline" class="waves-effect waves-red">Timeline</a></li>
+                    <li id="contact-item"><a href="#contact" class="waves-effect waves-red">Contact</a></li>
                 </ul>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="https://github.com/dmhacker" class="waves-effect waves-red">Projects</a></li>
@@ -286,8 +286,42 @@
                     $('#navbar-main-fixed').addClass('hide');
                     $('#navbar-main').removeClass('hide');
                 },
-
             });
+            $('#profile').scrollfire({
+                onTopIn: function (elm) {
+                    $('#profile-item').addClass('active');
+                },
+
+                onBottomIn: function (elm) {
+                    $('#profile-item').addClass('active');
+                },
+                
+                onTopHidden: function (elm) {
+                    $('#profile-item').removeClass('active');
+                },
+                
+                onBottomHidden: function (elm) {
+                    $('#profile-item').removeClass('active');
+                }
+            });
+            $('#timeline').scrollfire({
+                onTopIn: function (elm) {
+                    $('#timeline-item').addClass('active');
+                },
+
+                onBottomIn: function (elm) {
+                    $('#timeline-item').addClass('active');
+                },
+                
+                onTopHidden: function (elm) {
+                    $('#timeline-item').removeClass('active');
+                },
+                
+                onBottomHidden: function (elm) {
+                    $('#timeline-item').removeClass('active');
+                }
+            });
+            
         });
         var options = [
             {

@@ -32,7 +32,7 @@ body {
 /* PROFILE */
 
 #profile {
-    padding-top: 100px;
+    padding-top: 70px;
 }
 
 .profile-card-title {
@@ -42,7 +42,8 @@ body {
 /* TIMELINE */
 
 #timeline {
-    margin-top: 50px;
+    padding-top: 70px;
+    padding-bottom: 70px; /* Remove later when contact is added */
 }
 
 .timeline-item {
