@@ -31,17 +31,17 @@
     <!--- Unfortunately, with the way Materialize works, I have to create two navbars so this one will be at the fixed top rather than the fixed middle --->
     <div id="navbar-main-fixed" class="navbar-fixed hide">
         <nav>
-            <div class="heading-navbar nav-wrapper z-depth-2">
-                <a href="#" data-activates="header-mobile" class="button-collapse"><i class="material-icons right">menu</i></a>
+            <div class="nav-wrapper red darken-4 z-depth-2">
+                <a href="#" data-activates="navbar-mobile" class="button-collapse"><i class="material-icons right">menu</i></a>
                 <ul class="left hide-on-med-and-down">
-                    <li><a href="#profile">Profile</a></li>
-                    <li><a href="#timeline">Timeline</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#profile" class="waves-effect waves-red">Profile</a></li>
+                    <li><a href="#timeline" class="waves-effect waves-red">Timeline</a></li>
+                    <li><a href="#contact" class="waves-effect waves-red">Contact</a></li>
                 </ul>
                 <ul class="right hide-on-med-and-down">
-                    <li><a href="https://github.com/dmhacker">Projects</a></li>
-                    <li><a href="http://pinnaclecoding.co">Company</a></li>
-                    <li><a href="https://careers.stackoverflow.com/dmhacker">Resume</a></li>
+                    <li><a href="https://github.com/dmhacker" class="waves-effect waves-red">Projects</a></li>
+                    <li><a href="http://pinnaclecoding.co" class="waves-effect waves-red">Company</a></li>
+                    <li><a href="https://careers.stackoverflow.com/dmhacker" class="waves-effect waves-red">Resume</a></li>
                 </ul>
             </div>
         </nav>
@@ -49,7 +49,7 @@
 
     <!--- Header --->
     <div id="top">
-        <div class="heading-container hide-on-med-and-down">
+        <div class="header-container hide-on-med-and-down">
             <div class="container">
                 <div class="row">
                     <div class="col s3 center-align">
@@ -62,7 +62,7 @@
                 </div>
             </div>
         </div>
-        <div class="heading-container hide-on-large-only">
+        <div class="header-container hide-on-large-only">
             <div class="container">
                 <div class="row">
                     <div class="col s12 center-align">
@@ -77,30 +77,30 @@
     <!--- Relative Navbar --->
     <div id="navbar-main">
         <nav>
-            <div class="heading-navbar nav-wrapper z-depth-2">
-                <a href="#" data-activates="header-mobile" class="button-collapse"><i class="material-icons right">menu</i></a>
+            <div class="nav-wrapper red darken-4 z-depth-2">
+                <a href="#" data-activates="navbar-mobile" class="button-collapse"><i class="material-icons right">menu</i></a>
                 <ul class="left hide-on-med-and-down">
-                    <li><a href="#profile">Profile</a></li>
-                    <li><a href="#timeline">Timeline</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#profile" class="waves-effect waves-red">Profile</a></li>
+                    <li><a href="#timeline" class="waves-effect waves-red">Timeline</a></li>
+                    <li><a href="#contact" class="waves-effect waves-red">Contact</a></li>
                 </ul>
                 <ul class="right hide-on-med-and-down">
-                    <li><a href="https://github.com/dmhacker">Projects</a></li>
-                    <li><a href="http://pinnaclecoding.co">Company</a></li>
-                    <li><a href="https://careers.stackoverflow.com/dmhacker">Resume</a></li>
+                    <li><a href="https://github.com/dmhacker" class="waves-effect waves-red">Projects</a></li>
+                    <li><a href="http://pinnaclecoding.co" class="waves-effect waves-red">Company</a></li>
+                    <li><a href="https://careers.stackoverflow.com/dmhacker" class="waves-effect waves-red">Resume</a></li>
                 </ul>
             </div>
         </nav>
     </div>
 
     <!--- Mobile Navbar --->
-    <ul class="side-nav" id="header-mobile">
-        <li><a href="#profile">Profile</a></li>
-        <li><a href="#timeline">Timeline</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="https://github.com/dmhacker">Projects</a></li>
-        <li><a href="http://pinnaclecoding.co">Company</a></li>
-        <li><a href="https://careers.stackoverflow.com/dmhacker">Resume</a></li>
+    <ul class="side-nav" id="navbar-mobile">
+        <li><a href="#profile" class="waves-effect waves-red">Profile</a></li>
+        <li><a href="#timeline" class="waves-effect waves-red">Timeline</a></li>
+        <li><a href="#contact" class="waves-effect waves-red">Contact</a></li>
+        <li><a href="https://github.com/dmhacker" class="waves-effect waves-red">Projects</a></li>
+        <li><a href="http://pinnaclecoding.co" class="waves-effect waves-red">Company</a></li>
+        <li><a href="https://careers.stackoverflow.com/dmhacker" class="waves-effect waves-red">Resume</a></li>
     </ul>
 
     <!--- Profile/Technologies --->
@@ -225,7 +225,7 @@
     </div>
 
     <!--- Footer --->
-    <footer class="page-footer red center-align">
+    <footer class="page-footer red center-align darken-1">
         <div class="container">
             <div class="row">
                 <div class="col s12">
@@ -246,12 +246,11 @@
                 </div>
             </div>
         </div>
-        <div class="footer-copyright red darken-4">
+        <div class="footer-copyright red darken-1">
             <div class="container">
-                <p>&copy; 2016 David Hacker &mdash; All Rights Reserved</p>
+                <p id="copyright-text"></p>
             </div>
         </div>
-        <div class="copyright-padding red darken-4"></div>
     </footer>
 
     <!-- JS -->
@@ -260,6 +259,7 @@
     <script src="https://cdn.jsdelivr.net/anijs/0.9.3/anijs-min.js"></script>
     <script src="/static/js/jquery.scrollfire.min.js"></script>
     <script src="/static/js/smooth-scroll.js"></script>
+    <script src="/static/js/copyright-updater.js"></script>
 
     <!-- Inline JS -->
     <script>

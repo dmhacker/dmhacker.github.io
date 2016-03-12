@@ -5,7 +5,13 @@ body {
     background-color: whitesmoke;
 }
 
-.heading-container {
+.clickable {
+    cursor: pointer;
+}
+
+/* HEADING and NAVBAR */
+
+.header-container {
     padding-top: 3em;
     padding-bottom: 3em;
     background: #E53935
@@ -23,34 +29,34 @@ body {
     background: #B71C1C;
 }
 
-.heading-pinnacle {
-    font-size: 130%;
-}
-
-.heading-image-mobile {
-    max-width: 50%;
-}
-
-.heading-navbar {
-    background-color: #B71C1C;
-}
+/* PROFILE */
 
 #profile {
     padding-top: 100px;
 }
 
+.profile-card-title {
+    padding-top: 2em;
+}
+
+/* TIMELINE */
+
 #timeline {
     margin-top: 50px;
 }
+
+.timeline-item {
+    opacity: 0;
+}
+
+/* CONTACT */
 
 #contact {
     margin-top: 50px;
     margin-bottom: 50px;
 }
 
-.profile-card-title {
-    padding-top: 2em;
-}
+/* FOOTER */
 
 .copyright-padding {
     padding-top: 1em;
@@ -66,12 +72,4 @@ body {
  
 .footer-image-a:hover{
     opacity: 0.7;
-}
-
-.clickable {
-    cursor: pointer;
-}
-
-.timeline-item {
-    opacity: 0;
 }
