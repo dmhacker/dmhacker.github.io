@@ -87,7 +87,6 @@
                     scene.add(pivot);
                     pivot.add(healthyBrain);
                     pivot.position.x -= 50;
-                    pivot.position.y -= 5;
 
                     var cteMaterial = new THREE.MeshPhongMaterial({
                         color: 0xcd853f,
@@ -101,7 +100,7 @@
                     cteBrain.position.x = 0;
                     cteBrain.position.y = 0;
                     cteBrain.position.z = 0;
-                    cteBrain.scale.set(0.8, 0.8, 0.8);
+                    cteBrain.scale.set(0.75, 0.75, 0.75);
 
                     var box2 = new THREE.Box3().setFromObject(cteBrain);
                     box2.center(cteBrain.position);
