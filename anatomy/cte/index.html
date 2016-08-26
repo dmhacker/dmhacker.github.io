@@ -1,0 +1,113 @@
+<html>
+
+<head>
+    <title>David Hacker</title>
+    <link href="https://fonts.googleapis.com/css?family=Asap|Flamenco" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+        }
+
+        canvas {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="/static/js/three.js"></script>
+    <script src="/static/js/threex.rendererstats.js"></script>
+    <script src="http://threejs.org/examples/js/controls/OrbitControls.js"></script>
+    <script src="http://threejs.org/examples/js/loaders/STLLoader.js"></script>
+    <script>
+        var rendererStats = new THREEx.RendererStats();
+
+        rendererStats.domElement.style.position = 'absolute'
+        rendererStats.domElement.style.left = '0px'
+        rendererStats.domElement.style.bottom = '0px'
+        document.body.appendChild(rendererStats.domElement)
+
+        var scene = new THREE.Scene();
+        var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+
+        var renderer = new THREE.WebGLRenderer({
+            antialias: true
+        });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setClearColor(0x000000);
+
+        document.body.appendChild(renderer.domElement);
+
+        init();
+
+        function init() {
+            var controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.target.position = new THREE.Vector3(0, 0, 0);
+
+            var ambLight = new THREE.AmbientLight(0x333333);
+            scene.add(ambLight);
+
+            var light = new THREE.DirectionalLight(0xffffff);
+            light.position.set(0, -1, 0).normalize();
+            scene.add(light);
+
+            var loader = new THREE.STLLoader();
+            loader.load('brain.stl', function (geometry) {
+                var material = new THREE.MeshPhongMaterial({
+                    color: 0xffe4c4,
+                    specular: 0x555555,
+                    shininess: 20,
+                    shading: THREE.SmoothShading
+                });
+                var stl = new THREE.Mesh(geometry, material);
+                stl.geometry.normalsNeedUpdate = true;
+                scene.add(stl);
+
+                camera.position.x = 0;
+                camera.position.y = -100;
+                camera.position.z = 0;
+
+                stl.position.x = 0;
+                stl.position.y = 0;
+                stl.position.z = 0;
+                stl.scale.set(0.6, 0.6, 0.6);
+
+                var box = new THREE.Box3().setFromObject(stl);
+                box.center(stl.position);
+                stl.position.multiplyScalar(-1);
+
+                var pivot = new THREE.Group();
+                scene.add(pivot);
+                pivot.add(stl);
+                pivot.position.x -= 60;
+
+                renderer.render(scene, camera);
+                rendererStats.update(renderer);
+
+                animate();
+
+                function animate() {
+                    requestAnimationFrame(animate);
+
+                    pivot.rotation.z += 0.01;
+
+                    controls.update();
+
+                    renderer.render(scene, camera);
+                    rendererStats.update(renderer);
+                }
+            });
+
+            window.addEventListener('resize', onWindowResize, false);
+        }
+
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+    </script>
+</body>
+
+</html>
