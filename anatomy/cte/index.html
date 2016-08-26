@@ -52,35 +52,67 @@
             light.position.set(0, -1, 0).normalize();
             scene.add(light);
 
+            /*
+            var backlight = new THREE.DirectionalLight(0xffffff);
+            backlight.position.set(0, 1, 0).normalize();
+            scene.add(backlight);
+            */
+
             var loader = new THREE.STLLoader();
             loader.load('brain.stl', function (geometry) {
+
+                const scale = 1;
+
                 var material = new THREE.MeshPhongMaterial({
-                    color: 0xffe4c4,
+                    color: 0xffdead,
                     specular: 0x555555,
-                    shininess: 20,
+                    shininess: 15,
                     shading: THREE.SmoothShading
                 });
-                var stl = new THREE.Mesh(geometry, material);
-                stl.geometry.normalsNeedUpdate = true;
-                scene.add(stl);
+
+                var healthyBrain = new THREE.Mesh(geometry, material);
+                scene.add(healthyBrain);
+
+                healthyBrain.position.x = 0;
+                healthyBrain.position.y = 0;
+                healthyBrain.position.z = 0;
+                healthyBrain.scale.set(scale, scale, scale);
+
+                var box = new THREE.Box3().setFromObject(healthyBrain);
+                box.center(healthyBrain.position);
+                healthyBrain.position.multiplyScalar(-1);
+
+                var pivot = new THREE.Group();
+                scene.add(pivot);
+                pivot.add(healthyBrain);
+                pivot.position.x -= 60;
+
+                var cteMaterial = new THREE.MeshPhongMaterial({
+                    color: 0xcd853f,
+                    specular: 0x555555,
+                    shininess: 5,
+                    shading: THREE.SmoothShading
+                });
+                var cteBrain = new THREE.Mesh(geometry, cteMaterial);
+                scene.add(cteBrain);
+
+                cteBrain.position.x = 0;
+                cteBrain.position.y = 0;
+                cteBrain.position.z = 0;
+                cteBrain.scale.set(scale, scale, scale);
+
+                var box2 = new THREE.Box3().setFromObject(cteBrain);
+                box2.center(cteBrain.position);
+                cteBrain.position.multiplyScalar(-1);
+
+                var pivot2 = new THREE.Group();
+                scene.add(pivot2);
+                pivot2.add(cteBrain);
+                pivot2.position.x += 60;
 
                 camera.position.x = 0;
                 camera.position.y = -100;
                 camera.position.z = 0;
-
-                stl.position.x = 0;
-                stl.position.y = 0;
-                stl.position.z = 0;
-                stl.scale.set(0.6, 0.6, 0.6);
-
-                var box = new THREE.Box3().setFromObject(stl);
-                box.center(stl.position);
-                stl.position.multiplyScalar(-1);
-
-                var pivot = new THREE.Group();
-                scene.add(pivot);
-                pivot.add(stl);
-                pivot.position.x -= 60;
 
                 renderer.render(scene, camera);
                 rendererStats.update(renderer);
@@ -90,7 +122,8 @@
                 function animate() {
                     requestAnimationFrame(animate);
 
-                    pivot.rotation.z += 0.01;
+                    pivot.rotation.z += 0.005;
+                    pivot2.rotation.z -= 0.005;
 
                     controls.update();
 
