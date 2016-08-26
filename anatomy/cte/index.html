@@ -20,14 +20,8 @@
     <script src="/static/js/threex.rendererstats.js"></script>
     <script src="http://threejs.org/examples/js/controls/OrbitControls.js"></script>
     <script src="http://threejs.org/examples/js/loaders/STLLoader.js"></script>
+    <script>javascript:(function(){var script=document.createElement('script');script.onload=function(){var stats=new Stats();document.body.appendChild(stats.dom);requestAnimationFrame(function loop(){stats.update();requestAnimationFrame(loop)});};script.src='//rawgit.com/mrdoob/stats.js/master/build/stats.min.js';document.head.appendChild(script);})()</script>
     <script>
-        var rendererStats = new THREEx.RendererStats();
-
-        rendererStats.domElement.style.position = 'absolute'
-        rendererStats.domElement.style.left = '0px'
-        rendererStats.domElement.style.bottom = '0px'
-        document.body.appendChild(rendererStats.domElement)
-
         var scene = new THREE.Scene();
         var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 
@@ -110,30 +104,26 @@
                 pivot2.add(cteBrain);
                 pivot2.position.x += 60;
 
-                camera.position.x = 0;
-                camera.position.y = 0;
-                camera.position.z = 100;
-
-                renderer.render(scene, camera);
-                rendererStats.update(renderer);
-
-                animate();
-
                 pivot.rotation.x += Math.PI * 3 / 2;
                 pivot2.rotation.x += Math.PI * 3 / 2;
                 pivot.rotation.z += Math.PI;
                 pivot2.rotation.z += Math.PI;
 
-                function animate() {
-                    requestAnimationFrame(animate);
+                camera.position.x = 0;
+                camera.position.y = 0;
+                camera.position.z = 100;
 
+                requestAnimationFrame(animate);
+
+                function animate() {
                     pivot.rotation.z += 0.007;
                     pivot2.rotation.z -= 0.007;
 
                     controls.update();
 
                     renderer.render(scene, camera);
-                    rendererStats.update(renderer);
+
+                    requestAnimationFrame(animate);
                 }
             });
 
