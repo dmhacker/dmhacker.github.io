@@ -39,12 +39,20 @@
         })()
     </script>
     <script>
+        var supportsWebGL = function () {
+            try {
+                return !!window.WebGLRenderingContext && !!document.createElement('canvas').getContext('experimental-webgl');
+            } catch (e) {
+                return false;
+            }
+        };
+
         var scene = new THREE.Scene();
         var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 
-        var renderer = new THREE.WebGLRenderer({
+        var renderer = supportsWebGL ? new THREE.WebGLRenderer({
             antialias: true
-        });
+        }) : new THREE.CanvasRenderer();
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.setClearColor(0x000000);
 
