@@ -20,7 +20,21 @@
     <script src="/static/js/threex.rendererstats.js"></script>
     <script src="http://threejs.org/examples/js/controls/OrbitControls.js"></script>
     <script src="http://threejs.org/examples/js/loaders/STLLoader.js"></script>
-    <script>javascript:(function(){var script=document.createElement('script');script.onload=function(){var stats=new Stats();document.body.appendChild(stats.dom);requestAnimationFrame(function loop(){stats.update();requestAnimationFrame(loop)});};script.src='//rawgit.com/mrdoob/stats.js/master/build/stats.min.js';document.head.appendChild(script);})()</script>
+    <script>
+        javascript: (function () {
+            var script = document.createElement('script');
+            script.onload = function () {
+                var stats = new Stats();
+                document.body.appendChild(stats.dom);
+                requestAnimationFrame(function loop() {
+                    stats.update();
+                    requestAnimationFrame(loop)
+                });
+            };
+            script.src = '//rawgit.com/mrdoob/stats.js/master/build/stats.min.js';
+            document.head.appendChild(script);
+        })()
+    </script>
     <script>
         var scene = new THREE.Scene();
         var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -46,85 +60,81 @@
             light.position.set(0, 0, 1).normalize();
             scene.add(light);
 
-            /*
-            var backlight = new THREE.DirectionalLight(0xffffff);
-            backlight.position.set(0, 1, 0).normalize();
-            scene.add(backlight);
-            */
-
             var loader = new THREE.STLLoader();
             loader.load('brain.stl', function (geometry) {
+                loader.load('cte.stl', function (cteGeometry) {
+                    var material = new THREE.MeshPhongMaterial({
+                        color: 0xffdead,
+                        specular: 0x555555,
+                        shininess: 15,
+                        shading: THREE.SmoothShading
+                    });
 
-                const scale = 1;
+                    var healthyBrain = new THREE.Mesh(geometry, material);
+                    scene.add(healthyBrain);
 
-                var material = new THREE.MeshPhongMaterial({
-                    color: 0xffdead,
-                    specular: 0x555555,
-                    shininess: 15,
-                    shading: THREE.SmoothShading
-                });
+                    healthyBrain.position.x = 0;
+                    healthyBrain.position.y = 0;
+                    healthyBrain.position.z = 0;
+                    healthyBrain.rotation.y -= 0.5; // Angle the brain slightly downwards
+                    healthyBrain.scale.set(1, 1, 1);
 
-                var healthyBrain = new THREE.Mesh(geometry, material);
-                scene.add(healthyBrain);
+                    var box = new THREE.Box3().setFromObject(healthyBrain);
+                    box.center(healthyBrain.position);
+                    healthyBrain.position.multiplyScalar(-1);
 
-                healthyBrain.position.x = 0;
-                healthyBrain.position.y = 0;
-                healthyBrain.position.z = 0;
-                healthyBrain.scale.set(scale, scale, scale);
+                    var pivot = new THREE.Group();
+                    scene.add(pivot);
+                    pivot.add(healthyBrain);
+                    pivot.position.x -= 50;
+                    pivot.position.y -= 5;
 
-                var box = new THREE.Box3().setFromObject(healthyBrain);
-                box.center(healthyBrain.position);
-                healthyBrain.position.multiplyScalar(-1);
+                    var cteMaterial = new THREE.MeshPhongMaterial({
+                        color: 0xcd853f,
+                        specular: 0x555555,
+                        shininess: 5,
+                        shading: THREE.SmoothShading
+                    });
+                    var cteBrain = new THREE.Mesh(cteGeometry, cteMaterial);
+                    scene.add(cteBrain);
 
-                var pivot = new THREE.Group();
-                scene.add(pivot);
-                pivot.add(healthyBrain);
-                pivot.position.x -= 60;
+                    cteBrain.position.x = 0;
+                    cteBrain.position.y = 0;
+                    cteBrain.position.z = 0;
+                    cteBrain.scale.set(0.8, 0.8, 0.8);
 
-                var cteMaterial = new THREE.MeshPhongMaterial({
-                    color: 0xcd853f,
-                    specular: 0x555555,
-                    shininess: 5,
-                    shading: THREE.SmoothShading
-                });
-                var cteBrain = new THREE.Mesh(geometry, cteMaterial);
-                scene.add(cteBrain);
+                    var box2 = new THREE.Box3().setFromObject(cteBrain);
+                    box2.center(cteBrain.position);
+                    cteBrain.position.multiplyScalar(-1);
 
-                cteBrain.position.x = 0;
-                cteBrain.position.y = 0;
-                cteBrain.position.z = 0;
-                cteBrain.scale.set(scale, scale, scale);
+                    var pivot2 = new THREE.Group();
+                    scene.add(pivot2);
+                    pivot2.add(cteBrain);
+                    pivot2.position.x += 50;
 
-                var box2 = new THREE.Box3().setFromObject(cteBrain);
-                box2.center(cteBrain.position);
-                cteBrain.position.multiplyScalar(-1);
+                    pivot.rotation.x += Math.PI * 3 / 2;
+                    pivot2.rotation.x += Math.PI * 3 / 2;
+                    pivot.rotation.z += Math.PI / 2;
+                    pivot2.rotation.z += Math.PI;
 
-                var pivot2 = new THREE.Group();
-                scene.add(pivot2);
-                pivot2.add(cteBrain);
-                pivot2.position.x += 60;
-
-                pivot.rotation.x += Math.PI * 3 / 2;
-                pivot2.rotation.x += Math.PI * 3 / 2;
-                pivot.rotation.z += Math.PI;
-                pivot2.rotation.z += Math.PI;
-
-                camera.position.x = 0;
-                camera.position.y = 0;
-                camera.position.z = 100;
-
-                requestAnimationFrame(animate);
-
-                function animate() {
-                    pivot.rotation.z += 0.007;
-                    pivot2.rotation.z -= 0.007;
-
-                    controls.update();
-
-                    renderer.render(scene, camera);
+                    camera.position.x = 0;
+                    camera.position.y = 0;
+                    camera.position.z = 100;
 
                     requestAnimationFrame(animate);
-                }
+
+                    function animate() {
+
+                        pivot.rotation.z += 0.007;
+                        pivot2.rotation.z -= 0.007;
+
+                        controls.update();
+
+                        renderer.render(scene, camera);
+
+                        requestAnimationFrame(animate);
+                    }
+                });
             });
 
             window.addEventListener('resize', onWindowResize, false);
