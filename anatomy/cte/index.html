@@ -49,7 +49,7 @@
             scene.add(ambLight);
 
             var light = new THREE.DirectionalLight(0xffffff);
-            light.position.set(0, -1, 0).normalize();
+            light.position.set(0, 0, 1).normalize();
             scene.add(light);
 
             /*
@@ -111,19 +111,24 @@
                 pivot2.position.x += 60;
 
                 camera.position.x = 0;
-                camera.position.y = -100;
-                camera.position.z = 0;
+                camera.position.y = 0;
+                camera.position.z = 100;
 
                 renderer.render(scene, camera);
                 rendererStats.update(renderer);
 
                 animate();
 
+                pivot.rotation.x += Math.PI * 3 / 2;
+                pivot2.rotation.x += Math.PI * 3 / 2;
+                pivot.rotation.z += Math.PI;
+                pivot2.rotation.z += Math.PI;
+
                 function animate() {
                     requestAnimationFrame(animate);
 
-                    pivot.rotation.z += 0.005;
-                    pivot2.rotation.z -= 0.005;
+                    pivot.rotation.z += 0.007;
+                    pivot2.rotation.z -= 0.007;
 
                     controls.update();
 
