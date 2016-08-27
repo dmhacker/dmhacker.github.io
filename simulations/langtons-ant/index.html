@@ -2,7 +2,7 @@
 
 <head>
     <title>Langton's Ant 3D</title>
-    <link href="https://fonts.googleapis.com/css?family=Asap|Flamenco" rel="stylesheet">
+    <link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon">
     <style>
         body {
             margin: 0;
@@ -59,7 +59,7 @@
             camera.position.y = 0;
             camera.position.z = -30;
 
-            var rule = 'RRLDDDULRRLLLL';
+            var rule = 'LRUD'; // 'RRLDDDULRRLLLL';
 
             var cells = {};
             for (var i = -100; i < 100; i++) {
