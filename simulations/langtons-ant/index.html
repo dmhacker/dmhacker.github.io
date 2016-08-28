@@ -143,9 +143,14 @@
 
                             var start_color = [0, 255, 0];
                             var end_color = [255, 0, 0];
-                            var current = [];
-                            for (var i in start_color) {
-                                current.push(Math.floor(start_color[i] + (end_color[i] - start_color[i]) * iterations / 5000.0));
+                            var current;
+                            if (iterations > 10000) {
+                                current = end_color;
+                            } else {
+                                current = [];
+                                for (var i in start_color) {
+                                    current.push(Math.floor(start_color[i] + (end_color[i] - start_color[i]) * iterations / 10000.0));
+                                }
                             }
                             var current_hex_string = rgbToHex(current[0], current[1], current[2]);
                             var current_color = parseInt(current_hex_string.replace(/^#/, ''), 16);
