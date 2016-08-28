@@ -105,6 +105,7 @@
 
                 var id = requestAnimationFrame(animate);
                 var running = true;
+                var rule = options.rule;
 
                 function animate() {
                     if (reset) {
@@ -132,8 +133,9 @@
                         normal = new THREE.Vector3(0, 1, 0);
                         reset = false;
                         id = requestAnimationFrame(animate);
+                        rule = options.rule;
                     }
-                    if (running) {
+                    if (!reset && running) {
                         for (var i = 0; i < options.speed; i++) {
                             var old_position = position;
                             var new_position = position.clone().add(direction);
@@ -168,7 +170,6 @@
                             }
 
                             // Change direction
-                            var rule = options.rule;
                             var c = rule.charAt(cells[new_position.x][new_position.y][new_position.z] % rule.length);
                             if (c === 'L') {
                                 direction = direction.clone().cross(normal);
