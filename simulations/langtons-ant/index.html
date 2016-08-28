@@ -16,10 +16,11 @@
             left: 0;
         }
     </style>
+    <script src="/static/js/dat.gui.min.js"></script>
 </head>
 
 <body>
-    <script src="/static/js/three.js"></script>
+    <script src="/static/js/three.min.js"></script>
     <script src="http://threejs.org/examples/js/controls/OrbitControls.js"></script>
     <script>
         javascript: (function () {
@@ -37,105 +38,147 @@
         })()
     </script>
     <script>
-        var scene = new THREE.Scene();
-        var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-
-        var renderer = new THREE.WebGLRenderer({
-            antialias: true
-        });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setClearColor(0x000000);
-
-        document.body.appendChild(renderer.domElement);
-
-        init();
-
-        function init() {
-
-            var controls = new THREE.OrbitControls(camera);
-            controls.target.position = new THREE.Vector3(0, 0, 0);
-
-            camera.position.x = 0;
-            camera.position.y = 0;
-            camera.position.z = -30;
-
-            var rule = 'LRUD'; // 'RRLDDDULRRLLLL';
-
-            var cells = {};
-            for (var i = -100; i < 100; i++) {
-                var cells_y = {};
-                for (var j = -100; j < 100; j++) {
-                    var cells_z = {};
-                    for (var k = -100; k < 100; k++) {
-                        cells_z[k] = 0;
-                    }
-                    cells_y[j] = cells_z;
+        window.onload = function () {
+            var reset = false;
+            var LangtonsAntOptions = function () {
+                this.rule = 'LRDU'; // RRLDDDULRRLLLL
+                this.speed = 1;
+                this.reset = function () {
+                    reset = true;
                 }
-                cells[i] = cells_y;
-            }
-            var color = 0xf5f5dc;
-            var position = new THREE.Vector3(0, 0, 0);
-            cells[0][0][0] = 1;
-            var direction = new THREE.Vector3(0, 0, 1);
-            var normal = new THREE.Vector3(0, 1, 0);
+            };
 
-            requestAnimationFrame(animate);
+            var scene = new THREE.Scene();
+            var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 
-            function animate() {
-                for (var i = 0; i < 10; i++) {
-                    var old_position = position;
-                    var new_position = position.clone().add(direction);
-
-                    var material = new THREE.LineBasicMaterial({
-                        color: color
-                    });
-                    var geometry = new THREE.Geometry();
-                    geometry.vertices.push(old_position);
-                    geometry.vertices.push(new_position);
-
-                    var line = new THREE.Line(geometry, material);
-                    scene.add(line);
-
-                    // Change direction
-                    var c = rule.charAt(cells[new_position.x][new_position.y][new_position.z] % rule.length);
-                    if (c === 'L') {
-                        direction = direction.clone().cross(normal);
-                        color = 0xffdead;
-                    } else if (c === 'R') {
-                        direction = direction.clone().cross(normal).negate();
-                        color = 0x00ff00;
-                    } else if (c === 'U') {
-                        var tmp = direction;
-                        direction = normal;
-                        normal = tmp.negate();
-                        color = 0x0000ff;
-                    } else if (c === 'D') {
-                        var tmp = normal;
-                        normal = direction;
-                        direction = tmp.negate();
-                        color = 0xff0000;
-                    }
-
-                    cells[new_position.x][new_position.y][new_position.z] += 1
-
-                    position = new_position;
-                }
-
-                controls.update();
-
-                renderer.render(scene, camera);
-
-                requestAnimationFrame(animate);
-            }
-
-            window.addEventListener('resize', onWindowResize, false);
-        }
-
-        function onWindowResize() {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
+            var renderer = new THREE.WebGLRenderer({
+                antialias: true
+            });
             renderer.setSize(window.innerWidth, window.innerHeight);
-        }
+            renderer.setClearColor(0x000000);
+
+            document.body.appendChild(renderer.domElement);
+
+            var options = new LangtonsAntOptions();
+            var gui = new dat.GUI();
+            gui.add(options, 'rule');
+            gui.add(options, 'speed', 0, 30);
+            gui.add(options, 'reset');
+
+            init();
+
+            function init() {
+
+                var controls = new THREE.OrbitControls(camera, renderer.domElement);
+                controls.target.position = new THREE.Vector3(0, 0, 0);
+
+                camera.position.x = 0;
+                camera.position.y = 0;
+                camera.position.z = -30;
+
+                var cells = {};
+                for (var i = -100; i < 100; i++) {
+                    var cells_y = {};
+                    for (var j = -100; j < 100; j++) {
+                        var cells_z = {};
+                        for (var k = -100; k < 100; k++) {
+                            cells_z[k] = 0;
+                        }
+                        cells_y[j] = cells_z;
+                    }
+                    cells[i] = cells_y;
+                }
+                var color = 0xf5f5dc;
+                var position = new THREE.Vector3(0, 0, 0);
+                cells[0][0][0] = 1;
+                var direction = new THREE.Vector3(0, 0, 1);
+                var normal = new THREE.Vector3(0, 1, 0);
+
+                var id = requestAnimationFrame(animate);
+
+                function animate() {
+                    if (reset) {
+                        cancelAnimationFrame(id);
+                        for(var i = scene.children.length - 1; i >= 0; i--) {
+                            obj = scene.children[i];
+                            scene.remove(obj);
+                        }
+                        cells = {};
+                        for (var i = -100; i < 100; i++) {
+                            var cells_y = {};
+                            for (var j = -100; j < 100; j++) {
+                                var cells_z = {};
+                                for (var k = -100; k < 100; k++) {
+                                    cells_z[k] = 0;
+                                }
+                                cells_y[j] = cells_z;
+                            }
+                            cells[i] = cells_y;
+                        }
+                        color = 0xf5f5dc;
+                        position = new THREE.Vector3(0, 0, 0);
+                        cells[0][0][0] = 1;
+                        direction = new THREE.Vector3(0, 0, 1);
+                        normal = new THREE.Vector3(0, 1, 0);
+                        reset = false;
+                        id = requestAnimationFrame(animate);
+                    }
+                    for (var i = 0; i < options.speed; i++) {
+                        var old_position = position;
+                        var new_position = position.clone().add(direction);
+
+                        var material = new THREE.LineBasicMaterial({
+                            color: color
+                        });
+                        var geometry = new THREE.Geometry();
+                        geometry.vertices.push(old_position);
+                        geometry.vertices.push(new_position);
+
+                        var line = new THREE.Line(geometry, material);
+                        scene.add(line);
+
+                        // Change direction
+                        var rule = options.rule;
+                        var c = rule.charAt(cells[new_position.x][new_position.y][new_position.z] % rule.length);
+                        if (c === 'L') {
+                            direction = direction.clone().cross(normal);
+                            color = 0xffdead;
+                        } else if (c === 'R') {
+                            direction = direction.clone().cross(normal).negate();
+                            color = 0x00ff00;
+                        } else if (c === 'U') {
+                            var tmp = direction;
+                            direction = normal;
+                            normal = tmp.negate();
+                            color = 0x0000ff;
+                        } else if (c === 'D') {
+                            var tmp = normal;
+                            normal = direction;
+                            direction = tmp.negate();
+                            color = 0xff0000;
+                        }
+
+                        cells[new_position.x][new_position.y][new_position.z] += 1
+
+                        position = new_position;
+                    }
+
+                    controls.update();
+
+                    renderer.render(scene, camera);
+
+                    id = requestAnimationFrame(animate);
+                }
+
+                window.addEventListener('resize', onWindowResize, false);
+            }
+
+            function onWindowResize() {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            }
+        };
     </script>
 </body>
 
