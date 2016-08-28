@@ -63,22 +63,36 @@
                 controls.target.position = new THREE.Vector3(0, 0, 0);
 
                 var SimulationOptions = function () {
-                    this.rule = 'LRDU';
-                    this.speed = 1;
+                    this.rule = '200';
                 };
 
                 var options = new SimulationOptions();
                 var gui = new dat.GUI();
+                gui.add(options, 'rule');
 
                 camera.position.x = 0;
                 camera.position.y = 0;
                 camera.position.z = -30;
+
+                reset();
 
                 window.addEventListener('resize', function () {
                     camera.aspect = window.innerWidth / window.innerHeight;
                     camera.updateProjectionMatrix();
                     renderer.setSize(window.innerWidth, window.innerHeight);
                 }, false);
+            }
+
+            var head, tail;
+            var direction;
+            var rules;
+            var remaining_rule_counter = 0;
+            var axis = new THREE.Vector3(0, 0, 1);
+
+            function reset() {
+                head = new THREE.Vector3(0, 1, 0);
+                tail = new THREE.Vector3(0, 0, 0);
+                rules = {};
             }
 
             function animate() {
