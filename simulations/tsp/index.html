@@ -100,7 +100,9 @@
             }
 
             var cities;
-            var sa_solution, sa_score, current_sa_solution, current_sa_score, original_sa_score;
+            var original_score;
+            var sa_solution, sa_score, current_sa_solution, current_sa_score;
+            var hc_solution, hc_score;
             var lines;
             var T, ratio, iteration;
 
@@ -155,27 +157,20 @@
                 scene.add(dots);
 
                 sa_solution = cities.slice();
-                shuffle(sa_solution)
-                sa_score = distance(sa_solution);
-
-                current_sa_solution = sa_solution;
-                current_sa_score = sa_score;
-
-                original_sa_score = sa_score;
-
-                T = options.temperature;
-                ratio = 0.995;
-                iteration = 0;
+                rerun();
             }
 
             function rerun() {
-                if (T > 1) {
-                    return;
-                }
                 shuffle(sa_solution);
                 sa_score = distance(sa_solution);
+
                 current_sa_solution = sa_solution;
                 current_sa_score = sa_score;
+
+                original_score = sa_score;
+
+                hc_solution = sa_solution;
+                hc_score = sa_score;
 
                 T = options.temperature;
                 ratio = 0.995;
@@ -209,14 +204,53 @@
                 return dist;
             }
 
+            function clear_lines() {
+                for (var k in lines) {
+                    if (lines.hasOwnProperty(k)) {
+                        var line = lines[k];
+                        line.material.opacity = 0.2;
+                        line.material.color.setHex(0xffffff);
+                    }
+                }
+            }
+
+            function draw_solution(solution, opacity, color) {
+                for (var i = 0; i < solution.length; i++) {
+                    var a = solution[i];
+                    var n = i + 1;
+                    if (n === solution.length) {
+                        n = 0;
+                    }
+                    var b = solution[n];
+                    var c = a.slice();
+                    c.push(b[0]);
+                    c.push(b[1]);
+                    c.push(b[2]);
+                    var line = lines[c];
+                    line.material.opacity = opacity;
+                    line.material.color.setHex(color);
+                }
+            }
 
             function animate() {
                 if (T > 1) {
                     for (var k = 0; k < 1000; k++) {
+                        var new_hc_solution = hc_solution.slice();
+                        var x = Math.floor(Math.random() * new_hc_solution.length);
+                        var y = Math.floor(Math.random() * new_hc_solution.length);
+                        var tmp = new_hc_solution[i];
+                        new_hc_solution[i] = new_hc_solution[j];
+                        new_hc_solution[j] = tmp;
+                        var new_hc_score = distance(new_hc_solution);
+                        if (new_hc_score < hc_score) {
+                            hc_solution = new_hc_solution;
+                            hc_score = new_hc_score;
+                        }
+
                         var new_sa_solution = current_sa_solution.slice();
                         var i = Math.floor(Math.random() * new_sa_solution.length);
                         var j = Math.floor(Math.random() * new_sa_solution.length);
-                        var tmp = new_sa_solution[i];
+                        tmp = new_sa_solution[i];
                         new_sa_solution[i] = new_sa_solution[j];
                         new_sa_solution[j] = tmp;
                         var new_sa_score = distance(new_sa_solution);
@@ -234,78 +268,17 @@
 
                     T *= ratio;
 
-                    // Clear old solution
-                    for (var k in lines) {
-                        if (lines.hasOwnProperty(k)) {
-                            var line = lines[k];
-                            line.material.opacity = 0.2;
-                            line.material.color.setHex(0xffffff);
-                        }
-                    }
-
-                    // Render considered solution
-                    for (var i = 0; i < current_sa_solution.length; i++) {
-                        var a = current_sa_solution[i];
-                        var n = i + 1;
-                        if (n === current_sa_solution.length) {
-                            n = 0;
-                        }
-                        var b = current_sa_solution[n];
-                        var c = a.slice();
-                        c.push(b[0]);
-                        c.push(b[1]);
-                        c.push(b[2]);
-                        var line = lines[c];
-                        line.material.opacity = 0.8;
-                        line.material.color.setHex(0xff0000);
-                    }
-
-                    // Render best solution
-                    for (var i = 0; i < sa_solution.length; i++) {
-                        var a = sa_solution[i];
-                        var n = i + 1;
-                        if (n === sa_solution.length) {
-                            n = 0;
-                        }
-                        var b = sa_solution[n];
-                        var c = a.slice();
-                        c.push(b[0]);
-                        c.push(b[1]);
-                        c.push(b[2]);
-                        var line = lines[c];
-                        line.material.opacity = 1.0;
-                        line.material.color.setHex(0x00ff00);
-                    }
+                    clear_lines();
+                    draw_solution(current_sa_solution, 1.0, 0x008800);
+                    draw_solution(hc_solution, 1.0, 0xff0000);
+                    draw_solution(sa_solution, 1.0, 0x00ff00);
                 } else {
-
-                    // Clear old solution
-                    for (var k in lines) {
-                        if (lines.hasOwnProperty(k)) {
-                            var line = lines[k];
-                            line.material.opacity = 0.2;
-                            line.material.color.setHex(0xffffff);
-                        }
-                    }
-
-                    // Render best solution
-                    for (var i = 0; i < sa_solution.length; i++) {
-                        var a = sa_solution[i];
-                        var n = i + 1;
-                        if (n === sa_solution.length) {
-                            n = 0;
-                        }
-                        var b = sa_solution[n];
-                        var c = a.slice();
-                        c.push(b[0]);
-                        c.push(b[1]);
-                        c.push(b[2]);
-                        var line = lines[c];
-                        line.material.opacity = 1.0;
-                        line.material.color.setHex(0x00ff00);
-                    }
+                    clear_lines();
+                    draw_solution(hc_solution, 1.0, 0xff0000);
+                    draw_solution(sa_solution, 1.0, 0x00ff00);
                 }
 
-                info.innerHTML = "<b>Original score:</b><br>"+original_sa_score+"<br><br><b>Best score:</b><br>"+sa_score+"<br><br><b>Current score:</b><br>"+current_sa_score+"<br><br><b>Temperature:<br></b>"+T+"<br><br><b>Iteration:<br></b>"+iteration;
+                info.innerHTML = "<b>Original score:</b><br>" + original_score + "<br><br><b>HC score (red):</b><br>" + hc_score + "<br><br><b>SA best score (green):</b><br>" + sa_score + "<br><br><b>SA current score (dark green):</b><br>" + current_sa_score + "<br><br><b>SA temperature:<br></b>" + T + "<br><br><b>Iteration:<br></b>" + iteration;
 
                 controls.update();
 
