@@ -169,8 +169,6 @@
 
                 sa_solution = cities.slice();
                 rerun();
-
-                calculate_naive();
             }
 
             function rerun() {
@@ -188,6 +186,8 @@
                 T = options.temperature;
                 ratio = 0.995;
                 iteration = 0;
+
+                calculate_naive();
             }
 
             function shuffle(a) {
