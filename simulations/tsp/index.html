@@ -107,6 +107,19 @@
             var lines;
             var T, ratio, iteration;
 
+            var show_sa = true;
+            var show_hc = true;
+
+            document.onkeydown = function (event) {
+                event = event || window.event;
+                if (event.keyCode === 83) { // s
+                    show_sa = !show_sa;
+                }
+                else if (event.keyCode === 78) { // n
+                    show_hc = !show_hc;
+                }
+            }
+
             function reset() {
                 for (var i = scene.children.length - 1; i >= 0; i--) {
                     obj = scene.children[i];
@@ -275,16 +288,21 @@
                     T *= ratio;
 
                     clear_lines();
-                    draw_solution(current_sa_solution, 1.0, 0x008800);
-                    draw_solution(hc_solution, 1.0, 0xff0000);
-                    draw_solution(sa_solution, 1.0, 0x00ff00);
+                    if (show_sa)
+                        draw_solution(current_sa_solution, 1.0, 0x008800);
+                    if (show_hc)
+                        draw_solution(hc_solution, 1.0, 0xff0000);
+                    if (show_sa)
+                        draw_solution(sa_solution, 1.0, 0x00ff00);
                 } else {
                     clear_lines();
-                    draw_solution(hc_solution, 1.0, 0xff0000);
-                    draw_solution(sa_solution, 1.0, 0x00ff00);
+                    if (show_hc)
+                        draw_solution(hc_solution, 1.0, 0xff0000);
+                    if (show_sa)
+                        draw_solution(sa_solution, 1.0, 0x00ff00);
                 }
 
-                info.innerHTML = "<b>Original score:</b><br>" + original_score + "<br><br><b>Naive score (red):</b><br>" + hc_score + "<br><br><b>SA best score (green):</b><br>" + sa_score + "<br><br><b>SA current score (dark green):</b><br>" + current_sa_score + "<br><br><b>SA temperature:<br></b>" + T + "<br><br><b>Iteration:<br></b>" + iteration;
+                info.innerHTML = "<b>Original score:</b><br>" + original_score + "<br><br><b>Naive score (red):</b><br>" + hc_score + "<br><i>'n' to show/hide solution</i><br><br><b>SA best score (green):</b><br>" + sa_score + "<br><i>'s' to show/hide solution</i><br><br><b>SA current score (dark green):</b><br>" + current_sa_score + "<br><br><b>SA temperature:<br></b>" + T + "<br><br><b>Iteration:<br></b>" + iteration;
 
                 controls.update();
 
