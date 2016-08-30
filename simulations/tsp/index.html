@@ -91,6 +91,7 @@
                 camera.position.z = -100;
 
                 reset();
+                calculate_naive();
 
                 window.addEventListener('resize', function () {
                     camera.aspect = window.innerWidth / window.innerHeight;
@@ -232,21 +233,26 @@
                 }
             }
 
+            function calculate_naive() {
+                // Usually takes about 1000-5000 iterations to solve
+                for (var k = 0; k < 10000; k++) {
+                    var new_hc_solution = hc_solution.slice();
+                    var o = Math.floor(Math.random() * new_hc_solution.length);
+                    var p = Math.floor(Math.random() * new_hc_solution.length);
+                    var tmp = new_hc_solution[p];
+                    new_hc_solution[p] = new_hc_solution[o];
+                    new_hc_solution[o] = tmp;
+                    var new_hc_score = distance(new_hc_solution);
+                    if (new_hc_score < hc_score) {
+                        hc_solution = new_hc_solution;
+                        hc_score = new_hc_score;
+                    }
+                }
+            }
+
             function animate() {
                 if (T > 1) {
                     for (var k = 0; k < 1000; k++) {
-                        var new_hc_solution = hc_solution.slice();
-                        var x = Math.floor(Math.random() * new_hc_solution.length);
-                        var y = Math.floor(Math.random() * new_hc_solution.length);
-                        var tmp = new_hc_solution[i];
-                        new_hc_solution[i] = new_hc_solution[j];
-                        new_hc_solution[j] = tmp;
-                        var new_hc_score = distance(new_hc_solution);
-                        if (new_hc_score < hc_score) {
-                            hc_solution = new_hc_solution;
-                            hc_score = new_hc_score;
-                        }
-
                         var new_sa_solution = current_sa_solution.slice();
                         var i = Math.floor(Math.random() * new_sa_solution.length);
                         var j = Math.floor(Math.random() * new_sa_solution.length);
