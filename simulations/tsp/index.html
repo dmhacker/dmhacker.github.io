@@ -79,6 +79,7 @@
                     this.rerun = rerun;
                     this.show_sa = true;
                     this.show_naive = true;
+                    this.show_debug = false;
                 };
 
                 options = new SimulationOptions();
@@ -87,6 +88,7 @@
                 gui.add(options, 'temperature', 100, 500);
                 gui.add(options, 'show_sa');
                 gui.add(options, 'show_naive');
+                gui.add(options, 'show_debug');
                 gui.add(options, 'reset');
                 gui.add(options, 'rerun');
 
@@ -215,7 +217,7 @@
                 for (var k in lines) {
                     if (lines.hasOwnProperty(k)) {
                         var line = lines[k];
-                        line.visible = false;
+                        line.visible = options.show_debug;
                         line.material.opacity = 0.2;
                         line.material.color.setHex(0xffffff);
                     }
