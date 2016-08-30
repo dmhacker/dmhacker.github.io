@@ -91,7 +91,6 @@
                 camera.position.z = -100;
 
                 reset();
-                calculate_naive();
 
                 window.addEventListener('resize', function () {
                     camera.aspect = window.innerWidth / window.innerHeight;
@@ -170,6 +169,8 @@
 
                 sa_solution = cities.slice();
                 rerun();
+
+                calculate_naive();
             }
 
             function rerun() {
