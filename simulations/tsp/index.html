@@ -126,8 +126,6 @@
                     for (var j in cities) {
                         var other = cities[j];
                         var material = new THREE.LineBasicMaterial({
-                            color: 0xffffff,
-                            opacity: 0.2,
                             transparent: true
                         });
                         var geometry = new THREE.Geometry();
@@ -149,7 +147,7 @@
                 }
 
                 var dotMaterial = new THREE.PointsMaterial({
-                    size: 1,
+                    size: 2,
                     sizeAttenuation: true,
                     color: 0xffffff
                 });
@@ -208,6 +206,7 @@
                 for (var k in lines) {
                     if (lines.hasOwnProperty(k)) {
                         var line = lines[k];
+                        line.visible = false;
                         line.material.opacity = 0.2;
                         line.material.color.setHex(0xffffff);
                     }
@@ -227,6 +226,7 @@
                     c.push(b[1]);
                     c.push(b[2]);
                     var line = lines[c];
+                    line.visible = true;
                     line.material.opacity = opacity;
                     line.material.color.setHex(color);
                 }
