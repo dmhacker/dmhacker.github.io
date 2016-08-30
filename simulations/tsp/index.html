@@ -176,6 +176,9 @@
 
                 T = options.temperature;
                 ratio = 0.996;
+                if (options.cities > 100) {
+                    ratio = 0.997;
+                }
                 iteration = 0;
 
                 calculate_naive();
