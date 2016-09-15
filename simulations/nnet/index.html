@@ -98,14 +98,16 @@
             var epochs;
             var learning_rate, anneal_learning_rate;
 
-            var neurons = [];
-            var bias_neurons = [];
+            var neurons;
+            var bias_neurons;
 
             function random_weight() {
                 return Math.random() * 2 - 1;
             }
 
             function reset() {
+                neurons = [];
+                bias_neurons = [];
                 layers = JSON.parse(options.layers);
                 training_set = JSON.parse(options.training_set);
                 epochs = options.epochs;
