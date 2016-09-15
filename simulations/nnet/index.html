@@ -143,6 +143,8 @@
 
                 // For each neuronal layer, we take the input vector (from the previous layer) and transform it.
                 for (var i = 0; i < neurons.length; i++) {
+                    console.log(local_input_vector);
+
                     var neuron_layer = neurons[i];
                     var bias_layer = bias_neurons[i];
                     var local_output_vector = [];
