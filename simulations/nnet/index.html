@@ -157,15 +157,73 @@
                         var activation = Math.tanh(s);
                         local_output_vector.push(activation);
                     }
-                    neuronal_outputs.push(local_output_vector);
+                    if (i < neurons.length - 1) {
+                        neuronal_outputs.push(local_output_vector);
+                    }
                     local_input_vector = local_output_vector;
                 }
 
                 return local_input_vector;
             }
 
-            function backpropogation() {
+            function backpropogate(training_data) {
+                shuffleArray(training_data);
+                for (var t : training_data) {
+                    var training_datum = training_data[t];
+                    var inputs = training_datum[0];
+                    var targets = training_datum[1];
+                    var outputs = feed_forward(inputs);
+                    var delta_errors = [];
+                    for (var i : outputs) {
+                        var delta = targets[i] - outputs[i];
+                        var derivative = 1 - outputs[i] * outputs[i];
+                        var delta_error = delta * derivative;
+                        delta_errors.push(delta_error);
+                    }
+                    for (var i = neurons.length - 1; i >= 0; i++) {
+                        var update_neuron_layer = neurons[i];
+                        // For each neuron, propogate errors back
+                        for (var j = 0; j < update_neuron_layer.length; j++) {
+                            var neuron = update_neuron_layer[j];
+                            var neuron_delta_error = delta_errors[j];
+                            // For each weight in the neuron ...
+                            for (var k = 0; k < neuron.length; k++) {
+                                var other_neuron_previous_output = neuronal_outputs[i][k];
+                                var change_weight = neuron_delta_error * other_neuron_previous_output;
+                                neuron[k] = neuron[k] + options.learning_rate * change_weight;
+                            }
+                        }
+                        if (i > 0) {
+                            var next_delta_errors = [];
+                            var back_neuron_layer = neurons[i - 1];
+                            for (var j = 0; j < back_neuron_layer.length; j++) {
+                                var neuron = back_neuron_layer[j];
+                                var s = 0;
+                                for (var k = 0; k < update_neuron_layer.length; k++) {
+                                    var higher_neuron = update_neuron_layer[k];
+                                    s += higher_neuron[j] * delta_error[j];
+                                }
+                                var output_derivative = 1 - Math.pow(neuronal_outputs[i - 1][j], 2);
+                                next_delta_errors.push(output_derivative * s);
+                            }
+                            delta_errors = next_delta_errors;
+                        }
+                    }
+                }
+            }
 
+            /**
+             * Randomize array element order in-place.
+             * Using Durstenfeld shuffle algorithm.
+             */
+            function shuffleArray(array) {
+                for (var i = array.length - 1; i > 0; i--) {
+                    var j = Math.floor(Math.random() * (i + 1));
+                    var temp = array[i];
+                    array[i] = array[j];
+                    array[j] = temp;
+                }
+                return array;
             }
 
             function animate() {
