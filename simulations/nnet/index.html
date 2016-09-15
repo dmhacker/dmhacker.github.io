@@ -177,7 +177,7 @@
                         var targets = training_datum[1];
                         var outputs = feed_forward(inputs);
                         var delta_errors = [];
-                        for (var i : outputs) {
+                        for (var i in outputs) {
                             var delta = targets[i] - outputs[i];
                             var derivative = 1 - outputs[i] * outputs[i];
                             var delta_error = delta * derivative;
