@@ -183,39 +183,9 @@
                             var delta_error = delta * derivative;
                             delta_errors.push(delta_error);
                         }
-                        for (var i = neurons.length - 1; i >= 0; i++) {
-                            var update_neuron_layer = neurons[i];
-                            // For each neuron, propogate errors back
-                            for (var j = 0; j < update_neuron_layer.length; j++) {
-                                var neuron = update_neuron_layer[j];
-                                var neuron_delta_error = delta_errors[j];
-                                // For each weight in the neuron ...
-                                for (var k = 0; k < neuron.length; k++) {
-                                    var other_neuron_previous_output = neuronal_outputs[i][k];
-                                    var change_weight = neuron_delta_error * other_neuron_previous_output;
-                                    neuron[k] = neuron[k] + options.learning_rate * change_weight;
-                                }
-                            }
-                            if (i > 0) {
-                                var next_delta_errors = [];
-                                var back_neuron_layer = neurons[i - 1];
-                                for (var j = 0; j < back_neuron_layer.length; j++) {
-                                    var neuron = back_neuron_layer[j];
-                                    var s = 0;
-                                    for (var k = 0; k < update_neuron_layer.length; k++) {
-                                        var higher_neuron = update_neuron_layer[k];
-                                        s += higher_neuron[j] * delta_error[j];
-                                    }
-                                    var output_derivative = 1 - Math.pow(neuronal_outputs[i - 1][j], 2);
-                                    next_delta_errors.push(output_derivative * s);
-                                }
-                                delta_errors = next_delta_errors;
-                            }
-                        }
-                        outputs = feed_forward(outputs);
-                        for (var y = 0; y < outputs.length; y++) {
-                            error += Math.pow(targets[y] - outputs[y], 2) / outputs.length;
-                        }
+                        console.log(targets);
+                        console.log(outputs);
+                        console.log(delta_error);
                     }
                     error /= training_data.length;
                     console.log(error);
