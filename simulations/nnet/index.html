@@ -186,6 +186,7 @@
                         for (var i = neurons.length - 2; i >= 0; i--) {
                             var current_layer = neurons[i];
                             var previous_layer = neurons[i + 1]; // Really the above layer, but going backwards, this is reversed
+                            var delta_errors = [];
                             for (var j = 0; j < current_layer.length; j++) {
                                 var current_neuron = current_layer[j];
                                 var sdelta = 0;
@@ -198,7 +199,9 @@
                                 var current_neuron_output = neuronal_outputs[i][j];
                                 var derivative = 1 - Math.pow(current_neuron_output, 2);
                                 var delta_error = derivative * sdelta;
+                                delta_errors.push(delta_error);
                             }
+                            delta_outputs.unshift(delta_errors);
                         }
                         console.log(delta_outputs);
                     }
