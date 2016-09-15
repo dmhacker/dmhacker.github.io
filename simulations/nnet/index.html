@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <title>Traveling Salesman Problem</title>
+    <title>Neural Net Visualization</title>
     <link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon">
     <style>
         body {
@@ -94,11 +94,71 @@
                 }, false);
             }
 
-            function reset() {
+            var layers, training_set;
+            var epochs;
+            var learning_rate, anneal_learning_rate;
 
+            var neurons = [];
+            var bias_neurons = [];
+
+            function random_weight() {
+                return Math.random() * 2 - 1;
+            }
+
+            function reset() {
+                layers = JSON.parse(options.layers);
+                training_set = JSON.parse(options.training_set);
+                epochs = options.epochs;
+                learning_rate = options.learning_rate;
+                anneal_learning_rate = options.anneal_learning_rate;
+
+                for (var i = 1; i < layers.length; i++) {
+                    var neuron_layer = [];
+                    var num_neurons = layers[i];
+                    var num_previous_neruons = layers[i - 1];
+                    for (var j = 0; j < num_neurons; j++) {
+                        var neuron = [];
+                        for (var k = 0; k < num_previous_neruons; k++) {
+                            neuron.push(random_weight());
+                        }
+                        neuron_layer.push(neuron);
+                    }
+                    neurons.push(neuron_layer);
+
+                    var bias_layer = [];
+                    for (var j = 0; j < num_neurons; j++) {
+                        bias_layer.push(random_weight());
+                    }
+                    bias_neurons.push(bias_layer);
+                }
+            }
+
+            function feed_forward(inputs) {
+                var local_input_vector = inputs;
+
+                // For each neuronal layer, we take the input vector (from the previous layer) and transform it.
+                for (var i = 0; i < neurons.length; i++) {
+                    var neuron_layer = neurons[i];
+                    var bias_layer = bias_neurons[i];
+                    var local_output_vector = [];
+                    // For each neuron, we multiply each of its weights by the input vector value
+                    for (var j = 0; j < neuron_layer.length; j++) {
+                        var s = 1 * bias_layer[j]; // Start with bias weight (obviously multiplied by 1)
+                        for (var k = 0; k < local_input_vector.length; k++) {
+                            s += local_input_vector[k] * neuron_layer[k];
+                        }
+                        var activation = Math.tanh(s);
+                        local_output_vector.push(activation);
+                    }
+                    local_input_vector = local_output_vector;
+                }
+
+                return local_input_vector;
             }
 
             function animate() {
+                console.log(feed_forward([0, 0]));
+
                 controls.update();
 
                 renderer.render(scene, camera);
