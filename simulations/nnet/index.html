@@ -150,7 +150,6 @@
                     var local_output_vector = [];
                     // For each neuron, we multiply each of its weights by the input vector value
                     for (var j = 0; j < neuron_layer.length; j++) {
-                        console.log(local_input_vector);
                         console.log(neuron_layer);
                         var s = 1 * bias_layer[j]; // Start with bias weight (obviously multiplied by 1)
                         for (var k = 0; k < local_input_vector.length; k++) {
