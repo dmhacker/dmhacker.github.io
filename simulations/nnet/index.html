@@ -1,0 +1,113 @@
+<html>
+
+<head>
+    <title>Traveling Salesman Problem</title>
+    <link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon">
+    <style>
+        body {
+            margin: 0;
+        }
+
+        canvas {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+    </style>
+    <script src="/static/js/dat.gui.min.js"></script>
+</head>
+
+<body>
+    <script src="/static/js/three.min.js"></script>
+    <script src="http://threejs.org/examples/js/controls/OrbitControls.js"></script>
+    <script>
+        javascript: (function () {
+            var script = document.createElement('script');
+            script.onload = function () {
+                var stats = new Stats();
+                document.body.appendChild(stats.dom);
+                requestAnimationFrame(function loop() {
+                    stats.update();
+                    requestAnimationFrame(loop)
+                });
+            };
+            script.src = '//rawgit.com/mrdoob/stats.js/master/build/stats.min.js';
+            document.head.appendChild(script);
+        })()
+    </script>
+    <script>
+        window.onload = function () {
+
+            var scene, camera, renderer;
+            var controls;
+            var options, gui;
+
+            init();
+            animate();
+
+            function init() {
+
+                scene = new THREE.Scene();
+                camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+
+                renderer = new THREE.WebGLRenderer({
+                    antialias: true
+                });
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                renderer.setClearColor(0x000000);
+
+                document.body.appendChild(renderer.domElement);
+
+                controls = new THREE.OrbitControls(camera, renderer.domElement);
+                controls.target.position = new THREE.Vector3(0, 0, 0);
+
+                var SimulationOptions = function () {
+                    this.layers = "[2, 3, 1]";
+                    this.training_set = "[[0, 0, 0], [0, 1, 1], [1, 0, 1], [1, 1, 0]]";
+                    this.epochs = 2000;
+                    this.learning_rate = 0.4;
+                    this.anneal_learning_rate = true;
+                    this.reset = reset;
+                };
+
+                options = new SimulationOptions();
+                gui = new dat.GUI();
+                gui.add(options, 'layers');
+                gui.add(options, 'training_set');
+                gui.add(options, 'epochs', 500, 10000).step(1);
+                gui.add(options, 'learning_rate', 0.1, 1.0);
+                gui.add(options, 'anneal_learning_rate');
+                gui.add(options, 'reset');
+
+                camera.position.x = 0;
+                camera.position.y = 0;
+                camera.position.z = -100;
+
+                reset();
+
+                window.addEventListener('resize', function () {
+                    camera.aspect = window.innerWidth / window.innerHeight;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(window.innerWidth, window.innerHeight);
+                }, false);
+            }
+
+            function reset() {
+
+            }
+
+            function animate() {
+                controls.update();
+
+                renderer.render(scene, camera);
+
+                requestAnimationFrame(animate);
+            }
+
+        };
+    </script>
+</body>
+
+</html>
