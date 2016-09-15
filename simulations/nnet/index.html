@@ -101,6 +101,8 @@
             var neurons;
             var bias_neurons;
 
+            var neuronal_outputs;
+
             function random_weight() {
                 return Math.random() * 2 - 1;
             }
@@ -136,15 +138,12 @@
             }
 
             function feed_forward(inputs) {
-                console.log(neurons);
-                console.log(bias_neurons);
-
                 var local_input_vector = inputs;
+
+                neuronal_outputs = [local_input_vector];
 
                 // For each neuronal layer, we take the input vector (from the previous layer) and transform it.
                 for (var i = 0; i < neurons.length; i++) {
-                    console.log(local_input_vector);
-
                     var neuron_layer = neurons[i];
                     var bias_layer = bias_neurons[i];
                     var local_output_vector = [];
@@ -158,13 +157,16 @@
                         var activation = Math.tanh(s);
                         local_output_vector.push(activation);
                     }
+                    neuronal_outputs.push(local_output_vector);
                     local_input_vector = local_output_vector;
                 }
 
                 return local_input_vector;
             }
 
-            console.log(feed_forward([0, 0]));
+            function backpropogation() {
+
+            }
 
             function animate() {
 
