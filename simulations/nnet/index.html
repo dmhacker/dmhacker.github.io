@@ -169,7 +169,7 @@
             function backpropogate(training_data) {
                 var error = 100;
                 shuffleArray(training_data);
-                for (var epoch = 0; epoch < options.epochs; epoch++) {
+                for (var epoch = 0; epoch < 1; epoch++) {
                     error = 0;
                     for (var t in training_data) {
                         var training_datum = training_data[t];
