@@ -181,7 +181,6 @@
                             var delta_error = derivative * delta;
                             delta_errors.push(delta_error);
                         }
-                        console.log(neuronal_outputs);
                         var delta_outputs = [delta_errors];
                         for (var i = neurons.length - 2; i >= 0; i--) {
                             var current_layer = neurons[i];
@@ -200,10 +199,12 @@
                                 var derivative = 1 - Math.pow(current_neuron_output, 2);
                                 var delta_error = derivative * sdelta;
                                 delta_errors.push(delta_error);
+                                console.log(current_neuron_output);
+                                console.log(derivative);
+                                console.log(sdelta);
                             }
                             delta_outputs.unshift(delta_errors);
                         }
-                        console.log(delta_outputs);
                     }
 
                     error /= training_data.length;
