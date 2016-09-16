@@ -183,7 +183,7 @@
                         });
                         var sphere = new THREE.Mesh(geometry, material);
                         scene.add(sphere);
-                        sphere.position.set(x, y_max_distance - y_separation_distance * (i + 1), 0);
+                        sphere.position.set(x, y_max_distance - y_separation_distance * (i + 1), random_weight() * 20);
                         layer_spheres.push(sphere);
                     }
                     neuron_spheres.push(layer_spheres);
