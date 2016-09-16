@@ -80,7 +80,6 @@
                 gui.add(options, 'epochs', 5000, 20000).step(100);
                 gui.add(options, 'learning_rate', 0.1, 1.0);
                 gui.add(options, 'anneal_learning_rate');
-                gui.add(options, 'momentum', 0.1, 1.0);
                 gui.add(options, 'reset');
 
                 camera.position.x = 0;
@@ -99,7 +98,6 @@
             var layers, training_set;
             var epochs, target_epochs;
             var learning_rate, anneal_learning_rate;
-            var momentum;
 
             var neurons;
             var bias_neurons;
@@ -119,7 +117,6 @@
                 target_epochs = options.epochs;
                 learning_rate = options.learning_rate;
                 anneal_learning_rate = options.anneal_learning_rate;
-                momentum = options.momentum;
 
                 for (var i = 1; i < layers.length; i++) {
                     var neuron_layer = [];
@@ -182,7 +179,7 @@
                         var delta_errors = [];
                         for (var i in outputs) {
                             var delta = targets[i] - outputs[i];
-                            var derivative = 1 - Math.pow(outputs[i], 2) + 0.1;
+                            var derivative = 1 - Math.pow(outputs[i], 2);
                             var delta_error = derivative * delta;
                             delta_errors.push(delta_error);
                         }
@@ -198,7 +195,7 @@
                                     sdelta += previous_delta_error * synaptic_weight;
                                 }
                                 var neuronal_output = neuronal_outputs[layer][i];
-                                var derivative = 1 - Math.pow(neuronal_output, 2) + 0.1; // Add small constant to derivative so that network skids over flat gradients
+                                var derivative = 1 - Math.pow(neuronal_output, 2);
                                 var delta_error = derivative * sdelta;
                                 delta_errors.push(delta_error);
                             }
@@ -212,9 +209,9 @@
                                 var delta_error = delta_outputs[i + 1][j];
                                 for (var k = 0; k < neuron.length; k++) {
                                     var neuronal_output = neuronal_outputs[i][k];
-                                    neuron[k] = momentum * neuron[k] + learning_rate * delta_error * neuronal_output;
+                                    neuron[k] = neuron[k] + learning_rate * delta_error * neuronal_output;
                                 }
-                                bias_layer[j] = momentum * bias_layer[j] + learning_rate * delta_error; // Neuronal output is always 1; definition of a bias node
+                                bias_layer[j] = bias_layer[j] + learning_rate * delta_error; // Neuronal output is always 1; definition of a bias node
                             }
                         }
                         outputs = feed_forward(inputs);
