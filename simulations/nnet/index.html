@@ -205,11 +205,12 @@
                             var bias_layer = bias_neurons[i];
                             for (var j = 0; j < neuron_layer.length; j++) {
                                 var neuron = neuron_layer[j];
+                                var delta_error = delta_outputs[i + 1][j];
                                 for (var k = 0; k < neuron.length; k++) {
-                                    var delta_error = delta_outputs[i + 1][j];
                                     var neuronal_output = neuronal_outputs[i][k];
-                                    neuron[k] += options.learning_rate * delta_error * neuronal_output;
+                                    neuron[k] += learning_rate * delta_error * neuronal_output;
                                 }
+                                bias_layer[j] += learning_rate * delta_error; // Neuronal output is always 1; definition of a bias node
                             }
                         }
                         outputs = feed_forward(inputs);
