@@ -150,6 +150,32 @@
                 }
 
                 neural_error = backpropogate(training_set, 1);
+
+                var y_min_distance = -100;
+                var y_max_distance = 100;
+                var x_start = -100;
+                var x_inc = 30;
+
+                var neuron_spheres = [];
+
+                for (var layer in layers) {
+                    var num_neurons = layers[layer];
+                    var total_distance = y_max_distance - y_min_distance;
+                    var separation_distance = total_distance / (num_neurons + 1);
+                    var neuron_x = x_start + x_inc * layer;
+                    var layer_spheres = [];
+                    for (var i = 0; i < num_neurons; i++) {
+                        var geometry = new THREE.SphereGeometry(5, 32, 32);
+                        var material = new THREE.MeshBasicMaterial({
+                            color: 0xffffff
+                        });
+                        var sphere = new THREE.Mesh(geometry, material);
+                        sphere.position = new THREE.Vector3(neuron_x, y_max_distance - separation_distance * (i + 1), 0);
+                        scene.add(sphere);
+                        layer_spheres.push(sphere);
+                    }
+                    neuron_spheres.push(layer_spheres);
+                }
             }
 
             function feed_forward(inputs) {
@@ -264,11 +290,6 @@
                 }
 
                 info.innerHTML = "<b>Epoch:</b><br>" + epochs + "<br><br><b>Error:</b><br>" + neural_error;
-
-                var geometry = new THREE.SphereGeometry( 5, 32, 32 );
-                var material = new THREE.MeshBasicMaterial( {color: 0xffff00} );
-                var sphere = new THREE.Mesh( geometry, material );
-                scene.add( sphere );
 
                 controls.update();
 
