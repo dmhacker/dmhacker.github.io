@@ -66,7 +66,7 @@
                 var SimulationOptions = function () {
                     this.layers = "[2, 3, 1]";
                     this.training_set = "[[[0, 0], [0]], [[0, 1], [1]], [[1, 0], [1]], [[1, 1], [0]]]";
-                    this.epochs = 5000;
+                    this.epochs = 10000;
                     this.learning_rate = 0.4;
                     this.anneal_learning_rate = true;
                     this.reset = reset;
@@ -76,7 +76,7 @@
                 gui = new dat.GUI();
                 gui.add(options, 'layers');
                 gui.add(options, 'training_set');
-                gui.add(options, 'epochs', 1000, 10000).step(100);
+                gui.add(options, 'epochs', 5000, 20000).step(100);
                 gui.add(options, 'learning_rate', 0.1, 1.0);
                 gui.add(options, 'anneal_learning_rate');
                 gui.add(options, 'reset');
