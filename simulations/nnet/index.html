@@ -244,6 +244,7 @@
                 if (epochs < target_epochs) {
                     error = backpropogate(training_set, 1000);
                     console.log(error);
+                    console.log(epochs + " " + target_epochs);
                     if (anneal_learning_rate) {
                         learning_rate -= 0.05;
                         if (learning_rate < 0.05) {
