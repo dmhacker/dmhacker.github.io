@@ -178,7 +178,7 @@
                         var delta_errors = [];
                         for (var i in outputs) {
                             var delta = targets[i] - outputs[i];
-                            var derivative = 1 - Math.pow(outputs[i], 2) + 0.1;
+                            var derivative = 1 - Math.pow(outputs[i], 2) + 0.01;
                             var delta_error = derivative * delta;
                             delta_errors.push(delta_error);
                         }
@@ -194,7 +194,7 @@
                                     sdelta += previous_delta_error * synaptic_weight;
                                 }
                                 var neuronal_output = neuronal_outputs[layer][i];
-                                var derivative = 1 - Math.pow(neuronal_output, 2) + 0.1; // Add a constant so network skids on 'flat surfaces'
+                                var derivative = 1 - Math.pow(neuronal_output, 2) + 0.01; // Add a constant so network skids on 'flat surfaces'
                                 var delta_error = derivative * sdelta;
                                 delta_errors.push(delta_error);
                             }
