@@ -178,11 +178,11 @@
                         var sphere = new THREE.Mesh(geometry, material);
                         scene.add(sphere);
                         sphere.position.set(x_min_distance + x_separation_distance * (layer + 1), y_max_distance - y_separation_distance * (i + 1), 0);
+                        console.log(sphere.position);
                         layer_spheres.push(sphere);
                     }
                     neuron_spheres.push(layer_spheres);
                 }
-                console.log(neuron_spheres);
             }
 
             function feed_forward(inputs) {
