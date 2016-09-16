@@ -321,17 +321,17 @@
 
             function animate() {
 
-                // Update every 5 repaints
+                // Update every other repaint
                 if (epochs < target_epochs && update_cycle == 0) {
-                    neural_error = backpropogate(training_set, 1);
+                    neural_error = backpropogate(training_set, 10);
                     if (anneal_learning_rate) {
-                        learning_rate -= 0.001;
+                        learning_rate -= 0.01;
                         if (learning_rate < 0.01) {
                             learning_rate = 0.01;
                         }
                     }
-                    epochs += 1;
-                    update_cycle = 3;
+                    epochs += 10;
+                    update_cycle = 2;
                 }
                 update_cycle--;
 
