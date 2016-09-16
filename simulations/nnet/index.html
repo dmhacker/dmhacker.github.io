@@ -200,7 +200,7 @@
 
                             var line = new THREE.Line(geometry, material);
                             scene.add(line);
-                            line.opacity = Math.abs(neuron[k]);
+                            line.material.opacity = Math.abs(neuron[k]);
                         }
                     }
                 }
