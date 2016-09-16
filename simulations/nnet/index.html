@@ -249,8 +249,6 @@
                             transparent: true
                         });
                         var geometry = new THREE.Geometry();
-                        previous_bias_sphere.position.z = 0;
-                        current_layer_sphere.position.z = 0;
                         geometry.vertices.push(previous_layer_sphere.position);
                         geometry.vertices.push(current_layer_sphere.position);
 
@@ -379,16 +377,6 @@
                         }
                     }
                     epochs += 10;
-                }
-
-                // Update spheres
-                for (var i = 0; i < layers.length; i++) {
-                    var layer_outputs = delta_outputs[i];
-                    for (var j = 0; j < layer_outputs.length; j++) {
-                        var neuron_output = layer_outputs[j];
-                        var sphere = neuron_spheres[i][j];
-                        sphere.position.z = neuron_output * 100;
-                    }
                 }
 
                 // Update lines
