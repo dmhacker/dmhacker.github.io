@@ -323,14 +323,14 @@
 
                 // Update every other repaint
                 if (epochs < target_epochs && update_cycle == 0) {
-                    neural_error = backpropogate(training_set, 10);
+                    neural_error = backpropogate(training_set, 1);
                     if (anneal_learning_rate) {
-                        learning_rate -= 0.01;
+                        learning_rate -= 0.001;
                         if (learning_rate < 0.01) {
                             learning_rate = 0.01;
                         }
                     }
-                    epochs += 10;
+                    epochs += 1;
                     update_cycle = 2;
                 }
                 update_cycle--;
