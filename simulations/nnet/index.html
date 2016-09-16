@@ -94,7 +94,6 @@
                 camera.position.x = 0;
                 camera.position.y = 0;
                 camera.position.z = 150;
-                camera.lookAt(new THREE.Vector3(0,0,0));
 
                 reset();
 
@@ -182,6 +181,29 @@
                         layer_spheres.push(sphere);
                     }
                     neuron_spheres.push(layer_spheres);
+                }
+
+                for (var i = 0; i < neurons.length; i++) {
+                    var neuron_layer = neurons[i];
+                    for (var j = 0; j < neuron_layer.length; j++) {
+                        var neuron = neuron_layer[j];
+                        var current_layer_sphere = neuron_spheres[i + 1][j];
+                        for (var k = 0; k < neuron.length; k++) {
+                            var previous_layer_sphere = neuron_spheres[i][k];
+
+                            var material = new THREE.LineBasicMaterial({
+                                transparent: true,
+                                linewidth: Math.abs(neuron[k] * 10)
+                            });
+                            var geometry = new THREE.Geometry();
+                            geometry.vertices.push(previous_layer_sphere.position);
+                            geometry.vertices.push(current_layer_sphere.position);
+
+                            var line = new THREE.Line(geometry, material);
+                            line.opacity = 0.8;
+                            scene.add(line);
+                        }
+                    }
                 }
             }
 
