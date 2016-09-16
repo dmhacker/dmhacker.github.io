@@ -117,8 +117,6 @@
 
             var neural_connection_lines;
 
-            var update_cycle;
-
             function random_weight() {
                 return Math.random() * 2 - 1;
             }
@@ -128,8 +126,6 @@
                     obj = scene.children[i];
                     scene.remove(obj);
                 }
-
-                update_cycle = 0;
 
                 neurons = [];
                 bias_neurons = [];
@@ -325,15 +321,15 @@
                 if (epochs < target_epochs && update_cycle == 0) {
                     neural_error = backpropogate(training_set, 1);
                     if (anneal_learning_rate) {
-                        learning_rate -= 0.001;
+                        if (epochs % 100 == 0) {
+                            learning_rate -= 0.001;
+                        }
                         if (learning_rate < 0.01) {
                             learning_rate = 0.01;
                         }
                     }
                     epochs += 1;
-                    update_cycle = 2;
                 }
-                update_cycle--;
 
                 info.innerHTML = "<b>Epoch:</b><br>" + epochs + "<br><br><b>Error:</b><br>" + neural_error;
 
