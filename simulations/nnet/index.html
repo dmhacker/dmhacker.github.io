@@ -167,7 +167,7 @@
             function backpropogate(training_data) {
                 var error = 100;
                 shuffleArray(training_data);
-                for (var epoch = 0; epoch < 1; epoch++) {
+                for (var epoch = 0; epoch < options.epochs; epoch++) {
                     error = 0;
                     for (var t in training_data) {
                         var training_datum = training_data[t];
@@ -199,12 +199,23 @@
                             }
                             delta_outputs.unshift(delta_errors);
                         }
-                        console.log("Neuronal outputs:");
-                        console.log(neuronal_outputs);
-                        console.log("Delta errors:");
-                        console.log(delta_outputs);
+                        for (var i = 0; i < neurons.length; i++) {
+                            var neuron_layer = neurons[i];
+                            var bias_layer = bias_neurons[i];
+                            for (var j = 0; j < neuron_layer.length; j++) {
+                                var neuron = neuron_layer[j];
+                                for (var k = 0; k < neuron.length; k++) {
+                                    var delta_error = delta_outputs[i + 1][j];
+                                    var neuronal_output = neuronal_outputs[i][k];
+                                    neuron[k] += options.learning_rate * delta_error * neuronal_output;
+                                }
+                            }
+                        }
+                        outputs = feed_forward(inputs);
+                        for (var i in outputs) {
+                            error += Math.pow(targets[i] - outputs[i], 2) / outputs.length;
+                        }
                     }
-
                     error /= training_data.length;
                 }
                 return error;
@@ -224,7 +235,7 @@
                 return array;
             }
 
-            backpropogate(training_set);
+            console.log(backpropogate(training_set));
 
             function animate() {
 
