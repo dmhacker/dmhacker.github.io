@@ -104,6 +104,8 @@
 
             var neuronal_outputs;
 
+            var neural_error;
+
             function random_weight() {
                 return Math.random() * 2 - 1;
             }
@@ -137,6 +139,9 @@
                     }
                     bias_neurons.push(bias_layer);
                 }
+
+                neural_error = backpropogate(training_set, 1);
+                console.log(neural_error);
             }
 
             function feed_forward(inputs) {
@@ -239,12 +244,9 @@
             }
 
             function animate() {
-                var error = backpropogate(training_set, 1);
-                console.log(error);
                 if (epochs < target_epochs) {
-                    error = backpropogate(training_set, 1000);
-                    console.log(error);
-                    console.log(epochs + " " + target_epochs);
+                    neural_error = backpropogate(training_set, 1000);
+                    console.log(neural_error);
                     if (anneal_learning_rate) {
                         learning_rate -= 0.05;
                         if (learning_rate < 0.05) {
