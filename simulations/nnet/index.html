@@ -43,11 +43,20 @@
             var scene, camera, renderer;
             var controls;
             var options, gui;
+            var info;
 
             init();
             animate();
 
             function init() {
+
+                info = document.createElement('div');
+                info.style.position = 'absolute';
+                info.style.zIndex = 1;
+                info.style.color = "white";
+                info.style.top = 150 + 'px';
+                info.style.left = 10 + 'px';
+                document.body.appendChild(info);
 
                 scene = new THREE.Scene();
                 camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -141,7 +150,6 @@
                 }
 
                 neural_error = backpropogate(training_set, 1);
-                console.log(neural_error);
             }
 
             function feed_forward(inputs) {
@@ -246,7 +254,6 @@
             function animate() {
                 if (epochs < target_epochs) {
                     neural_error = backpropogate(training_set, 100);
-                    console.log(neural_error);
                     if (anneal_learning_rate) {
                         learning_rate -= 0.01;
                         if (learning_rate < 0.01) {
@@ -255,6 +262,8 @@
                     }
                     epochs += 100;
                 }
+
+                info.innerHTML = "<b>Residual error: </b>" + neural_error;
 
                 controls.update();
 
