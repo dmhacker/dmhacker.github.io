@@ -95,7 +95,7 @@
             }
 
             var layers, training_set;
-            var epochs;
+            var epochs, target_epochs;
             var learning_rate, anneal_learning_rate;
 
             var neurons;
@@ -112,7 +112,8 @@
                 bias_neurons = [];
                 layers = JSON.parse(options.layers);
                 training_set = JSON.parse(options.training_set);
-                epochs = options.epochs;
+                epochs = 0;
+                target_epochs = options.epochs;
                 learning_rate = options.learning_rate;
                 anneal_learning_rate = options.anneal_learning_rate;
 
@@ -164,10 +165,10 @@
                 return local_input_vector;
             }
 
-            function backpropogate(training_data) {
+            function backpropogate(training_data, num_epochs) {
                 var error = 100;
                 shuffleArray(training_data);
-                for (var epoch = 0; epoch < options.epochs; epoch++) {
+                for (var epoch = 0; epoch < num_epochs; epoch++) {
                     error = 0;
                     for (var t in training_data) {
                         var training_datum = training_data[t];
@@ -235,9 +236,17 @@
                 return array;
             }
 
-            console.log(backpropogate(training_set));
-
             function animate() {
+                if (epochs < target_epochs) {
+                    console.log(backpropogate(training_set, 1000));
+                    if (anneal_learning_rate) {
+                        learning_rate -= 0.05;
+                        if (learning_rate < 0.05) {
+                            learning_rate = 0.05; // Stop at 0.05
+                        }
+                    }
+                    epochs += 1000;
+                }
 
                 controls.update();
 
