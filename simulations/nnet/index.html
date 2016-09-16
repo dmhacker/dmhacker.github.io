@@ -183,7 +183,7 @@
                         });
                         var sphere = new THREE.Mesh(geometry, material);
                         scene.add(sphere);
-                        sphere.position.set(x, y_max_distance - y_separation_distance * (i + 1), random_weight() * 40);
+                        sphere.position.set(x, y_max_distance - y_separation_distance * (i + 1), random_weight() * 20);
                         layer_spheres.push(sphere);
                     }
                     neuron_spheres.push(layer_spheres);
@@ -260,7 +260,7 @@
                         var delta_errors = [];
                         for (var i in outputs) {
                             var delta = targets[i] - outputs[i];
-                            var derivative = 1 - Math.pow(outputs[i], 2);
+                            var derivative = 1 - Math.pow(outputs[i], 2) + 0.1;
                             var delta_error = derivative * delta;
                             delta_errors.push(delta_error);
                         }
@@ -276,7 +276,7 @@
                                     sdelta += previous_delta_error * synaptic_weight;
                                 }
                                 var neuronal_output = neuronal_outputs[layer][i];
-                                var derivative = 1 - Math.pow(neuronal_output, 2);
+                                var derivative = 1 - Math.pow(neuronal_output, 2) + 0.1;
                                 var delta_error = derivative * sdelta;
                                 delta_errors.push(delta_error);
                             }
