@@ -166,7 +166,7 @@
 
                 var neuron_spheres = [];
 
-                for (var layer in layers) {
+                for (var layer = 0; layer < layers.length; layer++) {
                     var num_neurons = layers[layer];
                     var y_separation_distance = (y_max_distance - y_min_distance) / (num_neurons + 1);
                     var x = x_min_distance + x_separation_distance * (layer + 1);
