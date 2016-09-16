@@ -375,12 +375,15 @@
 
                 for (var i = 0; i < neurons.length; i++) {
                     var neuron_layer = neurons[i];
+                    var bias_neuron_layer = bias_neurons[i];
                     for (var j = 0; j < neuron_layer.length; j++) {
                         var neuron = neuron_layer[j];
                         for (var k = 0; k < neuron.length; k++) {
                             var line = neural_connection_lines[i][j][k];
                             line.material.opacity = Math.abs(neuron[k]);
                         }
+                        var bias_line = bias_neural_connection_lines[i][j];
+                        bias_line.material.opacity = Math.abs(bias_neuron_layer[j]);
                     }
                 }
 
