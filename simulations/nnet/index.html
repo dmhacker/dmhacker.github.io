@@ -175,8 +175,8 @@
                             color: 0xffffff
                         });
                         var sphere = new THREE.Mesh(geometry, material);
-                        sphere.position = new THREE.Vector3(neuron_x, y_max_distance - separation_distance * (i + 1), 0);
                         scene.add(sphere);
+                        sphere.position = new THREE.Vector3(neuron_x, y_max_distance - separation_distance * (i + 1), 0);
                         layer_spheres.push(sphere);
                     }
                     neuron_spheres.push(layer_spheres);
