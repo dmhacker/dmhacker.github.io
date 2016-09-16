@@ -76,10 +76,9 @@
                     this.layers = "[1, 3, 4, 3, 1]";
                     this.training_set = "[[[0.1], [0.01]], [[0.2], [0.04]], [[0.4], [0.16]], [[1], [1]], [[0], [0]], [[-0.3], [0.09]], [[-0.5], [0.25]], [[-1], [1]], [[-0.7], [0.49]], [[0.6], [0.36]]]";
                     this.inputs = "[0.1]";
-                    this.epochs = 5000;
-                    this.learning_rate = 0.4;
+                    this.epochs = 6000;
+                    this.learning_rate = 0.7;
                     this.anneal_learning_rate = true;
-                    this.momentum = 0.9;
                     this.reset = reset;
                 };
 
@@ -258,7 +257,7 @@
                         var delta_errors = [];
                         for (var i in outputs) {
                             var delta = targets[i] - outputs[i];
-                            var derivative = 1 - Math.pow(outputs[i], 2);
+                            var derivative = 1 - Math.pow(outputs[i], 2) + 0.1;
                             var delta_error = derivative * delta;
                             delta_errors.push(delta_error);
                         }
@@ -274,7 +273,7 @@
                                     sdelta += previous_delta_error * synaptic_weight;
                                 }
                                 var neuronal_output = neuronal_outputs[layer][i];
-                                var derivative = 1 - Math.pow(neuronal_output, 2);
+                                var derivative = 1 - Math.pow(neuronal_output, 2) + 0.1;
                                 var delta_error = derivative * sdelta;
                                 delta_errors.push(delta_error);
                             }
