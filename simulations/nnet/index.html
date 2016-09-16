@@ -116,7 +116,10 @@
 
             var neural_error;
 
+            var neuron_spheres;
+            var bias_neuron_spheres;
             var neural_connection_lines;
+            var bias_neural_connection_lines;
 
             function random_weight() {
                 return Math.random() * 2 - 1;
@@ -166,11 +169,18 @@
                 var y_min_distance = -100;
                 var y_max_distance = 100;
 
-                var neuron_spheres = [];
+                neuron_spheres = [];
+                bias_neuron_spheres = [];
 
                 for (var layer = 0; layer < layers.length; layer++) {
                     var num_neurons = layers[layer];
-                    var y_separation_distance = (y_max_distance - y_min_distance) / (num_neurons + 1);
+                    var y_separation_distance = y_max_distance - y_min_distance;
+                    if (layer < layers.length - 1) {
+                        y_separation_distance /= (num_neurons + 2);
+                    }
+                    else {
+                        y_separation_distance /= (num_neurons + 1);
+                    }
                     var x = x_min_distance + x_separation_distance * (layer + 1);
                     var layer_spheres = [];
                     for (var i = 0; i < num_neurons; i++) {
@@ -184,6 +194,17 @@
                         layer_spheres.push(sphere);
                     }
                     neuron_spheres.push(layer_spheres);
+
+                    if (layer < layers.length - 1) {
+                        var geometry = new THREE.SphereGeometry(4, 32, 32);
+                        var material = new THREE.MeshBasicMaterial({
+                            color: 0xff0000
+                        });
+                        var sphere = new THREE.Mesh(geometry, material);
+                        scene.add(sphere);
+                        sphere.position.set(x, y_max_distance - y_separation_distance * (num_neurons + 1), random_weight() * 20);
+                        layer_spheres.push(sphere);
+                    }
                 }
 
                 neural_connection_lines = [];
