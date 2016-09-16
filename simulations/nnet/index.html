@@ -118,7 +118,7 @@
             var neurons;
             var bias_neurons;
 
-            var neuronal_outputs;
+            var neuronal_outputs, delta_outputs;
 
             var neural_error;
 
@@ -308,7 +308,7 @@
                             var delta_error = derivative * delta;
                             delta_errors.push(delta_error);
                         }
-                        var delta_outputs = [delta_errors];
+                        delta_outputs = [delta_errors];
                         for (var layer = neurons.length - 1; layer >= 0; layer--) {
                             var weights = neurons[layer];
                             var delta_errors = [];
@@ -381,7 +381,7 @@
 
                 // Update spheres
                 for (var i = 0; i < layers.length; i++) {
-                    var layer_outputs = neuronal_outputs[i];
+                    var layer_outputs = delta_outputs[i];
                     for (var j = 0; j < layer_outputs.length; j++) {
                         var neuron_output = layer_outputs[j];
                         var sphere = neuron_spheres[i][j];
