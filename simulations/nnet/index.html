@@ -187,7 +187,7 @@
                             var delta_errors = [];
                             for (var i = 0; i < layers[layer]; i++) {
                                 var sdelta = 0;
-                                for (var j = 0; j < layers[layer + 1], j++) {
+                                for (var j = 0; j < layers[layer + 1]; j++) {
                                     var previous_delta_error = delta_outputs[0][j];
                                     var synaptic_weight = weights[j][i];
                                     sdelta += previous_delta_error * synaptic_weight;
