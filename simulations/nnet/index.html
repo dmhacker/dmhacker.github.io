@@ -210,7 +210,7 @@
                                     var neuronal_output = neuronal_outputs[i][k];
                                     neuron[k] = bias_layer[j] + learning_rate * delta_error * neuronal_output;
                                 }
-                                bias_layer[j] = bias_layer[j] + learning_rate * delta_error; // Neuronal output is always 1; definition of a bias node
+                                // bias_layer[j] = bias_layer[j] + learning_rate * delta_error; // Neuronal output is always 1; definition of a bias node
                             }
                         }
                         outputs = feed_forward(inputs);
@@ -246,7 +246,6 @@
                             learning_rate = 0.05; // Stop at 0.05
                         }
                     }
-                    console.log(learning_rate);
                     epochs += 1000;
                 }
 
