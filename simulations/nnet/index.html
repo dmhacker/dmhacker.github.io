@@ -317,14 +317,14 @@
 
             function animate() {
                 if (epochs < target_epochs) {
-                    neural_error = backpropogate(training_set, 100);
+                    neural_error = backpropogate(training_set, 10);
                     if (anneal_learning_rate) {
-                        learning_rate -= 0.01;
+                        learning_rate -= 0.001;
                         if (learning_rate < 0.01) {
                             learning_rate = 0.01;
                         }
                     }
-                    epochs += 100;
+                    epochs += 10;
                 }
 
                 info.innerHTML = "<b>Epoch:</b><br>" + epochs + "<br><br><b>Error:</b><br>" + neural_error;
