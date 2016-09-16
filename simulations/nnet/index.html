@@ -156,18 +156,18 @@
 
                 neural_error = backpropogate(training_set, 1);
 
+                var x_min_distance = -100;
+                var x_max_distance = 100;
+                var x_separation_distance = (x_max_distance - x_min_distance) / (layers.length + 1);
+
                 var y_min_distance = -100;
                 var y_max_distance = 100;
-                var x_start = -100;
-                var x_inc = 30;
 
                 var neuron_spheres = [];
 
                 for (var layer in layers) {
                     var num_neurons = layers[layer];
-                    var total_distance = y_max_distance - y_min_distance;
-                    var separation_distance = total_distance / (num_neurons + 1);
-                    var neuron_x = x_start + x_inc * layer;
+                    var y_separation_distance = (y_max_distance - y_min_distance) / (num_neurons + 1);
                     var layer_spheres = [];
                     for (var i = 0; i < num_neurons; i++) {
                         var geometry = new THREE.SphereGeometry(5, 32, 32);
@@ -176,7 +176,7 @@
                         });
                         var sphere = new THREE.Mesh(geometry, material);
                         scene.add(sphere);
-                        sphere.position.set(neuron_x, y_max_distance - separation_distance * (i + 1), 0);
+                        sphere.position.set(x_min_distance + x_separation_distance * (layer + 1), y_max_distance - y_separation_distance * (i + 1), 0);
                         layer_spheres.push(sphere);
                     }
                     neuron_spheres.push(layer_spheres);
