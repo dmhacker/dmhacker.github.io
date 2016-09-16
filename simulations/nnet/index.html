@@ -317,7 +317,7 @@
 
             function animate() {
                 if (epochs < target_epochs) {
-                    neural_error = backpropogate(training_set, 10);
+                    neural_error = backpropogate(training_set, 1);
                     if (anneal_learning_rate) {
                         learning_rate -= 0.001;
                         if (learning_rate < 0.01) {
