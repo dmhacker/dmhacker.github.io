@@ -199,8 +199,10 @@
                             }
                             delta_outputs.unshift(delta_errors);
                         }
-                        console.log("On feed forward: "+neuronal_outputs);
-                        console.log("Delta errors: "+delta_outputs);
+                        console.log("Neuronal outputs:");
+                        console.log(neuronal_outputs);
+                        console.log("Delta errors:");
+                        console.log(delta_outputs);
                     }
 
                     error /= training_data.length;
