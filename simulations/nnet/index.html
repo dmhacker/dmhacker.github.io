@@ -195,13 +195,12 @@
                                     var previous_neuron_delta_error = delta_outputs[0][k];
                                     sdelta += synaptic_weight * previous_neuron_delta_error;
                                 }
+                                console.log("Current layer ("+i+"): "+neuronal_outputs[i]);
                                 var current_neuron_output = neuronal_outputs[i][j];
+                                console.log("CNO: "+current_neuron_output);
                                 var derivative = 1 - Math.pow(current_neuron_output, 2);
                                 var delta_error = derivative * sdelta;
                                 delta_errors.push(delta_error);
-                                console.log("CNO: "+current_neuron_output);
-                                console.log("Deriv: "+derivative);
-                                console.log("Delta: "+sdelta);
                             }
                             delta_outputs.unshift(delta_errors);
                         }
