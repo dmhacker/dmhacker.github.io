@@ -192,15 +192,14 @@
                             var previous_layer_sphere = neuron_spheres[i][k];
 
                             var material = new THREE.LineBasicMaterial({
-                                transparent: true,
-                                linewidth: Math.abs(neuron[k] * 10)
+                                transparent: true
                             });
                             var geometry = new THREE.Geometry();
                             geometry.vertices.push(previous_layer_sphere.position);
                             geometry.vertices.push(current_layer_sphere.position);
 
                             var line = new THREE.Line(geometry, material);
-                            line.opacity = 0.8;
+                            line.opacity = Math.abs(neuron[k]);
                             scene.add(line);
                         }
                     }
