@@ -245,15 +245,15 @@
 
             function animate() {
                 if (epochs < target_epochs) {
-                    neural_error = backpropogate(training_set, 1000);
+                    neural_error = backpropogate(training_set, 100);
                     console.log(neural_error);
                     if (anneal_learning_rate) {
-                        learning_rate -= 0.05;
-                        if (learning_rate < 0.05) {
-                            learning_rate = 0.05; // Stop at 0.05
+                        learning_rate -= 0.01;
+                        if (learning_rate < 0.01) {
+                            learning_rate = 0.01;
                         }
                     }
-                    epochs += 1000;
+                    epochs += 100;
                 }
 
                 controls.update();
