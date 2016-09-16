@@ -384,7 +384,7 @@
                     var layer_outputs = neuronal_outputs[i];
                     for (var j = 0; j < layer_outputs.length; j++) {
                         var neuron_output = layer_outputs[j];
-                        var sphere = neuron_spheres;
+                        var sphere = neuron_spheres[i][j];
                         sphere.position.z = neuron_output * 30;
                     }
                 }
