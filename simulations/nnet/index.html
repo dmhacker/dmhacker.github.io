@@ -75,6 +75,7 @@
                 var SimulationOptions = function () {
                     this.layers = "[1, 3, 4, 3, 1]";
                     this.training_set = "[[[0.1], [0.01]], [[0.2], [0.04]], [[0.4], [0.16]], [[1], [1]], [[0], [0]], [[-0.03], [0.09]]]";
+                    this.inputs = "[0.1]";
                     this.epochs = 5000;
                     this.learning_rate = 0.4;
                     this.anneal_learning_rate = true;
@@ -86,6 +87,7 @@
                 gui = new dat.GUI();
                 gui.add(options, 'layers');
                 gui.add(options, 'training_set');
+                gui.add(options, 'inputs');
                 gui.add(options, 'epochs', 1000, 10000).step(100);
                 gui.add(options, 'learning_rate', 0.1, 1.0);
                 gui.add(options, 'anneal_learning_rate');
@@ -331,8 +333,6 @@
                     epochs += 1;
                 }
 
-                info.innerHTML = "<b>Epoch:</b><br>" + epochs + "<br><br><b>Error:</b><br>" + neural_error;
-
                 for (var i = 0; i < neurons.length; i++) {
                     var neuron_layer = neurons[i];
                     for (var j = 0; j < neuron_layer.length; j++) {
@@ -343,6 +343,11 @@
                         }
                     }
                 }
+
+                var sample_inputs = JSON.parse(options.inputs);
+                var sample_outputs = feed_forward(sample_inputs);
+
+                info.innerHTML = "<b>Epoch:</b><br>" + epochs + "<br><br><b>Error:</b><br>" + neural_error + "<br><br><b>Output:</b><br>" + JSON.stringify(sample_outputs);
 
                 controls.update();
 
