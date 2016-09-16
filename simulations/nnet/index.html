@@ -195,7 +195,7 @@
                         });
                         var sphere = new THREE.Mesh(geometry, material);
                         scene.add(sphere);
-                        sphere.position.set(x, y_max_distance - y_separation_distance * (i + 1), random_weight() * 20);
+                        sphere.position.set(x, y_max_distance - y_separation_distance * (i + 1), 0);
                         layer_spheres.push(sphere);
                     }
                     neuron_spheres.push(layer_spheres);
@@ -207,7 +207,7 @@
                         });
                         var sphere = new THREE.Mesh(geometry, material);
                         scene.add(sphere);
-                        sphere.position.set(x, y_max_distance - y_separation_distance * (num_neurons + 1), random_weight() * 20);
+                        sphere.position.set(x, y_max_distance - y_separation_distance * (num_neurons + 1), 0);
                         bias_neuron_spheres.push(sphere);
                     }
                 }
@@ -379,6 +379,17 @@
                     epochs += 10;
                 }
 
+                // Update spheres
+                for (var i = 0; i < layers.length; i++) {
+                    var layer_outputs = neuronal_outputs[i];
+                    for (var j = 0; j < layer_outputs.length; j++) {
+                        var neuron_output = layer_outputs[j];
+                        var sphere = neuron_spheres;
+                        sphere.position.z = neuron_output;
+                    }
+                }
+
+                // Update lines
                 for (var i = 0; i < neurons.length; i++) {
                     var neuron_layer = neurons[i];
                     var bias_neuron_layer = bias_neurons[i];
