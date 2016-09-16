@@ -73,8 +73,8 @@
                 controls.target.position = new THREE.Vector3(0, 0, 0);
 
                 var SimulationOptions = function () {
-                    this.layers = "[2, 3, 1]";
-                    this.training_set = "[[[0, 0], [0]], [[0, 1], [1]], [[1, 0], [1]], [[1, 1], [0]]]";
+                    this.layers = "[1, 3, 4, 3, 1]";
+                    this.training_set = "[[[0.1], [0.01]], [[0.2], [0.04]], [[0.4], [0.16]], [[1], [1]], [[0], [0]], [[-0.03], [0.09]]]";
                     this.epochs = 5000;
                     this.learning_rate = 0.4;
                     this.anneal_learning_rate = true;
