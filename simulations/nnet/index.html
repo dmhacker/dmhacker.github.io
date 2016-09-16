@@ -93,7 +93,7 @@
 
                 camera.position.x = 0;
                 camera.position.y = 0;
-                camera.position.z = 100;
+                camera.position.z = 150;
                 camera.lookAt(new THREE.Vector3(0,0,0));
 
                 reset();
@@ -157,8 +157,8 @@
 
                 neural_error = backpropogate(training_set, 1);
 
-                var x_min_distance = -80;
-                var x_max_distance = 80;
+                var x_min_distance = -100;
+                var x_max_distance = 100;
                 var x_separation_distance = (x_max_distance - x_min_distance) / (layers.length + 1);
 
                 var y_min_distance = -100;
