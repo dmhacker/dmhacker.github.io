@@ -182,29 +182,25 @@
                             delta_errors.push(delta_error);
                         }
                         var delta_outputs = [delta_errors];
-                        console.log(neurons);
-                        for (var i = neurons.length - 2; i >= 0; i--) {
-                            var current_layer = neurons[i];
-                            var previous_layer = neurons[i + 1]; // Really the above layer, but going backwards, this is reversed
+                        for (var layer = neurons.length - 1; layer >= 0; layer--) {
+                            var weights = neurons[layer];
                             var delta_errors = [];
-                            for (var j = 0; j < current_layer.length; j++) {
-                                var current_neuron = current_layer[j];
+                            for (var i = 0; i < layers[layer]; i++) {
                                 var sdelta = 0;
-                                for (var k = 0; k < previous_layer.length; k++) {
-                                    var previous_neuron = previous_layer[k];
-                                    var synaptic_weight = previous_neuron[j];
-                                    var previous_neuron_delta_error = delta_outputs[0][k];
-                                    sdelta += synaptic_weight * previous_neuron_delta_error;
+                                for (var j = 0; j < layers[layer + 1], j++) {
+                                    var previous_delta_error = delta_outputs[0][j];
+                                    var synaptic_weight = weights[j][i];
+                                    sdelta += previous_delta_error * synaptic_weight;
                                 }
-                                console.log("Current layer ("+i+"): "+neuronal_outputs[i]);
-                                var current_neuron_output = neuronal_outputs[i][j];
-                                console.log("CNO: "+current_neuron_output);
-                                var derivative = 1 - Math.pow(current_neuron_output, 2);
+                                var neuronal_output = neuronal_outputs[layer][i];
+                                var derivative = 1 - Math.pow(neuronal_output, 2);
                                 var delta_error = derivative * sdelta;
                                 delta_errors.push(delta_error);
                             }
                             delta_outputs.unshift(delta_errors);
                         }
+                        console.log("On feed forward: "+neuronal_outputs);
+                        console.log("Delta errors: "+delta_outputs);
                     }
 
                     error /= training_data.length;
