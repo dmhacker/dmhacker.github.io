@@ -249,7 +249,9 @@
                             transparent: true
                         });
                         var geometry = new THREE.Geometry();
-                        geometry.vertices.push(previous_bias_sphere.position);
+                        previous_bias_sphere.position.z = 0;
+                        current_layer_sphere.position.z = 0;
+                        geometry.vertices.push(previous_layer_sphere.position);
                         geometry.vertices.push(current_layer_sphere.position);
 
                         var line = new THREE.Line(geometry, material);
