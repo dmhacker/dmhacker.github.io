@@ -199,9 +199,9 @@
                                 var derivative = 1 - Math.pow(current_neuron_output, 2);
                                 var delta_error = derivative * sdelta;
                                 delta_errors.push(delta_error);
-                                console.log(current_neuron_output);
-                                console.log(derivative);
-                                console.log(sdelta);
+                                console.log("CNO: "+current_neuron_output);
+                                console.log("Deriv: "+derivative);
+                                console.log("Delta: "+sdelta);
                             }
                             delta_outputs.unshift(delta_errors);
                         }
