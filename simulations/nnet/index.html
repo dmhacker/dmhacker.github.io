@@ -115,6 +115,8 @@
 
             var neural_error;
 
+            var neural_connection_lines = [];
+
             function random_weight() {
                 return Math.random() * 2 - 1;
             }
@@ -183,10 +185,14 @@
                     neuron_spheres.push(layer_spheres);
                 }
 
+                neural_connection_lines = [];
+
                 for (var i = 0; i < neurons.length; i++) {
                     var neuron_layer = neurons[i];
+                    var neuron_layer_lines = [];
                     for (var j = 0; j < neuron_layer.length; j++) {
                         var neuron = neuron_layer[j];
+                        var neuron_lines = [];
                         var current_layer_sphere = neuron_spheres[i + 1][j];
                         for (var k = 0; k < neuron.length; k++) {
                             var previous_layer_sphere = neuron_spheres[i][k];
@@ -201,8 +207,12 @@
                             var line = new THREE.Line(geometry, material);
                             scene.add(line);
                             line.material.opacity = Math.abs(neuron[k]);
+
+                            neuron_lines.push(line);
                         }
+                        neuron_layer_lines.push(neuron_lines);
                     }
+                    neural_connection_lines.push(neuron_layer_lines);
                 }
             }
 
@@ -319,12 +329,24 @@
 
                 info.innerHTML = "<b>Epoch:</b><br>" + epochs + "<br><br><b>Error:</b><br>" + neural_error;
 
-                controls.update();
-
-                renderer.render(scene, camera);
-
-                requestAnimationFrame(animate);
+                for (var i = 0; i < neurons.length; i++) {
+                    var neuron_layer = neurons[i];
+                    for (var j = 0; j < neuron_layer.length; j++) {
+                        var neuron = neuron_layer[j];
+                        for (var k = 0; k < neuron.length; k++) {
+                            var line = neural_connection_lines[i][j][k];
+                            line.material.opacity = Math.abs(neuron[k]);
+                        }
+                    }
+                }
             }
+
+            controls.update();
+
+            renderer.render(scene, camera);
+
+            requestAnimationFrame(animate);
+        }
 
         };
     </script>
