@@ -344,10 +344,15 @@
                     }
                 }
 
-                var sample_inputs = JSON.parse(options.inputs);
-                var sample_outputs = feed_forward(sample_inputs);
+                var text = "<b>Epoch:</b><br>" + epochs + "<br><br><b>Error:</b><br>" + neural_error;
 
-                info.innerHTML = "<b>Epoch:</b><br>" + epochs + "<br><br><b>Error:</b><br>" + neural_error + "<br><br><b>Output:</b><br>" + JSON.stringify(sample_outputs);
+                try {
+                    var sample_inputs = JSON.parse(options.inputs);
+                    var sample_outputs = feed_forward(sample_inputs);
+                    text += "<br><br><b>Output:</b><br>" + JSON.stringify(sample_outputs);
+                } catch (e) {
+                    // Syntax error, ignore
+                }
 
                 controls.update();
 
