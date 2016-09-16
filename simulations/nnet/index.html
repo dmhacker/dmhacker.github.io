@@ -105,7 +105,7 @@
             var neuronal_outputs;
 
             function random_weight() {
-                return Math.random() * 1 - 0.5;
+                return Math.random() * 2 - 1;
             }
 
             function reset() {
@@ -239,8 +239,11 @@
             }
 
             function animate() {
+                var error = backpropogate(training_set, 1000);
+                console.log(error);
                 if (epochs < target_epochs) {
-                    console.log(backpropogate(training_set, 1000));
+                    error = backpropogate(training_set, 1000);
+                    console.log(error);
                     if (anneal_learning_rate) {
                         learning_rate -= 0.05;
                         if (learning_rate < 0.05) {
