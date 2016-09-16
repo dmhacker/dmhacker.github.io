@@ -249,6 +249,7 @@
                         var line = new THREE.Line(geometry, material);
                         scene.add(line);
                         line.material.opacity = Math.abs(bias_weight);
+                        line.material.color.setHex(0xff0000);
 
                         bias_layer_lines.push(line);
                     }
