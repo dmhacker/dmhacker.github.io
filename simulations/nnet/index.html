@@ -69,6 +69,7 @@
                     this.epochs = 10000;
                     this.learning_rate = 0.4;
                     this.anneal_learning_rate = true;
+                    this.momentum = 0.9;
                     this.reset = reset;
                 };
 
@@ -79,6 +80,7 @@
                 gui.add(options, 'epochs', 5000, 20000).step(100);
                 gui.add(options, 'learning_rate', 0.1, 1.0);
                 gui.add(options, 'anneal_learning_rate');
+                gui.add(options, 'momentum', 0.1, 1.0);
                 gui.add(options, 'reset');
 
                 camera.position.x = 0;
@@ -97,7 +99,7 @@
             var layers, training_set;
             var epochs, target_epochs;
             var learning_rate, anneal_learning_rate;
-            var momentum = 0.9;
+            var momentum;
 
             var neurons;
             var bias_neurons;
@@ -117,6 +119,7 @@
                 target_epochs = options.epochs;
                 learning_rate = options.learning_rate;
                 anneal_learning_rate = options.anneal_learning_rate;
+                momentum = options.momentum;
 
                 for (var i = 1; i < layers.length; i++) {
                     var neuron_layer = [];
