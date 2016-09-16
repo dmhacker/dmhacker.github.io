@@ -75,8 +75,8 @@
                 var SimulationOptions = function () {
                     this.layers = "[2, 3, 1]";
                     this.training_set = "[[[0, 0], [0]], [[0, 1], [1]], [[1, 0], [1]], [[1, 1], [0]]]";
-                    this.epochs = 50000;
-                    this.learning_rate = 0.5;
+                    this.epochs = 5000;
+                    this.learning_rate = 0.4;
                     this.anneal_learning_rate = true;
                     this.momentum = 0.9;
                     this.reset = reset;
@@ -86,7 +86,7 @@
                 gui = new dat.GUI();
                 gui.add(options, 'layers');
                 gui.add(options, 'training_set');
-                gui.add(options, 'epochs', 10000, 100000).step(1000);
+                gui.add(options, 'epochs', 1000, 10000).step(100);
                 gui.add(options, 'learning_rate', 0.1, 1.0);
                 gui.add(options, 'anneal_learning_rate');
                 gui.add(options, 'reset');
@@ -117,6 +117,8 @@
 
             var neural_connection_lines;
 
+            var update_cycle;
+
             function random_weight() {
                 return Math.random() * 2 - 1;
             }
@@ -126,6 +128,8 @@
                     obj = scene.children[i];
                     scene.remove(obj);
                 }
+
+                update_cycle = 0;
 
                 neurons = [];
                 bias_neurons = [];
@@ -316,7 +320,9 @@
             }
 
             function animate() {
-                if (epochs < target_epochs) {
+
+                // Update every 5 repaints
+                if (epochs < target_epochs && update_cycle == 0) {
                     neural_error = backpropogate(training_set, 1);
                     if (anneal_learning_rate) {
                         learning_rate -= 0.001;
@@ -325,7 +331,9 @@
                         }
                     }
                     epochs += 10;
+                    update_cycle = 6;
                 }
+                update_cycle--;
 
                 info.innerHTML = "<b>Epoch:</b><br>" + epochs + "<br><br><b>Error:</b><br>" + neural_error;
 
