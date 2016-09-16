@@ -199,8 +199,8 @@
                             geometry.vertices.push(current_layer_sphere.position);
 
                             var line = new THREE.Line(geometry, material);
-                            line.opacity = Math.abs(neuron[k]);
                             scene.add(line);
+                            line.opacity = Math.abs(neuron[k]);
                         }
                     }
                 }
