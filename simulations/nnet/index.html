@@ -177,8 +177,7 @@
                     var y_separation_distance = y_max_distance - y_min_distance;
                     if (layer < layers.length - 1) {
                         y_separation_distance /= (num_neurons + 2);
-                    }
-                    else {
+                    } else {
                         y_separation_distance /= (num_neurons + 1);
                     }
                     var x = x_min_distance + x_separation_distance * (layer + 1);
@@ -208,10 +207,13 @@
                 }
 
                 neural_connection_lines = [];
+                bias_neural_connection_lines = [];
 
                 for (var i = 0; i < neurons.length; i++) {
                     var neuron_layer = neurons[i];
+                    var bias_layer = bias_neurons[i];
                     var neuron_layer_lines = [];
+                    var bias_layer_lines = [];
                     for (var j = 0; j < neuron_layer.length; j++) {
                         var neuron = neuron_layer[j];
                         var neuron_lines = [];
@@ -233,8 +235,25 @@
                             neuron_lines.push(line);
                         }
                         neuron_layer_lines.push(neuron_lines);
+
+                        var bias_weight = bias_layer[j];
+                        var previous_bias_sphere = bias_neuron_spheres[i];
+
+                        var material = new THREE.LineBasicMaterial({
+                            transparent: true
+                        });
+                        var geometry = new THREE.Geometry();
+                        geometry.vertices.push(previous_bias_sphere.position);
+                        geometry.vertices.push(current_layer_sphere.position);
+
+                        var line = new THREE.Line(geometry, material);
+                        scene.add(line);
+                        line.material.opacity = Math.abs(bias_weight);
+
+                        bias_layer_lines.push(line);
                     }
                     neural_connection_lines.push(neuron_layer_lines);
+                    bias_neural_connection_lines.push(bias_layer_lines);
                 }
             }
 
