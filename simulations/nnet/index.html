@@ -321,16 +321,16 @@
 
                 // Update every other repaint
                 if (epochs < target_epochs) {
-                    neural_error = backpropogate(training_set, 1);
+                    neural_error = backpropogate(training_set, 10);
                     if (anneal_learning_rate) {
                         if (epochs % 100 == 0) {
-                            learning_rate -= 0.001;
+                            learning_rate -= 0.01;
                         }
                         if (learning_rate < 0.01) {
                             learning_rate = 0.01;
                         }
                     }
-                    epochs += 1;
+                    epochs += 10;
                 }
 
                 for (var i = 0; i < neurons.length; i++) {
