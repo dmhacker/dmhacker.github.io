@@ -318,7 +318,7 @@
             function animate() {
 
                 // Update every other repaint
-                if (epochs < target_epochs && update_cycle == 0) {
+                if (epochs < target_epochs) {
                     neural_error = backpropogate(training_set, 1);
                     if (anneal_learning_rate) {
                         if (epochs % 100 == 0) {
