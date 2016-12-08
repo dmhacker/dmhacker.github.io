@@ -65,13 +65,12 @@
                 controls.target.position = new THREE.Vector3(0, 0, 0);
 
                 var SimulationOptions = function () {
-                    this.a = -5;
-                    this.b = 5;
-                    this.xz_increments = 30;
-                    this.y_increments = 30;
+                    this.a = -15;
+                    this.b = 15;
+                    this.xz_increments = 20;
+                    this.y_increments = 20;
                     this.axis = 0;
-                    this.reset = reset;
-                    this.functions = 'y=x*(x-2)';
+                    this.functions = 'y=1/x';
                     this.first_time = true;
                 };
 
@@ -83,8 +82,8 @@
                 gui.add(options, 'a', -50, 50).onChange(changeFunction);
                 gui.add(options, 'b', -50, 50).onChange(changeFunction);
                 gui.add(options, 'axis', -50, 50).onChange(changeFunction);
-                gui.add(options, 'xz_increments', 0, 200).onChange(changeFunction);
-                gui.add(options, 'y_increments', 0, 200).onChange(changeFunction);
+                gui.add(options, 'xz_increments', 0, 100).onChange(changeFunction);
+                gui.add(options, 'y_increments', 0, 100).onChange(changeFunction);
                 gui.add(options, 'functions').onChange(changeFunction);
 
                 camera.position.x = 0;
