@@ -69,6 +69,7 @@
                     this.b = 5;
                     this.xz_increments = 30;
                     this.y_increments = 30;
+                    this.axis = 0;
                     this.reset = reset;
                     this.functions = 'y=x*(x-2)';
                     this.first_time = true;
@@ -78,6 +79,7 @@
                 gui = new dat.GUI();
                 gui.add(options, 'a', -50, 50).step(1);
                 gui.add(options, 'b', -50, 50).step(1);
+                gui.add(options, 'axis', -50, 50).step(1);
                 gui.add(options, 'xz_increments', 0, 200).step(10);
                 gui.add(options, 'y_increments', 0, 200).step(10);
                 gui.add(options, 'reset');
@@ -179,7 +181,7 @@
                         }
                     }
                     for (var x = x_start; x <= x_end; x += (x_end - x_start) / (options.xz_increments + 1)) {
-                        var radius = Math.abs(at(f, x)),
+                        var radius = Math.abs(at(f, x) - options.axis),
                             segments = 64,
                             material = new THREE.LineBasicMaterial({
                                 color: color // 0xffc0cb
@@ -191,7 +193,7 @@
 
                         if (radius > 0) {
                             var line = new THREE.Line(geometry, material);
-                            line.position.set(x, 0, 0);
+                            line.position.set(x, options.axis, 0);
                             line.rotation.y += Math.PI / 2;
                             scene.add(line);
                         }
@@ -202,7 +204,7 @@
 
                     var lines = [];
 
-                    x_increment *= 10;
+                    x_increment *= 20;
                     for (var x = x_start + x_increment; x <= x_end; x += x_increment) {
                         var y = at(func, x);
                         lines.push([px, py, x, y]);
@@ -211,19 +213,21 @@
                     }
 
                     for (var deg = 0; deg < 2 * Math.PI; deg += 2 * Math.PI / (options.y_increments + 1)) {
+                        var pivot = new THREE.Object3D();
                         for (var l in lines) {
                             var pts = lines[l];
                             var material = new THREE.LineBasicMaterial({
                                 color: color
                             });
                             var geometry = new THREE.Geometry();
-                            geometry.vertices.shift();
                             geometry.vertices.push(new THREE.Vector3(pts[0], pts[1], 0));
                             geometry.vertices.push(new THREE.Vector3(pts[2], pts[3], 0));
-                            var line = new THREE.Line(geometry, material);
-                            line.rotation.x += deg;
-                            scene.add(line);
+                            geometry.applyMatrix(new THREE.Matrix4().makeTranslation(0, 0 - options.axis, 0));
+                            pivot.add(new THREE.Line(geometry, material));
                         }
+                        pivot.position.y = options.axis;
+                        pivot.rotation.x += deg;
+                        scene.add(pivot);
                     }
                 }
             }
