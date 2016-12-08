@@ -181,6 +181,7 @@
                             ymax = y;
                         }
                     }
+                    var maxRadius = -1e10;
                     for (var x = x_start; x <= x_end; x += (x_end - x_start) / (options.xz_increments + 1)) {
                         var radius = Math.abs(at(f, x) - options.axis),
                             segments = 64,
@@ -189,6 +190,8 @@
                             }),
                             geometry = new THREE.CircleGeometry(radius, segments);
 
+                        if (radius > maxRadius)
+                            maxRadius = radius;
 
                         geometry.vertices.shift();
 
@@ -206,6 +209,8 @@
                     x_increment = Math.abs((options.b - options.a) / 50);
                     for (var x = x_start; x <= x_end; x += x_increment) {
                         var y = at(f, x);
+                        if (y > maxRadius)
+                            y = maxRadius;
                         pts.push(new THREE.Vector3(x, y, 0));
                     }
 
