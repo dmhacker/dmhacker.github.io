@@ -77,13 +77,15 @@
 
                 options = new SimulationOptions();
                 gui = new dat.GUI();
-                gui.add(options, 'a', -50, 50).step(1);
-                gui.add(options, 'b', -50, 50).step(1);
-                gui.add(options, 'axis', -50, 50).step(1);
-                gui.add(options, 'xz_increments', 0, 200).step(10);
-                gui.add(options, 'y_increments', 0, 200).step(10);
-                gui.add(options, 'reset');
-                gui.add(options, 'functions');
+                var changeFunction = function (newValue) {
+                    reset();
+                };
+                gui.add(options, 'a', -50, 50).onChange(changeFunction);
+                gui.add(options, 'b', -50, 50).onChange(changeFunction);
+                gui.add(options, 'axis', -50, 50).onChange(changeFunction);
+                gui.add(options, 'xz_increments', 0, 200).onChange(changeFunction);
+                gui.add(options, 'y_increments', 0, 200).onChange(changeFunction);
+                gui.add(options, 'functions').onChange(changeFunction);
 
                 camera.position.x = 0;
                 camera.position.y = 0;
@@ -103,10 +105,10 @@
             }
 
             function getRandomColor() {
-                var letters = '0123456789ABCDEF';
+                var letters = 'BCDEF'.split('');
                 var color = '#';
                 for (var i = 0; i < 6; i++ ) {
-                    color += letters[Math.floor(Math.random() * 16)];
+                    color += letters[Math.floor(Math.random() * letters.length)];
                 }
                 return color;
             }
@@ -199,32 +201,31 @@
                         }
                     }
 
-                    var px = x_start;
-                    var py = at(f, px);
 
-                    var lines = [];
+                    var pts = [];
 
-                    x_increment *= 20;
-                    for (var x = x_start + x_increment; x <= x_end; x += x_increment) {
-                        var y = at(func, x);
-                        lines.push([px, py, x, y]);
-                        px = x;
-                        py = y;
+                    x_increment = Math.abs((options.b - options.a) / 50);
+                    for (var x = x_start; x <= x_end; x += x_increment) {
+                        var y = at(f, x);
+                        pts.push(new THREE.Vector3(x, y, 0));
                     }
 
                     for (var deg = 0; deg < 2 * Math.PI; deg += 2 * Math.PI / (options.y_increments + 1)) {
-                        var pivot = new THREE.Object3D();
-                        for (var l in lines) {
-                            var pts = lines[l];
-                            var material = new THREE.LineBasicMaterial({
-                                color: color
-                            });
-                            var geometry = new THREE.Geometry();
-                            geometry.vertices.push(new THREE.Vector3(pts[0], pts[1], 0));
-                            geometry.vertices.push(new THREE.Vector3(pts[2], pts[3], 0));
-                            geometry.applyMatrix(new THREE.Matrix4().makeTranslation(0, 0 - options.axis, 0));
-                            pivot.add(new THREE.Line(geometry, material));
+                        var spline = new THREE.SplineCurve3(pts);
+                        var material = new THREE.LineBasicMaterial({
+                            color: color
+                        });
+                        var geometry = new THREE.Geometry();
+
+                        var splinePoints = spline.getPoints(100);
+                        for(var i in splinePoints){
+                            geometry.vertices.push(splinePoints[i]);
                         }
+                        geometry.applyMatrix(new THREE.Matrix4().makeTranslation(0, 0 - options.axis, 0));
+
+                        var pivot = new THREE.Object3D();
+                        pivot.add(new THREE.Line(geometry, material));
+
                         pivot.position.y = options.axis;
                         pivot.rotation.x += deg;
                         scene.add(pivot);
