@@ -65,8 +65,8 @@
                 controls.target.position = new THREE.Vector3(0, 0, 0);
 
                 var SimulationOptions = function () {
-                    this.a = -15;
-                    this.b = 15;
+                    this.a = -5;
+                    this.b = 5;
                     this.xz_increments = 20;
                     this.y_increments = 20;
                     this.axis = 0;
@@ -203,7 +203,7 @@
 
                     var pts = [];
 
-                    x_increment = Math.abs((options.b - options.a) / 20);
+                    x_increment = Math.abs((options.b - options.a) / 50);
                     for (var x = x_start; x <= x_end; x += x_increment) {
                         var y = at(f, x);
                         pts.push(new THREE.Vector3(x, y, 0));
