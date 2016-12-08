@@ -70,7 +70,7 @@
                     this.xz_increments = 50;
                     this.y_increments = 50;
                     this.reset = reset;
-                    this.functions = 'y=x*x*x*0.1+0.5';
+                    this.functions = 'y=x*(x-2)';
                     this.first_time = true;
                 };
 
@@ -203,13 +203,13 @@
                     }
 
                     var px = x_start;
-                    var py = Math.abs(at(f, px));
+                    var py = at(f, px);
 
                     var lines = [];
 
                     x_increment *= 20;
                     for (var x = x_start + x_increment; x <= x_end; x += x_increment) {
-                        var y = Math.abs(at(func, x));
+                        var y = at(func, x);
                         var material = new THREE.LineBasicMaterial({
                             color: color
                         });
