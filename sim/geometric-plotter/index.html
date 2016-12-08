@@ -204,7 +204,7 @@
 
                     var pts = [];
 
-                    x_increment = Math.abs((options.b - options.a) / 50);
+                    x_increment = Math.abs((options.b - options.a) / 20);
                     for (var x = x_start; x <= x_end; x += x_increment) {
                         var y = at(f, x);
                         pts.push(new THREE.Vector3(x, y, 0));
