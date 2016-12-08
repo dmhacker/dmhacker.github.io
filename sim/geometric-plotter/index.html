@@ -67,8 +67,8 @@
                 var SimulationOptions = function () {
                     this.a = -5;
                     this.b = 5;
-                    this.xz_increments = 50;
-                    this.y_increments = 50;
+                    this.xz_increments = 30;
+                    this.y_increments = 30;
                     this.reset = reset;
                     this.functions = 'y=x*(x-2)';
                     this.first_time = true;
@@ -178,11 +178,6 @@
                             ymax = y;
                         }
                     }
-                    /*
-                    if (ymin < 0) {
-                        continue;
-                    }
-                    */
                     for (var x = x_start; x <= x_end; x += (x_end - x_start) / (options.xz_increments + 1)) {
                         var radius = Math.abs(at(f, x)),
                             segments = 64,
@@ -207,26 +202,27 @@
 
                     var lines = [];
 
-                    x_increment *= 20;
+                    x_increment *= 10;
                     for (var x = x_start + x_increment; x <= x_end; x += x_increment) {
                         var y = at(func, x);
-                        var material = new THREE.LineBasicMaterial({
-                            color: color
-                        });
-                        var geometry = new THREE.Geometry();
-                        geometry.vertices.push(new THREE.Vector3(px, py, 0));
-                        geometry.vertices.push(new THREE.Vector3(x, y, 0));
-                        lines.push(new THREE.Line(geometry, material));
+                        lines.push([px, py, x, y]);
                         px = x;
                         py = y;
                     }
 
                     for (var deg = 0; deg < 2 * Math.PI; deg += 2 * Math.PI / (options.y_increments + 1)) {
                         for (var l in lines) {
-                            var line = lines[l];
-                            var cline = line.clone();
-                            cline.rotation.x += deg;
-                            scene.add(cline);
+                            var pts = lines[l];
+                            var material = new THREE.LineBasicMaterial({
+                                color: color
+                            });
+                            var geometry = new THREE.Geometry();
+                            geometry.vertices.shift();
+                            geometry.vertices.push(new THREE.Vector3(pts[0], pts[1], 0));
+                            geometry.vertices.push(new THREE.Vector3(pts[2], pts[3], 0));
+                            var line = new THREE.Line(geometry, material);
+                            line.rotation.x += deg;
+                            scene.add(line);
                         }
                     }
                 }
