@@ -250,11 +250,12 @@
                     funcs[func] = getRandomColor();
                 }
 
-                var x_start = options.a < options.b ? options.a : options.b;
-                var x_end = options.a > options.b ? options.a : options.b;
-                var x_increment = (x_end - x_start) / (options.xz_increments + 1);
-
                 for (var f in funcs) {
+
+                    var x_start = options.a < options.b ? options.a : options.b;
+                    var x_end = options.a > options.b ? options.a : options.b;
+                    var x_increment = (x_end - x_start) / (options.xz_increments + 1);
+
                     if (Object.hasOwnProperty(f)) {
                         continue;
                     }
@@ -283,7 +284,6 @@
 
                     var pts = [];
 
-                    // x_increment = Math.abs((options.b - options.a) / 50);
                     x_increment /= 50;
                     for (var x = x_start; x <= x_end; x += x_increment) {
                         var y = at(f, x);
