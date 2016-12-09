@@ -177,7 +177,7 @@
                     var x_start, x_end;
                     var x_start_found = false;
 
-                    for (var x = -50; x <= 50; x += 0.9) {
+                    for (var x = -50; x <= 50; x += 0.1) {
                         var y = at(f, x);
                         if (y >= ymin && y <= ymax) {
                             if (!x_start_found) {
@@ -210,7 +210,7 @@
 
                     var pts = [];
 
-                    x_increment = (x_end - x_start) / 50;
+                    // x_increment = (x_end - x_start) / 50;
                     for (var x = x_start; x <= x_end; x += x_increment) {
                         var y = at(f, x);
                         pts.push(new THREE.Vector3(x, y, 0));
@@ -250,33 +250,17 @@
                     funcs[func] = getRandomColor();
                 }
 
-                var x_increment = (options.b - options.a) / 1000;
-                var x_start = options.a;
-                var x_end = options.b;
-                if (x_increment < 0) {
-                    x_start = options.b;
-                    x_end = options.a;
-                    x_increment = -x_increment;
-                }
+                var x_start = options.a < options.b ? options.a : options.b;
+                var x_end = options.a > options.b ? options.a : options.b;
+                var x_increment = (x_end - x_start) / (options.xz_increments + 1);
 
                 for (var f in funcs) {
                     if (Object.hasOwnProperty(f)) {
                         continue;
                     }
                     var color = funcs[f];
-                    var ymin = 1e10;
-                    var ymax = -1e10;
-                    for (var x = x_start; x <= x_end; x += x_increment) {
-                        var y = at(f, x);
-                        if (y < ymin) {
-                            ymin = y;
-                        }
-                        if (y > ymax) {
-                            ymax = y;
-                        }
-                    }
                     var maxRadius = -1e10;
-                    for (var x = x_start; x <= x_end; x += (x_end - x_start) / (options.xz_increments + 1)) {
+                    for (var x = x_start; x <= x_end; x += x_increment) {
                         var radius = Math.abs(at(f, x) - options.axis),
                             segments = 64,
                             material = new THREE.LineBasicMaterial({
@@ -299,7 +283,7 @@
 
                     var pts = [];
 
-                    x_increment = Math.abs((options.b - options.a) / 50);
+                    // x_increment = Math.abs((options.b - options.a) / 50);
                     for (var x = x_start; x <= x_end; x += x_increment) {
                         var y = at(f, x);
                         if (y > maxRadius)
