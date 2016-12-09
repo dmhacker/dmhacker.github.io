@@ -66,12 +66,12 @@
 
                 var SimulationOptions = function () {
                     this.x_axis_rotation = true;
-                    this.a = -5;
-                    this.b = 5;
-                    this.xz_increments = 20;
-                    this.y_increments = 20;
+                    this.a = -2;
+                    this.b = 2;
+                    this.xz_increments = 30;
+                    this.y_increments = 30;
                     this.axis = 0;
-                    this.functions = 'y=1/x';
+                    this.functions = 'y=x';
                 };
 
                 options = new SimulationOptions();
@@ -177,7 +177,7 @@
                     var x_start, x_end;
                     var x_start_found = false;
 
-                    for (var x = -20; x <= 20; x += 40 / 1000) {
+                    for (var x = -50; x <= 50; x += 0.9) {
                         var y = at(f, x);
                         if (y >= ymin && y <= ymax) {
                             if (!x_start_found) {
