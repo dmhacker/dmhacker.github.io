@@ -215,15 +215,16 @@
                         pts.push(new THREE.Vector3(x, y, 0));
                     }
 
-                    var spline = new THREE.CatmullRomCurve3(pts);
-                    var material = new THREE.LineBasicMaterial({
-                        color: color
-                    });
-                    var geometry = new THREE.Geometry();
-
-                    var splinePoints = spline.getPoints(100);
-
                     for (var deg = 0; deg < 2 * Math.PI; deg += 2 * Math.PI / (options.y_increments + 1)) {
+
+                        var spline = new THREE.CatmullRomCurve3(pts);
+                        var material = new THREE.LineBasicMaterial({
+                            color: color
+                        });
+                        var geometry = new THREE.Geometry();
+
+                        var splinePoints = spline.getPoints(100);
+
                         for(var i in splinePoints){
                             geometry.vertices.push(splinePoints[i]);
                         }
@@ -292,15 +293,16 @@
                         pts.push(new THREE.Vector3(x, y, 0));
                     }
 
-                    var spline = new THREE.CatmullRomCurve3(pts);
-                    var material = new THREE.LineBasicMaterial({
-                        color: color
-                    });
-                    var geometry = new THREE.Geometry();
-
-                    var splinePoints = spline.getPoints(100);
-
                     for (var deg = 0; deg < 2 * Math.PI; deg += 2 * Math.PI / (options.y_increments + 1)) {
+
+                        var spline = new THREE.CatmullRomCurve3(pts);
+                        var material = new THREE.LineBasicMaterial({
+                            color: color
+                        });
+                        var geometry = new THREE.Geometry();
+
+                        var splinePoints = spline.getPoints(100);
+
                         for(var i in splinePoints){
                             geometry.vertices.push(splinePoints[i]);
                         }
