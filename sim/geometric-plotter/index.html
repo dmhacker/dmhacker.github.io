@@ -65,20 +65,27 @@
                 controls.target.position = new THREE.Vector3(0, 0, 0);
 
                 var SimulationOptions = function () {
+                    this.x_axis_rotation = true;
                     this.a = -5;
                     this.b = 5;
                     this.xz_increments = 20;
                     this.y_increments = 20;
                     this.axis = 0;
                     this.functions = 'y=1/x';
-                    this.first_time = true;
                 };
 
                 options = new SimulationOptions();
                 gui = new dat.GUI();
                 var changeFunction = function (newValue) {
-                    reset();
+                    if (options.x_axis_rotation) {
+                        resetXAxisRotation();
+                    }
+                    else {
+                        resetYAxisRotation();
+                    }
                 };
+
+                gui.add(options, 'x_axis_rotation').onChange(changeFunction);
                 gui.add(options, 'a', -50, 50).onChange(changeFunction);
                 gui.add(options, 'b', -50, 50).onChange(changeFunction);
                 gui.add(options, 'axis', -50, 50).onChange(changeFunction);
@@ -90,7 +97,7 @@
                 camera.position.y = 0;
                 camera.position.z = 20;
 
-                reset();
+                resetXAxisRotation();
 
                 window.addEventListener('resize', function () {
                     camera.aspect = window.innerWidth / window.innerHeight;
@@ -112,13 +119,12 @@
                 return color;
             }
 
-            function reset() {
+            function resetScene() {
                 for (var i = scene.children.length - 1; i >= 0; i--) {
                     obj = scene.children[i];
                     scene.remove(obj);
                 }
 
-                // Draw axises
                 var xMaterial = new THREE.LineBasicMaterial({
                     color: 0x00ff00,
                     opacity: 0.6,
@@ -148,6 +154,94 @@
                 zGeometry.vertices.push(new THREE.Vector3(0, 0, -100000));
                 zGeometry.vertices.push(new THREE.Vector3(0, 0, 100000));
                 scene.add(new THREE.Line(zGeometry, zMaterial));
+            }
+
+            function resetYAxisRotation() {
+                resetScene();
+
+                var prefuncs = options.functions.split(';');
+                var funcs = {};
+                for (var i in prefuncs) {
+                    var func = prefuncs[i].split(' ').join('').split('y=').join('');
+                    funcs[func] = getRandomColor();
+                }
+
+                for (var f in funcs) {
+                    if (Object.hasOwnProperty(f)) {
+                        continue;
+                    }
+                    var ymin = options.a < options.b ? options.a : options.b;
+                    var ymax = options.a > options.b ? options.a : options.b;
+                    var color = funcs[f];
+
+                    var x_start, x_end;
+                    var x_start_found = false;
+
+                    for (var x = -20; x <= 20; x += 40 / 1000) {
+                        var y = at(f, x);
+                        if (y >= ymin && y <= ymax) {
+                            if (!x_start_found) {
+                                x_start = x;
+                                x_start_found = true;
+                            }
+                            x_end = x;
+                        }
+                    }
+
+                    var x_increment = (x_end - x_start) / (options.xz_increments + 1);
+                    for (var x = x_start; x <= x_end; x += x_increment) {
+                        var y = at(f, x);
+                        var radius = Math.abs(x - options.axis),
+                            segments = 64,
+                            material = new THREE.LineBasicMaterial({
+                                color: color
+                            }),
+                            geometry = new THREE.CircleGeometry(radius, segments);
+
+                        geometry.vertices.shift();
+
+                        if (radius > 0) {
+                            var line = new THREE.Line(geometry, material);
+                            line.position.set(options.axis, y, 0);
+                            line.rotation.x += Math.PI / 2;
+                            scene.add(line);
+                        }
+                    }
+
+                    var pts = [];
+
+                    x_increment = (x_end - x_start) / 50;
+                    for (var x = x_start; x <= x_end; x += x_increment) {
+                        var y = at(f, x);
+                        pts.push(new THREE.Vector3(x, y, 0));
+                    }
+
+                    for (var deg = 0; deg < 2 * Math.PI; deg += 2 * Math.PI / (options.y_increments + 1)) {
+                        var spline = new THREE.CatmullRomCurve3(pts);
+                        var material = new THREE.LineBasicMaterial({
+                            color: color
+                        });
+                        var geometry = new THREE.Geometry();
+
+                        var splinePoints = spline.getPoints(100);
+                        for(var i in splinePoints){
+                            geometry.vertices.push(splinePoints[i]);
+                        }
+                        geometry.applyMatrix(new THREE.Matrix4().makeTranslation(0 - options.axis, 0, 0));
+
+                        var pivot = new THREE.Object3D();
+                        pivot.add(new THREE.Line(geometry, material));
+
+                        pivot.position.x = options.axis;
+                        pivot.rotation.y += deg;
+                        scene.add(pivot);
+                    }
+                }
+
+            }
+
+            function resetXAxisRotation() {
+                resetScene();
 
                 var prefuncs = options.functions.split(';');
                 var funcs = {};
@@ -186,7 +280,7 @@
                         var radius = Math.abs(at(f, x) - options.axis),
                             segments = 64,
                             material = new THREE.LineBasicMaterial({
-                                color: color // 0xffc0cb
+                                color: color
                             }),
                             geometry = new THREE.CircleGeometry(radius, segments);
 
@@ -203,7 +297,6 @@
                         }
                     }
 
-
                     var pts = [];
 
                     x_increment = Math.abs((options.b - options.a) / 50);
@@ -215,7 +308,7 @@
                     }
 
                     for (var deg = 0; deg < 2 * Math.PI; deg += 2 * Math.PI / (options.y_increments + 1)) {
-                        var spline = new THREE.SplineCurve3(pts);
+                        var spline = new THREE.CatmullRomCurve3(pts);
                         var material = new THREE.LineBasicMaterial({
                             color: color
                         });
