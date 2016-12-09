@@ -215,7 +215,7 @@
                         pts.push(new THREE.Vector3(x, y, 0));
                     }
 
-                    for (var deg = 0; deg < 2 * Math.PI; deg += 2 * Math.PI / (options.y_increments + 1)) {
+                    for (var deg = 0; deg < 2 * Math.PI; deg += 2 * Math.PI / (options.x_increments + 1)) {
 
                         var spline = new THREE.CatmullRomCurve3(pts);
                         var material = new THREE.LineBasicMaterial({
@@ -255,7 +255,7 @@
 
                     var x_start = options.a < options.b ? options.a : options.b;
                     var x_end = options.a > options.b ? options.a : options.b;
-                    var x_increment = (x_end - x_start) / (options.x_increments + 1);
+                    var x_increment = (x_end - x_start) / (options.y_increments + 1);
 
                     if (Object.hasOwnProperty(f)) {
                         continue;
