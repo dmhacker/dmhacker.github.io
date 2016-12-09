@@ -68,7 +68,7 @@
                     this.x_axis_rotation = true;
                     this.a = -2;
                     this.b = 2;
-                    this.xz_increments = 30;
+                    this.x_increments = 30;
                     this.y_increments = 30;
                     this.axis = 0;
                     this.functions = 'y=x';
@@ -89,7 +89,7 @@
                 gui.add(options, 'a', -50, 50).onChange(changeFunction);
                 gui.add(options, 'b', -50, 50).onChange(changeFunction);
                 gui.add(options, 'axis', -50, 50).onChange(changeFunction);
-                gui.add(options, 'xz_increments', 0, 100).onChange(changeFunction);
+                gui.add(options, 'x_increments', 0, 100).onChange(changeFunction);
                 gui.add(options, 'y_increments', 0, 100).onChange(changeFunction);
                 gui.add(options, 'functions').onChange(changeFunction);
 
@@ -188,7 +188,7 @@
                         }
                     }
 
-                    var x_increment = (x_end - x_start) / (options.xz_increments + 1);
+                    var x_increment = (x_end - x_start) / (options.x_increments + 1);
                     for (var x = x_start; x <= x_end; x += x_increment) {
                         var y = at(f, x);
                         var radius = Math.abs(x - options.axis),
@@ -253,7 +253,7 @@
 
                     var x_start = options.a < options.b ? options.a : options.b;
                     var x_end = options.a > options.b ? options.a : options.b;
-                    var x_increment = (x_end - x_start) / (options.xz_increments + 1);
+                    var x_increment = (x_end - x_start) / (options.x_increments + 1);
 
                     if (Object.hasOwnProperty(f)) {
                         continue;
