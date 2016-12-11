@@ -88,13 +88,13 @@
                     }
                 };
 
-                gui.add(options, 'x_axis_rotation').onChange(changeFunction);
-                gui.add(options, 'a', -50, 50).onChange(changeFunction);
-                gui.add(options, 'b', -50, 50).onChange(changeFunction);
-                gui.add(options, 'axis', -50, 50).onChange(changeFunction);
-                gui.add(options, 'x_increments', 0, 100).onChange(changeFunction);
-                gui.add(options, 'y_increments', 0, 100).onChange(changeFunction);
                 gui.add(options, 'functions').onChange(changeFunction);
+                gui.add(options, 'a', -50, 50).step(0.5).onChange(changeFunction);
+                gui.add(options, 'b', -50, 50).step(0.5).onChange(changeFunction);
+                gui.add(options, 'axis', -50, 50).step(0.5).onChange(changeFunction);
+                gui.add(options, 'x_increments', 0, 100).step(1).onChange(changeFunction);
+                gui.add(options, 'y_increments', 0, 100).step(1).onChange(changeFunction);
+                gui.add(options, 'x_axis_rotation').onChange(changeFunction);
                 gui.add(options, 'rotate_camera').onChange(function (newValue) {
                     if (newValue) {
                         rotate_camera_increment = 0;
