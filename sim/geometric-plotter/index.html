@@ -45,6 +45,8 @@
             var options, gui;
             var info;
 
+            var rotate_camera_increment = 0;
+
             init();
             animate();
 
@@ -66,6 +68,7 @@
 
                 var SimulationOptions = function () {
                     this.x_axis_rotation = true;
+                    this.rotate_camera = false;
                     this.a = -2;
                     this.b = 2;
                     this.x_increments = 30;
@@ -92,6 +95,11 @@
                 gui.add(options, 'x_increments', 0, 100).onChange(changeFunction);
                 gui.add(options, 'y_increments', 0, 100).onChange(changeFunction);
                 gui.add(options, 'functions').onChange(changeFunction);
+                gui.add(options, 'rotate_camera').onChange(function (newValue) {
+                    if (newValue) {
+                        rotate_camera_increment = 0;
+                    }
+                });;
 
                 camera.position.x = 0;
                 camera.position.y = 0;
@@ -321,6 +329,21 @@
 
             function animate() {
                 controls.update();
+
+                if (options.rotate_camera) {
+                    var rotate_radius = Math.max(Math.abs(options.a - options.axis), Math.abs(options.b - options.axis)) + 3;
+                    if (options.x_axis_rotation) {
+                        var rotate_around = new THREE.Vector3(0, options.axis, 0);
+                        camera.lookAt(rotate_around);
+                        camera.position.set(Math.sin(rotate_camera_increment) * rotate_radius, options.axis, Math.cos(rotate_camera_increment) * rotate_radius);
+                    }
+                    else {
+                        var rotate_around = new THREE.Vector3(options.axis, 0, 0);
+                        camera.lookAt(rotate_around);
+                        camera.position.set(options.axis, Math.cos(rotate_camera_increment) * rotate_radius, Math.sin(rotate_camera_increment) * rotate_radius);
+                    }
+                    rotate_camera_increment += 0.01;
+                }
 
                 renderer.render(scene, camera);
 
