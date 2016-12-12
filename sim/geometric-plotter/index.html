@@ -133,37 +133,24 @@
                     scene.remove(obj);
                 }
 
-                var axis_colors = [0x00ff00, ]
+                var axisColors = [0x00ff00, 0xff0000, 0x0000ff];
+                var axisVertices = [
+                    [new THREE.Vector3(-100000, 0, 0), new THREE.Vector3(100000, 0, 0)],
+                    [new THREE.Vector3(0, -100000, 0), new THREE.Vector3(0, 100000, 0)],
+                    [new THREE.Vector3(0, 0, -100000), new THREE.Vector3(0, 0, 100000)]
+                ];
 
-                var xMaterial = new THREE.LineBasicMaterial({
-                    color: 0x00ff00,
-                    opacity: 0.6,
-                    transparent: true
-                });
-                var xGeometry = new THREE.Geometry();
-                xGeometry.vertices.push(new THREE.Vector3(-100000, 0, 0));
-                xGeometry.vertices.push(new THREE.Vector3(100000, 0, 0));
-                scene.add(new THREE.Line(xGeometry, xMaterial));
-
-                var yMaterial = new THREE.LineBasicMaterial({
-                    color: 0xff0000,
-                    opacity: 0.6,
-                    transparent: true
-                });
-                var yGeometry = new THREE.Geometry();
-                yGeometry.vertices.push(new THREE.Vector3(0, -100000, 0));
-                yGeometry.vertices.push(new THREE.Vector3(0, 100000, 0));
-                scene.add(new THREE.Line(yGeometry, yMaterial));
-
-                var zMaterial = new THREE.LineBasicMaterial({
-                    color: 0x0000ff,
-                    opacity: 0.6,
-                    transparent: true
-                });
-                var zGeometry = new THREE.Geometry();
-                zGeometry.vertices.push(new THREE.Vector3(0, 0, -100000));
-                zGeometry.vertices.push(new THREE.Vector3(0, 0, 100000));
-                scene.add(new THREE.Line(zGeometry, zMaterial));
+                for (var axis = 0; axis < 3; axis++) {
+                    var axisMaterial = new THREE.LineBasicMaterial({
+                        color: axisColors[axis],
+                        opacity: 0.6,
+                        transparent: true
+                    });
+                    var axisGeometry = new THREE.Geometry();
+                    axisGeometry.vertices.push(axisVertices[i][0]);
+                    axisGeometry.vertices.push(axisVertices[i][1]);
+                    scene.add(new THREE.Line(axisGeometry, axisMaterial));
+                }
             }
 
             // Fix splining process
