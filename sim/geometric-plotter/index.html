@@ -46,7 +46,7 @@
             var info;
 
             var rotate_camera_increment = 0;
-            var rotate_camera_radius = [-1e10];
+            var rotate_camera_radius = -1e10;
 
             init();
             animate();
@@ -81,7 +81,7 @@
                 options = new SimulationOptions();
                 gui = new dat.GUI();
                 var changeFunction = function (newValue) {
-                    rotate_camera_radius[0] = -1e10;
+                    rotate_camera_radius = -1e10;
                     if (options.x_axis_rotation) {
                         resetXAxisRotation();
                     }
@@ -101,13 +101,13 @@
                     if (newValue) {
                         rotate_camera_increment = 0;
                     }
-                });;
+                });
+
+                resetXAxisRotation();
 
                 camera.position.x = 0;
                 camera.position.y = 0;
-                camera.position.z = 20;
-
-                resetXAxisRotation();
+                camera.position.z = 4 + Math.max(Math.abs(options.a - options.axis), Math.abs(options.b - options.axis)) + 4 * Math.log(rotate_camera_radius);
 
                 window.addEventListener('resize', function () {
                     camera.aspect = window.innerWidth / window.innerHeight;
@@ -198,6 +198,9 @@
                             }),
                             geometry = new THREE.CircleGeometry(radius, segments);
 
+                        if (radius > rotate_camera_radius)
+                            rotate_camera_radius = radius;
+
                         geometry.vertices.shift();
 
                         if (radius > 0) {
@@ -261,7 +264,6 @@
                         continue;
                     }
                     var color = funcs[f];
-                    var maxRadius = -1e10;
                     for (var x = x_start; x <= x_end; x += x_increment) {
                         var radius = Math.abs(at(f, x) - options.axis),
                             segments = 64,
@@ -270,8 +272,8 @@
                             }),
                             geometry = new THREE.CircleGeometry(radius, segments);
 
-                        if (radius > maxRadius)
-                            maxRadius = radius;
+                        if (radius > rotate_camera_radius)
+                            rotate_camera_radius = radius;
 
                         geometry.vertices.shift();
 
@@ -288,11 +290,8 @@
                     x_increment /= 50;
                     for (var x = x_start; x <= x_end; x += x_increment) {
                         var y = at(f, x);
-                        if (y > maxRadius)
-                            y = maxRadius;
-                        if (y > rotate_camera_radius[0]) {
-                            rotate_camera_radius[0] = y;
-                        }
+                        if (y > rotate_camera_radius)
+                            y = rotate_camera_radius;
                         pts.push(new THREE.Vector3(x, y, 0));
                     }
 
@@ -325,7 +324,7 @@
                 controls.update();
 
                 if (options.rotate_camera) {
-                    var rotate_radius = Math.max(Math.abs(options.a - options.axis), Math.abs(options.b - options.axis)) + Math.pow(rotate_camera_radius[0], 3);
+                    var rotate_radius = Math.max(Math.abs(options.a - options.axis), Math.abs(options.b - options.axis)) + 4 * Math.log(rotate_camera_radius);
                     if (options.x_axis_rotation) {
                         var rotate_around = new THREE.Vector3(0, options.axis, 0);
                         camera.lookAt(rotate_around);
