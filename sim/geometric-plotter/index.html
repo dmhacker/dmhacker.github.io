@@ -211,7 +211,7 @@
                     }
 
                     var x_increment = (x_end - x_start) / (options.y_increments + 1);
-                    for (var x = x_start; x <= x_end; x += x_increment) {
+                    for (var x = x_start; x <= x_end + x_increment / 2; x += x_increment) {
                         var y = at(f, x);
                         var radius = Math.abs(x - options.axis),
                             segments = 64,
