@@ -177,6 +177,28 @@
                     var x_start, x_end;
                     var x_start_found = false;
 
+                    /*
+                    var precision = function(x_previous, x_next) {
+                        var y_previous = at(f, x_previous);
+                        var y_previous_bounded = y_previous >= ymin && y_previous <= ymax;
+                        var y_next = at(f, x_next);
+                        var y_next_bounded = y_next >= ymin && y_next <= ymax;
+                        var x_half = (x_previous + x_next) / 2;
+                        var y_half = at(f, x_half);
+                        var y_half_bounded = y_half >= ymin && y_half <= ymax;
+                        if (Math.abs(x_previous - x_next) < 0.001) {
+                            return x_half;
+                        }
+                        else if (y_previous_bounded !== y_half_bounded) {
+                            return precision(x_previous, x_half);
+                        }
+                        else if (y_half_bounded !== y_next_bounded) {
+                            return precision(x_half, x_next);
+                        }
+                        return x_half;
+                    }
+                    */
+
                     for (var x = -50; x <= 50; x += 0.1) {
                         var y = at(f, x);
                         if (y >= ymin && y <= ymax) {
@@ -226,7 +248,7 @@
                         });
                         var geometry = new THREE.Geometry();
 
-                        var splinePoints = spline.getPoints(100);
+                        var splinePoints = spline.getPoints((x_end - x_start) > 50 ? 1000 : 100);
 
                         for(var i in splinePoints){
                             geometry.vertices.push(splinePoints[i]);
