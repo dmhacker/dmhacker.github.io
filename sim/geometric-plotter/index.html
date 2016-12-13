@@ -46,6 +46,7 @@
             var info;
 
             var rotate_camera_increment = 0;
+            var rotate_camera_radius = [-1e10];
 
             init();
             animate();
@@ -80,6 +81,7 @@
                 options = new SimulationOptions();
                 gui = new dat.GUI();
                 var changeFunction = function (newValue) {
+                    rotate_camera_radius[0] = -1e10;
                     if (options.x_axis_rotation) {
                         resetXAxisRotation();
                     }
@@ -147,8 +149,8 @@
                         transparent: true
                     });
                     var axisGeometry = new THREE.Geometry();
-                    axisGeometry.vertices.push(axisVertices[i][0]);
-                    axisGeometry.vertices.push(axisVertices[i][1]);
+                    axisGeometry.vertices.push(axisVertices[axis][0]);
+                    axisGeometry.vertices.push(axisVertices[axis][1]);
                     scene.add(new THREE.Line(axisGeometry, axisMaterial));
                 }
             }
@@ -288,6 +290,9 @@
                         var y = at(f, x);
                         if (y > maxRadius)
                             y = maxRadius;
+                        if (y > rotate_camera_radius[0]) {
+                            rotate_camera_radius[0] = y;
+                        }
                         pts.push(new THREE.Vector3(x, y, 0));
                     }
 
@@ -320,7 +325,7 @@
                 controls.update();
 
                 if (options.rotate_camera) {
-                    var rotate_radius = Math.max(Math.abs(options.a - options.axis), Math.abs(options.b - options.axis)) + 3;
+                    var rotate_radius = Math.max(Math.abs(options.a - options.axis), Math.abs(options.b - options.axis)) + Math.pow(rotate_camera_radius[0], 3);
                     if (options.x_axis_rotation) {
                         var rotate_around = new THREE.Vector3(0, options.axis, 0);
                         camera.lookAt(rotate_around);
