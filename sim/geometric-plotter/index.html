@@ -213,7 +213,7 @@
 
                     var pts = [];
 
-                    for (var x = x_start; x <= x_end; x += x_increment) {
+                    for (var x = x_start; x <= x_end; x += x_increment / 10) {
                         var y = at(f, x);
                         pts.push(new THREE.Vector3(x, y, 0));
                     }
