@@ -286,7 +286,7 @@
                         continue;
                     }
                     var color = funcs[f];
-                    for (var x = x_start; x <= x_end; x += x_increment) {
+                    for (var x = x_start; x <= x_end + x_increment / 2; x += x_increment) {
                         var radius = Math.abs(at(f, x) - options.axis),
                             segments = 64,
                             material = new THREE.LineBasicMaterial({
