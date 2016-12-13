@@ -248,7 +248,7 @@
                         });
                         var geometry = new THREE.Geometry();
 
-                        var splinePoints = spline.getPoints((x_end - x_start) > 50 ? 1000 : 100);
+                        var splinePoints = spline.getPoints(Math.round(9 * (x_end - x_start) + 100));
 
                         for(var i in splinePoints){
                             geometry.vertices.push(splinePoints[i]);
@@ -309,8 +309,7 @@
 
                     var pts = [];
 
-                    x_increment /= 50;
-                    for (var x = x_start; x <= x_end; x += x_increment) {
+                    for (var x = x_start; x <= x_end; x += x_increment / 10) {
                         var y = at(f, x);
                         if (y > rotate_camera_radius)
                             y = rotate_camera_radius;
@@ -325,7 +324,7 @@
                         });
                         var geometry = new THREE.Geometry();
 
-                        var splinePoints = spline.getPoints(100);
+                        var splinePoints = spline.getPoints(Math.round(9 * (x_end - x_start) + 100));
 
                         for(var i in splinePoints){
                             geometry.vertices.push(splinePoints[i]);
