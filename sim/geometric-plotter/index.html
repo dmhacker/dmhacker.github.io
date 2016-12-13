@@ -313,7 +313,8 @@
                         var y = at(f, x);
                         if (y > rotate_camera_radius)
                             y = rotate_camera_radius;
-                        pts.push(new THREE.Vector3(x, y, 0));
+                        if (!isNaN(y))
+                            pts.push(new THREE.Vector3(x, y, 0));
                     }
 
                     for (var deg = 0; deg < 2 * Math.PI; deg += 2 * Math.PI / (options.y_increments + 1)) {
