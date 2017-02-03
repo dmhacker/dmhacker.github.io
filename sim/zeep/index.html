@@ -1,0 +1,384 @@
+<html>  
+    <head>
+    
+    </head>
+    
+    <body>
+        <canvas id="creep" width="500" height="500"></canvas>    
+        <script>
+            var c = document.getElementById("creep");
+            var ctx = c.getContext("2d");
+            
+            var TURNS = 1000
+            var XMIN = -100
+            var XMAX = 100
+            var YMIN = -100
+            var YMAX = 100
+            var world_width = XMAX - XMIN
+            var pixel_width = c.width
+            var world_height = YMAX - YMIN
+            var pixel_height = c.height
+            
+            var COST_THRESHOLD = 100
+            
+            var UNITS = {
+                'Soldier': {
+                    cost: 1,
+                    speed: 1.5,
+                    firepower: 1,
+                    hp: 5,
+                    radius: 2,
+                    chargetime: 100 // Lazer charge time in game ticks
+                },
+                'Defender': {
+                    cost: 2,
+                    speed: 0.75,
+                    firepower: 2,
+                    hp: 10,
+                    radius: 3,
+                    chargetime: 10
+                }
+            }
+            
+            var ORB_RADIUS = 2.5
+            
+            var TPS = 20;
+            var FPS = 100;
+            
+            var LAZER_VISIBLE_FRAMES = 50;
+            
+            function pixelToWorld(p) {
+                var wx = world_width / pixel_width * p[0] - world_width / 2
+                var wy = -1 * (world_height / pixel_height * p[1] - world_height / 2)
+                return [wx, wy]
+            }
+            
+            function worldToPixel(w) {
+                var px = (w[0] + world_width / 2) * pixel_width / world_width
+                var py = (-w[1] + world_height / 2) * pixel_height / world_height
+                return [px, py] 
+            }
+
+            function guid() {
+                function s4() {
+                    return Math.floor((1 + Math.random()) * 0x10000)
+                        .toString(16)
+                        .substring(1);
+                }
+                return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+                    s4() + '-' + s4() + s4() + s4();
+            }
+            
+            function scale_vector(vec, scalar) {
+                return [vec[0] * scalar, vec[1] * scalar]
+            }
+            
+            function normalize_vector(vec) {
+                var dist = Math.sqrt(vec[0] * vec[0] + vec[1] * vec[1])
+                return scale_vector(vec, 1 / dist)
+            }
+            
+            function add_vectors(vec1, vec2) {
+                return [vec1[0] + vec2[0], vec1[1] + vec2[1]]
+            }
+            
+            function subtract_vectors(vec1, vec2) {
+                return [vec1[0] - vec2[0], vec1[1] - vec2[1]]
+            }
+            
+            function dot_product(p, q) {
+                return p[0] * q[0] + p[1] * q[1]
+            }
+            
+            function intersection(a, v, c, u) {
+                var ax = a[0];
+                var ay = a[1];
+                var bx = a[0] + v[0];
+                var by = a[1] + v[1];
+                var cx = c[0];
+                var cy = c[1];
+                var dx = c[0] + u[0];
+                var dy = c[1] + u[1];
+                
+                var denom = (ax - bx) * (cy - dy) - (ay - by) * (cx - dx);
+                if (denom === 0)
+                    return null;
+                
+                var x = ((ax * by - ay * bx) * (cx - dx) - (ax - bx) * (cx * dy - cy * dx)) / denom;
+                var y = ((ax * by - ay * bx) * (cy - dy) - (ay - by) * (cx * dy - cy * dx)) / denom;
+                
+                var to_new_from_a = [x - a[0], y - a[1]]
+                var to_new_from_c = [x - c[0], y - c[1]]
+                if (dot_product(normalize_vector(to_new_from_a), normalize_vector(v)) < 0 || dot_product(normalize_vector(to_new_from_c), normalize_vector(u)) < 0) {
+                    return null;
+                }
+                
+                if (distance(to_new_from_a, [0, 0]) > distance(v, [0, 0]) || distance(to_new_from_c, [0, 0]) > distance(u, [0, 0])) {
+                    return null;
+                }
+                
+                return [x, y]
+            }
+            
+            function distance(a, b) {
+                var c = b[0] - a[0]
+                var d = b[1] - a[1]
+                return Math.sqrt(c * c + d * d)
+            }
+            
+            function hexToRgb(hex) {
+                var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+                return result ? {
+                    r: parseInt(result[1], 16),
+                    g: parseInt(result[2], 16),
+                    b: parseInt(result[3], 16)
+                } : null;
+            }
+            
+            var walls = [
+                {pos:[XMIN,YMAX],dir:[world_width,0]},
+                {pos:[XMAX,YMAX],dir:[0,-world_height]},
+                {pos:[XMAX,YMIN],dir:[-world_width,0]},
+                {pos:[XMIN,YMIN],dir:[0,world_height]},
+                {pos:[0,30],dir:[0,-60]}
+            ]
+            
+            var units = []
+            for (var i = 0; i < 26; i++) {
+                units.push({
+                    'id': guid(),
+                    'type': 'Soldier',
+                    'pos': [-50, 0],
+                    'vel': [0, 0],
+                    'att': [1, 0],
+                    'hp': UNITS['Soldier']['hp'],
+                    'chargetime': UNITS['Soldier']['chargetime']
+                })
+            }
+            for (var i = 0; i < 12; i++) {
+                units.push({
+                    'id': guid(),
+                    'type': 'Defender',
+                    'pos': [50, 0],
+                    'vel': [0, 0],
+                    'att': [1, 0],
+                    'hp': UNITS['Defender']['hp'],
+                    'chargetime': UNITS['Defender']['chargetime']
+                })
+            }
+            
+            var lazers = [];
+            
+            var orb = {
+                'pos': [0, 0],
+                'vel': [0, 0]
+            }
+            
+            var turn = 0;
+            var heartbeat;
+            var drawer;
+            var frames_since_last_tick = 0;
+            
+            function tick() {
+                if (turn >= TURNS) {
+                    clearInterval(heartbeat);
+                    clearInterval(drawer);
+                    return;
+                }
+                
+                frames_since_last_tick = 0;
+                
+                var units_firing = [];
+                for (var i in units) {
+                    var unit = units[i];
+                    var unit_type = unit['type'];
+                    var raw_direction = [Math.random() * 2 - 1, Math.random() * 2 - 1];
+                    var direction = normalize_vector(raw_direction);
+                    if (unit['chargetime'] > 0)
+                        unit['chargetime'] -= 1
+                    else {
+                        if (Math.random() < 0.5) {
+                            units_firing.push(unit);
+                        }
+                    }
+                    unit['pos'][0] += unit['vel'][0]; // Update position beforehand
+                    unit['pos'][1] += unit['vel'][1];
+                    unit['vel'] = scale_vector(direction, UNITS[unit_type]['speed'])
+                    unit['att'] = direction;
+                }
+                
+                for (var i in units_firing) {
+                    var unit = units_firing[i];
+                    var unit_type = unit['type'];
+                    unit['chargetime'] = UNITS[unit_type]['chargetime']
+                    var a = scale_vector(unit['pos'], 1)
+                    var v = scale_vector(unit['att'], 1000)
+                    var bounces = 0;
+                    var lazerpower = UNITS[unit_type]['firepower']
+                    while (bounces < 3) {
+                        var wall_hit = null;
+                        var wall_hit_dist = 1e10;
+                        var hit_wall = null;
+                        for (var j in walls) {
+                            var wall = walls[j];
+                            var b = wall['pos'];
+                            var u = wall['dir'];
+                            var crosses_at = intersection(a, v, b, u);
+                            if (crosses_at === null) {
+                                continue;
+                            }
+                            else {
+                                var dist = distance(a, crosses_at);
+                                if (dist < wall_hit_dist) {
+                                    wall_hit = crosses_at;
+                                    wall_hit_dist = dist;
+                                    hit_wall = wall;
+                                }
+                            }
+                        }
+                        var x0 = a[0];
+                        var x1 = a[0] + v[0];
+                        var y0 = a[1];
+                        var y1 = a[1] + v[1];
+                        for (var j in units) {
+                            var hit_unit = units[j];
+                            if (unit['id'] !== hit_unit['id']) {
+                                var hit_unit_radius = UNITS[hit_unit['type']]['radius']
+                                var hit_unit_pos = hit_unit['pos']
+                                var a0 = Math.pow(x1 - x0, 2) + Math.pow(y1 - y0, 2);
+                                var b0 = 2 * (x1 - x0) * (x0 - hit_unit_pos[0]) + 2 * (y1 - y0) * (y0 - hit_unit_pos[1])
+                                var c0 = Math.pow(x0 - hit_unit_pos[0], 2) + Math.pow(y0 - hit_unit_pos[1], 2) - hit_unit_radius * hit_unit_radius
+                                var det = b0 * b0 - 4 * a0 * c0;
+                                if (det > 0) {
+                                    var t = (2 * c0) / (-b0 + Math.sqrt(det))
+                                    if (t > 0 && t < 1) {
+                                        hit_wall = null;
+                                        hit_unit['hp'] -= lazerpower * Math.pow(2, bounces);
+                                        wall_hit = hit_unit_pos
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                        
+                        // ['#ff0000', '#cc0000', '#990000'][bounces]
+                        lazers.push([a, wall_hit, unit_type === 'Soldier' ? '#00ff00' : '#87ceeb', LAZER_VISIBLE_FRAMES])
+                        
+                        // If we didn't hit a wall, we hit a unit.
+                        if (hit_wall === null) {
+                            break;
+                        }
+                        
+                        var incoming = normalize_vector(v);
+                        var normal = normalize_vector([-hit_wall['dir'][1], hit_wall['dir'][0]])
+                        var other_normal = scale_vector(normal, -1);
+                        // We want the normal vector that is least parallel to the incoming vector
+                        // In other words, the vector that minimizes the dot product
+                        if (dot_product(normal, incoming) > dot_product(other_normal, incoming))
+                            normal = other_normal;
+                        
+                        var new_dir = subtract_vectors(incoming, scale_vector(normal, 2 * dot_product(incoming, normal)));
+                        
+                        a = add_vectors(wall_hit, scale_vector(new_dir, 0.0001));
+                        v = scale_vector(new_dir, 1000);
+                        
+                        bounces++;
+                    }
+                }
+                
+                var dead_units = [];
+                for (var i in units) {
+                    var unit = units[i];
+                    if (unit['hp'] <= 0) {
+                        unit['hp'] = 0;
+                        dead_units.push(i);
+                    }
+                }
+                dead_units.sort(function(a, b){return b-a})
+                for (var i in dead_units) {
+                    var dead = dead_units[i];
+                    units.splice(i, 1);
+                }
+            }
+            
+            function redraw() {
+                frames_since_last_tick++;
+                
+                ctx.clearRect(0, 0, c.width, c.height)
+                
+                var new_lazers = [];
+                for (var i in lazers) {
+                    if (lazers[i][3] > 0) {
+                        new_lazers.push(lazers[i]);
+                    }
+                }
+                lazers = new_lazers;
+                
+                for (var i in lazers) {
+                    var lazer = lazers[i];
+                    var wa = worldToPixel(lazer[0]);
+                    var wwh = worldToPixel(lazer[1]);
+                    ctx.beginPath();
+                    ctx.moveTo(wa[0], wa[1]);
+                    ctx.lineTo(wwh[0], wwh[1]);
+                    var rgba_object = hexToRgb(lazer[2]);
+                    ctx.strokeStyle = "rgba("+rgba_object.r+","+rgba_object.g+","+rgba_object.b+","+lazer[3] / LAZER_VISIBLE_FRAMES+")";
+                    ctx.stroke()
+                    lazer[3] -= 1;
+                }  
+                
+                for (var i in units) {
+                    var unit = units[i];
+                    
+                    if (unit['hp'] <= 0) {
+                        unit['hp'] = 0;
+                    }
+                    
+                    var updated_pos = add_vectors(unit['pos'], [unit['vel'][0] * TPS / FPS * frames_since_last_tick, unit['vel'][1] * TPS / FPS * frames_since_last_tick])
+                    
+                    var unit_type = unit['type'];
+                    var unit_radius = UNITS[unit_type]['radius'];
+                    var pixel_radius = unit_radius * pixel_width / world_width;
+                    var unit_pixel = worldToPixel(updated_pos);
+                    ctx.beginPath();
+                    ctx.arc(unit_pixel[0], unit_pixel[1], pixel_radius, 0, 2 * Math.PI);
+                    ctx.fillStyle = unit_type === 'Soldier' ? "green" : "blue";
+                    ctx.fill();
+                    
+                    var top_left = [updated_pos[0] - unit_radius, updated_pos[1] + unit_radius]
+                    var top_left_hp = [top_left[0], top_left[1] + 1.2]
+                    var top_left_pixel = worldToPixel(top_left_hp);
+                    ctx.beginPath()
+                    ctx.fillStyle = 'gray';
+                    ctx.fillRect(top_left_pixel[0], top_left_pixel[1], pixel_radius * 2, 0.7 * pixel_width / world_width);
+                    
+                    ctx.beginPath()
+                    ctx.fillStyle = '#32cd32';
+                    ctx.fillRect(top_left_pixel[0], top_left_pixel[1], unit['hp'] / UNITS[unit_type]['hp'] * pixel_radius * 2, 0.7 * pixel_width / world_width);
+                }
+                
+                var center = worldToPixel(orb['pos']);
+                ctx.beginPath();
+                ctx.arc(center[0], center[1], ORB_RADIUS * pixel_width / world_width, 0, 2 * Math.PI);
+                ctx.fillStyle = "gold";
+                ctx.fill();
+                
+                for (var i in walls) {
+                    var wall = walls[i];
+                    var endpt1 = worldToPixel(wall['pos']);
+                    var endpt2 = worldToPixel([wall['pos'][0] + wall['dir'][0], wall['pos'][1] + wall['dir'][1]])
+                    ctx.beginPath();
+                    ctx.moveTo(endpt1[0], endpt1[1]);
+                    ctx.lineTo(endpt2[0], endpt2[1]);
+                    ctx.strokeStyle = "black";
+                    ctx.stroke()
+                }
+            }
+            
+            heartbeat = setInterval(tick, 1000 / TPS);
+            drawer = setInterval(redraw, 1000 / FPS);
+            
+        </script>
+    </body>
+    
+</html>
