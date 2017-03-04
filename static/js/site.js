@@ -1,5 +1,14 @@
-var firebaseRef = new Firebase('https://dmh.firebaseio.com');
-var commentsRef = firebaseRef.child('comments');
+var config = {
+    apiKey: "AIzaSyBIOKDyPwKaCss7PMaF3DTPiHTFrNCiUZs",
+    authDomain: "dmh.firebaseapp.com",
+    databaseURL: "https://dmh.firebaseio.com",
+    storageBucket: "firebase-dmh.appspot.com",
+    messagingSenderId: "349723750599"
+};
+firebase.initializeApp(config);
+
+var database = firebase.database();
+
 var commentProcessing = false;
 
 $(document).ready(function () {
@@ -98,9 +107,9 @@ $(document).ready(function () {
             }
         });
         values['date'] = new Date().toUTCString();
-
-        commentsRef.child(guid()).set(values, function (error) {
-            if (error) {
+        
+        database.ref('comments/' + guid()).set(values, function (err) {
+            if (err) {
                 Materialize.toast(err.message, 4000);
             }
             else {
@@ -109,17 +118,10 @@ $(document).ready(function () {
             }
             $("#commentSubmit").removeClass("disabled");
             commentProcessing = false;
-        })
+        });
     });
 
 });
-
-var options = [{
-        selector: '#timeline',
-        offset: 100,
-        callback: 'Materialize.showStaggeredList("#timeline-list")'
-    }];
-Materialize.scrollFire(options);
 
 function guid() {
     function s4() {
@@ -130,6 +132,13 @@ function guid() {
     return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
         s4() + '-' + s4() + s4() + s4();
 }
+
+var options = [{
+        selector: '#timeline',
+        offset: 100,
+        callback: 'Materialize.showStaggeredList("#timeline-list")'
+    }];
+Materialize.scrollFire(options);
 
 // Credits to http://stackoverflow.com/questions/10063380/javascript-smooth-scroll-without-the-use-of-jquery
 function smoothScroll() {
