@@ -14,12 +14,12 @@ body {
     height: 100%;
 }
 
-@media (min-width:641px)  { 
+@media (min-width:0px)  { 
     #site-header {
         background-image: url('/static/images/code2.png');
         background-size: 100%;
         background-repeat: no-repeat;
-        background-position: 50% 75vh;
+        background-position: 0vw 75vh;
         filter: grayscale(100%);
     }
 }
