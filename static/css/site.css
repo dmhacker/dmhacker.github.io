@@ -42,6 +42,12 @@ body {
     }
 }
 
+@media (max-width:641px)  { 
+    #profile-image {
+        margin: 0 auto;
+    }
+}
+
 #site-logo {
     font-family: 'Gudea', sans-serif;
     font-size: 4em;
