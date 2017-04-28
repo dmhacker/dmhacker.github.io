@@ -33,7 +33,13 @@ body {
 }
 
 #profile-wrapper {
-    height: 100vh;
+    height: 50vh;
+}
+
+@media (min-width:641px)  { 
+    #profile-wrapper {
+        height: 100vh;
+    }
 }
 
 #site-logo {
