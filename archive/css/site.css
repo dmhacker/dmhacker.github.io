@@ -1,0 +1,80 @@
+
+html {
+    font-family: 'Gudea', sans-serif;
+}
+
+body {
+    overflow-x: hidden;
+    background-color: whitesmoke;
+    font-weight: 400;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+/* HEADING and NAVBAR */
+
+.header-container {
+    padding-top: 3em;
+    padding-bottom: 3em;
+    background: #E53935
+}
+
+.header-text {
+    font-weight: 700;
+}
+
+.header-button {
+    background: #E53935;
+}
+
+.header-button:hover {
+    background: #B71C1C;
+}
+
+/* PROFILE */
+
+#profile {
+    padding-top: 70px;
+}
+
+.profile-card-title {
+    padding-top: 2em;
+}
+
+/* TIMELINE */
+
+#timeline {
+    padding-top: 70px;
+    padding-bottom: 30px;
+}
+
+.timeline-item {
+    opacity: 0;
+}
+
+/* CONTACT */
+
+#contact {
+    padding-top: 70px;
+    padding-bottom: 70px;
+}
+
+/* FOOTER */
+
+.copyright-padding {
+    padding-top: 1em;
+}
+
+.footer-copyright {
+    font-size: 80%;
+}
+
+.footer-images {
+    margin-top: 1em;
+}
+ 
+.footer-image-a:hover{
+    opacity: 0.7;
+}

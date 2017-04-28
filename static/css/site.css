@@ -1,74 +1,61 @@
-
-html {
-    font-family: 'Gudea', sans-serif;
-}
-
 body {
-    overflow-x: hidden;
-    background-color: whitesmoke;
-    font-weight: 400;
+    font-family: 'Raleway', sans-serif;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
 }
 
-.clickable {
-    cursor: pointer;
+main {
+    flex: 1 0 auto;
 }
 
-/* HEADING and NAVBAR */
-
-.header-container {
-    padding-top: 3em;
-    padding-bottom: 3em;
-    background: #E53935
+html,
+body {
+    height: 100%;
 }
 
-.header-text {
-    font-weight: 700;
+@media (min-width:641px)  { 
+    #site-header {
+        background-image: url('/static/images/code2.png');
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-position: 50% 250%;
+        filter: grayscale(100%);
+    }
 }
 
-.header-button {
-    background: #E53935;
+#site-logo-wrapper {
+    height: 100vh;
 }
 
-.header-button:hover {
-    background: #B71C1C;
+#site-logo-wrapper2 {
+    width: 100%;
 }
 
-/* PROFILE */
-
-#profile {
-    padding-top: 70px;
+#profile-wrapper {
+    height: 100vh;
 }
 
-.profile-card-title {
-    padding-top: 2em;
+#site-logo {
+    font-family: 'Gudea', sans-serif;
+    font-size: 4em;
 }
 
-/* TIMELINE */
-
-#timeline {
-    padding-top: 70px;
-    padding-bottom: 30px;
+#profile-logo {
+    font-family: 'Gudea', sans-serif;
+    font-size: 4em;
 }
 
-.timeline-item {
-    opacity: 0;
+#site-main {
+    padding-top: 3%;
 }
 
-/* CONTACT */
-
-#contact {
-    padding-top: 70px;
-    padding-bottom: 70px;
+#shortcut-button {
+    font-size: 1vw;
 }
 
-/* FOOTER */
-
-.copyright-padding {
-    padding-top: 1em;
-}
-
-.footer-copyright {
-    font-size: 80%;
+.waves-effect.waves-black {
+    background-color: #000;
 }
 
 .footer-images {
@@ -77,4 +64,13 @@ body {
  
 .footer-image-a:hover{
     opacity: 0.7;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 3px solid #4caf50;
+    margin: 1em 0;
+    padding: 0;
 }
