@@ -19,7 +19,7 @@ body {
         background-image: url('/static/images/code2.png');
         background-size: 100%;
         background-repeat: no-repeat;
-        background-position: 0vw 75vh;
+        background-position: 0vw 80vh;
         filter: grayscale(100%);
     }
 }
@@ -42,8 +42,14 @@ body {
     }
 }
 
+#profile-image {
+    max-width: 240px;
+    height: auto;
+}
+
 @media (max-width:641px)  { 
     #profile-image {
+        max-width: 160px;
         margin: 0 auto;
     }
 }
