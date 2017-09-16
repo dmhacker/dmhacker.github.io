@@ -1,0 +1,145 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% This is a modified ONE COLUMN version of
+% the following template:
+%
+% Deedy - One Page Two Column Resume
+% LaTeX Template
+% Version 1.1 (30/4/2014)
+%
+% Original author:
+% Debarghya Das (http://debarghyadas.com)
+%
+% Original repository:
+% https://github.com/deedydas/Deedy-Resume
+%
+% IMPORTANT: THIS TEMPLATE NEEDS TO BE COMPILED WITH XeLaTeX
+%
+% This template uses several fonts not included with Windows/Linux by
+% default. If you get compilation errors saying a font is missing, find the line
+% on which the font is used and either change it to a font included with your
+% operating system or comment the line out to use the default font.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% TODO:
+% 1. Integrate biber/bibtex for article citation under publications.
+% 2. Figure out a smoother way for the document to flow onto the next page.
+% 3. Add styling information for a "Projects/Hacks" section.
+% 4. Add location/address information
+% 5. Merge OpenFont and MacFonts as a single sty with options.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% CHANGELOG:
+% v1.1:
+% 1. Fixed several compilation bugs with \renewcommand
+% 2. Got Open-source fonts (Windows/Linux support)
+% 3. Added Last Updated
+% 4. Move Title styling into .sty
+% 5. Commented .sty file.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Known Issues:
+% 1. Overflows onto second page if any column's contents are more than the
+% vertical limit
+% 2. Hacky space on the first bullet point on the second column.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \documentclass[]{deedy-resume-openfont}
+
+    \begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%     Profile
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\namesection{David}{Hacker}{dmhacker@yahoo.com | (805) 368-5071 | Thousand Oaks, CA | github.com/dmhacker}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%     Education
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Education}
+\raggedright
+
+\runsubsection{University of California, San Diego}\descript{| BS Computer Science}\hfill \location{La Jolla, CA | June 2021}\\
+
+\sectionsep
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%     Experience
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Experience}
+\runsubsection{MyGolfFaves}\descript{| Application Developer}\hfill \location{June 2017 – Sep 2017}
+\begin{tightemize}
+  \item Using React Native, created iOS and Android apps for MyGolfFaves, a golfing rewards/discounts company
+\end{tightemize}
+\sectionsep
+\runsubsection{Blinks}\descript{| Full Stack Developer}\hfill \location{July 2016 – Jan 2017}
+\begin{tightemize}
+  \item Improved the resource demands and efficiency of the Android app for Blinks, a company that used Eddystone beacons to broadcast information about retail stores and their wares
+  \item When Blinks pivoted to being a subscription service for iOS stickers, I designed a functional backend to hold all of their stickers. Used the MEAN stack, mLab, Amazon S3 for image storage, and Cloudfront.
+\end{tightemize}
+\sectionsep
+\runsubsection{IndieU}\descript{| Full Stack Developer}\hfill \location{Mar 2016 – Aug 2016}
+\begin{tightemize}
+  \item Redesigned the website for IndieU, a music sharing company. Involved numerous layout changes and required knowledge of the MEAN stack.
+\end{tightemize}
+\sectionsep
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%     Skills
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Skills}
+\raggedright
+\begin{tabular}{ l l }
+  \descript{Proficient in} & {\location{Java, Python, C++}}                                               \\
+  \descript{Backend}       & {\location{MEAN stack, Django, Flask, Golang, Firebase}}                     \\
+  \descript{Frontend}      & {\location{HTML, CSS, Javascript, Bootstrap, Material Design, React Native}} \\
+\end{tabular}
+\sectionsep
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%     Projects
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Projects}
+\raggedright
+
+\runsubsection{\large{Photorealistic Rendering Engine}}
+\descript{| Java}\hfill \location{github.com/dmhacker/RenderingEngine}\\
+Ray tracer with configurable options for a variety of features: vertex normal interpolation using barycentric coordinates, Phong shading, ray reflection \& transmission, balanced k-d tree generation, camera rotation, and anti-aliasing\\
+\sectionsep
+
+
+\runsubsection{\large{Text Compression Experiments}}
+\descript{| Python}\hfill \location{github.com/dmhacker/yatc}\\
+Custom compression algorithm combining existing designs: Burrows-Wheeler transform, move-to-front transform, run-length encoding, Huffman encoding\\
+\sectionsep
+
+
+\runsubsection{\large{Alexa YouTube Skill}}
+\descript{| Node.js, JavaScript}\hfill \location{github.com/dmhacker/alexa-youtube-skill}\\
+An unpublished skill that lets Amazon Alexa devices play audio from YouTube videos\\
+\sectionsep
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%     Awards
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Awards}
+\runsubsection{\large{1st Place @ Startup Weekend Conejo Valley 2017}} \descript{Mar 2017 | Camarillo, CA} \\
+Our company, Field Vitals, used Semtech's LoRa technologies to produce concise temperature, pH, humidity, and soil moisture
+readouts to maximize crop nutrients & yield for large scale farmers. We won under the Agriculture category.\\
+\sectionsep
+\runsubsection{\large{Honorable Mention @ SIAM M3 Challenge}} \descript{Mar 2017 | Westlake Village, CA} \\
+I designed a crucial regression algorithm using a Fourier series approximation, helping net our team an honorable mention (awarded to the top 8\% of teams); implemented the algorithm in Python using matplotlib and numpy; and automated data collection/processing for other parts of the challenge.\\
+\sectionsep
+\runsubsection{\large{3rd Place @ MIT Zero Robotics 2015}} \descript{Jan 2016 | Cambridge, MA} \\
+My team went the finals hosted at MIT and ended in 3rd place out of nearly 200 international teams. Additionally, my code was run aboard the International Space Station (ISS). I designed four winning strategies for each phase in C++ and taught and directed other members of the team.\\
+\sectionsep
+\
+\end{document}
