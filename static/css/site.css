@@ -32,12 +32,22 @@ body {
     width: 100%;
 }
 
-#profile-wrapper {
+.profile-wrapper {
     height: 50vh;
 }
 
 @media (min-width:641px)  { 
-    #profile-wrapper {
+    .profile-wrapper {
+        height: 100vh;
+    }
+}
+
+.profile-text-wrapper {
+    height: 120vh;
+}
+
+@media (min-width:641px)  { 
+    .profile-text-wrapper {
         height: 100vh;
     }
 }
