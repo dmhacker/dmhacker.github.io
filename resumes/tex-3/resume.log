@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6350 64-bit) (preloaded format=xelatex 2017.9.15)  21 SEP 2017 14:10
+This is XeTeX, Version 3.14159265-2.6-0.99998 (MiKTeX 2.9.6350 64-bit) (preloaded format=xelatex 2017.9.15)  21 SEP 2017 14:17
 entering extended mode
 **./resume.tex
 (resume.tex
@@ -958,10 +958,11 @@ l.59 ^^I^^I\Huge David \textsc{Hacker}
 <argument> \LaTeX3 error: 
                            Erroneous variable \c__fontspec_shape_n_sc_tl used!
 l.65 ^^I^^I\textsc{Email:}
-                           \href{dmhacker@yahoo.com}{dmhacker@yahoo.com} &
+                           \href{mailto:dmhacker@yahoo.com}{dmhacker@yahoo.c...
+
 ? 
 ! Misplaced alignment tab character &.
-l.65 ...{dmhacker@yahoo.com}{dmhacker@yahoo.com} &
+l.65 ...:dmhacker@yahoo.com}{dmhacker@yahoo.com} &
                                                   
 ? 
 ! Undefined control sequence.
