@@ -800,4 +800,3 @@
 \end{format}
 
 \let\section\@@section
-

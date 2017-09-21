@@ -1,0 +1,119 @@
+This is LuaTeX, Version 1.0.4 (MiKTeX 2.9.6350 64-bit)  (format=lualatex 2017.9.15)  21 SEP 2017 10:04
+ restricted system commands enabled.
+**resume.tex
+(./resume.tex
+LaTeX2e <2017-04-15>
+Lua module: luaotfload-main 2017/01/29 2.80001 OpenType layout system.
+Lua module: lualibs 2017-02-01 2.5 ConTeXt Lua standard libraries.
+Lua module: lualibs-extended 2017-02-01 2.5 ConTeXt Lua libraries -- extended co
+llection.(using cache: C:/Users/David Hacker/AppData/Local/MiKTeX/2.9/luatex-cac
+he/generic)
+luaotfload | conf : Root cache directory is C:/Users/David Hacker/AppData/Local/
+MiKTeX/2.9/luatex-cache/generic/names.
+luaotfload | init : Loading fontloader “fontloader-2017-02-11.lua” from kpse
+-resolved path “C:/Program Files/MiKTeX 2.9/tex/luatex/luaotfload/fontloader-2
+017-02-11.lua”.
+Lua-only attribute luaotfload@state = 1
+Lua-only attribute luaotfload@noligature = 2
+Lua-only attribute luaotfload@syllabe = 3
+luaotfload | init : Context OpenType loader version “3.027”
+Inserting `luaotfload.node_processor' at position 1 in `pre_linebreak_filter'.
+Inserting `luaotfload.node_processor' at position 1 in `hpack_filter'.
+Inserting `luaotfload.define_font' at position 1 in `define_font'.
+Lua-only attribute luaotfload_color_attribute = 4
+luaotfload | conf : Root cache directory is C:/Users/David Hacker/AppData/Local/
+MiKTeX/2.9/luatex-cache/generic/names.
+Inserting `luaotfload.aux.set_sscale_dimens' at position 1 in `luaotfload.patch_
+font'.
+Inserting `luaotfload.aux.patch_cambria_domh' at position 2 in `luaotfload.patch
+_font'.
+Inserting `luaotfload.aux.fixup_fontdata' at position 1 in `luaotfload.patch_fon
+t_unsafe'.
+Inserting `luaotfload.aux.set_capheight' at position 3 in `luaotfload.patch_font
+'.
+Inserting `luaotfload.rewrite_fontname' at position 4 in `luaotfload.patch_font'
+.
+luaotfload | main : initialization completed in 0.596 seconds
+Babel <3.10> and hyphenation patterns for 1 language(s) loaded.
+(./res.cls
+Document Style `res' <26 Sep 89>.
+Document Class: res 2000/05/19 v1.4b Resume class
+("C:/Program Files/MiKTeX 2.9/tex/latex/base/article.cls"
+Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
+("C:/Program Files/MiKTeX 2.9/tex/latex/base/size10.clo"
+File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+luaotfload | db : Font names database loaded from C:/Users/David Hacker/AppData/
+Local/MiKTeX/2.9/luatex-cache/generic/names/luaotfload-names.luc(load luc: C:/Us
+ers/David Hacker/AppData/Local/MiKTeX/2.9/luatex-cache/generic/fonts/otl/lmroman
+10-regular.luc))
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+No auxiliary output files.
+
+\tabular@text=\toks14
+\tabular@head=\toks15
+\tabular@tail=\toks16
+\@ta=\toks17
+\undefined@token=\toks18
+\sectionwidth=\dimen103
+\sectionskip=\skip43
+\resumewidth=\dimen104
+\@columnwidth=\dimen105
+\c@numberofcolumns=\count87
+)
+No file resume.aux.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 22.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 22.
+(load luc: C:/Users/David Hacker/AppData/Local/MiKTeX/2.9/luatex-cache/generic/f
+onts/otl/lmroman12-regular.luc)(load luc: C:/Users/David Hacker/AppData/Local/Mi
+KTeX/2.9/luatex-cache/generic/fonts/otl/lmroman12-bold.luc)(load luc: C:/Users/D
+avid Hacker/AppData/Local/MiKTeX/2.9/luatex-cache/generic/fonts/otl/lmroman10-bo
+ld.luc) [1
+
+{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}])
+
+Here is how much of LuaTeX's memory you used:
+ 314 strings out of 494481
+ 100000,89155 words of node,token memory allocated
+ 358 words of node memory still in use:
+   2 hlist, 1 vlist, 1 rule, 2 glue, 3 attribute, 46 glue_spec, 3 attribute_list
+, 1 write nodes
+   avail lists: 2:291,3:114,4:5,5:132,6:1757,7:561,8:15,9:152,10:4,11:146
+ 4522 multiletter control sequences out of 65536+200000
+ 28 fonts using 1740167 bytes
+ 28i,9n,19p,177b,193s stack positions out of 5000i,500n,10000p,200000b,50000s
+<c:/program files/miktex 2.9/fonts/opentype/public/lm/lmroman10-regular.otf><c:/
+program files/miktex 2.9/fonts/opentype/public/lm/lmroman10-bold.otf><c:/program
+ files/miktex 2.9/fonts/opentype/public/lm/lmroman12-bold.otf>
+Output written on resume.pdf (1 page, 22182 bytes).
+
+PDF statistics: 27 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 131072)
+ 1 words of extra memory for PDF output out of 10000 (max. 100000000)
+
