@@ -14,7 +14,7 @@ body {
     height: 100%;
 }
 
-@media (min-width:0px)  { 
+@media (min-width:0px)  {
     #site-header {
         background-image: url('/static/images/code2.png');
         background-size: 100%;
@@ -36,7 +36,7 @@ body {
     height: 50vh;
 }
 
-@media (min-width:641px)  { 
+@media (min-width:641px)  {
     .profile-wrapper {
         height: 100vh;
     }
@@ -46,7 +46,7 @@ body {
     height: 120vh;
 }
 
-@media (min-width:641px)  { 
+@media (min-width:641px)  {
     .profile-text-wrapper {
         height: 100vh;
     }
@@ -57,9 +57,9 @@ body {
     height: auto;
 }
 
-@media (max-width:641px)  { 
+@media (max-width:641px)  {
     #profile-image {
-        max-width: 160px;
+        max-width: 120px;
         margin: 0 auto;
     }
 }
@@ -89,7 +89,7 @@ body {
 .footer-images {
     margin-top: 1em;
 }
- 
+
 .footer-image-a:hover{
     opacity: 0.7;
 }
