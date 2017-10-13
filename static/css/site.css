@@ -33,7 +33,7 @@ body {
 }
 
 .profile-wrapper {
-    height: 10vh;
+    height: 30vh;
 }
 
 @media (min-width:641px)  {
