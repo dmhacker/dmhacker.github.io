@@ -33,7 +33,7 @@ body {
 }
 
 .profile-wrapper {
-    height: 30vh;
+    height: 60vh;
 }
 
 @media (min-width:641px)  {
@@ -43,7 +43,7 @@ body {
 }
 
 .profile-text-wrapper {
-    height: 120vh;
+    height: 90vh;
 }
 
 @media (min-width:641px)  {
