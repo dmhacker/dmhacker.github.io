@@ -1,0 +1,55 @@
+==================================================================
+https://keybase.io/dmhacker
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://dmhacker.github.io
+  * I am dmhacker (https://keybase.io/dmhacker) on keybase.
+  * I have a public key ASAJsuHtaeJKUbx8lSWWyEU_8T2lJ68uaCLjD4p29pKMgQo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "012009b2e1ed69e24a51bc7c952596c8453ff13da527af2e6822e30f8a76f6928c810a",
+      "host": "keybase.io",
+      "kid": "012009b2e1ed69e24a51bc7c952596c8453ff13da527af2e6822e30f8a76f6928c810a",
+      "uid": "c69cd7ca00209b68832ea20db752ce19",
+      "username": "dmhacker"
+    },
+    "merkle_root": {
+      "ctime": 1522026117,
+      "hash": "86f655e107520e912cc91f34cc15bb8a7f00a5ef8cfd461399bd0934cb2b78d7aed90bde350137e45bc2556be439b4913fa43ba714a28c9fb6c793ce685f45f9",
+      "hash_meta": "53a53076ae2d9783126382f3ef9a7f13cbf5d49d70b818888c2cebd453338d6c",
+      "seqno": 2287605
+    },
+    "service": {
+      "hostname": "dmhacker.github.io",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 1
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "1.0.45"
+  },
+  "ctime": 1522026124,
+  "expire_in": 504576000,
+  "prev": "56c0b714e48c585ab224613d27bb4b7ebe9c16c5c6824d59b793be1a8d7dd2b7",
+  "seqno": 59,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgCbLh7WniSlG8fJUllshFP/E9pSevLmgi4w+KdvaSjIEKp3BheWxvYWTFA0t7ImJvZHkiOnsia2V5Ijp7ImVsZGVzdF9raWQiOiIwMTIwMDliMmUxZWQ2OWUyNGE1MWJjN2M5NTI1OTZjODQ1M2ZmMTNkYTUyN2FmMmU2ODIyZTMwZjhhNzZmNjkyOGM4MTBhIiwiaG9zdCI6ImtleWJhc2UuaW8iLCJraWQiOiIwMTIwMDliMmUxZWQ2OWUyNGE1MWJjN2M5NTI1OTZjODQ1M2ZmMTNkYTUyN2FmMmU2ODIyZTMwZjhhNzZmNjkyOGM4MTBhIiwidWlkIjoiYzY5Y2Q3Y2EwMDIwOWI2ODgzMmVhMjBkYjc1MmNlMTkiLCJ1c2VybmFtZSI6ImRtaGFja2VyIn0sIm1lcmtsZV9yb290Ijp7ImN0aW1lIjoxNTIyMDI2MTE3LCJoYXNoIjoiODZmNjU1ZTEwNzUyMGU5MTJjYzkxZjM0Y2MxNWJiOGE3ZjAwYTVlZjhjZmQ0NjEzOTliZDA5MzRjYjJiNzhkN2FlZDkwYmRlMzUwMTM3ZTQ1YmMyNTU2YmU0MzliNDkxM2ZhNDNiYTcxNGEyOGM5ZmI2Yzc5M2NlNjg1ZjQ1ZjkiLCJoYXNoX21ldGEiOiI1M2E1MzA3NmFlMmQ5NzgzMTI2MzgyZjNlZjlhN2YxM2NiZjVkNDlkNzBiODE4ODg4YzJjZWJkNDUzMzM4ZDZjIiwic2Vxbm8iOjIyODc2MDV9LCJzZXJ2aWNlIjp7Imhvc3RuYW1lIjoiZG1oYWNrZXIuZ2l0aHViLmlvIiwicHJvdG9jb2wiOiJodHRwczoifSwidHlwZSI6IndlYl9zZXJ2aWNlX2JpbmRpbmciLCJ2ZXJzaW9uIjoxfSwiY2xpZW50Ijp7Im5hbWUiOiJrZXliYXNlLmlvIGdvIGNsaWVudCIsInZlcnNpb24iOiIxLjAuNDUifSwiY3RpbWUiOjE1MjIwMjYxMjQsImV4cGlyZV9pbiI6NTA0NTc2MDAwLCJwcmV2IjoiNTZjMGI3MTRlNDhjNTg1YWIyMjQ2MTNkMjdiYjRiN2ViZTljMTZjNWM2ODI0ZDU5Yjc5M2JlMWE4ZDdkZDJiNyIsInNlcW5vIjo1OSwidGFnIjoic2lnbmF0dXJlIn2jc2lnxEAq2yrcAChkckt5tCqAa/4GMWm+Mxu7WolxhX8gdHZOmeVKcPpFQWA0EjO3yuhLg0k9sRILnVXPdX+IaP75xDIGqHNpZ190eXBlIKRoYXNogqR0eXBlCKV2YWx1ZcQgiNsKsr9HfFTz6AHN72GPUO8AnYu6zSoOwQWAbwK6TnejdGFnzQICp3ZlcnNpb24B
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/dmhacker
+
+==================================================================
