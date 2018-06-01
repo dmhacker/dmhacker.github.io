@@ -1,104 +1,37 @@
 body {
-    font-family: 'Raleway', sans-serif;
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
-main {
-    flex: 1 0 auto;
+a {
+  text-decoration: none;
 }
 
-html,
-body {
-    height: 100%;
+.center {
+  text-align: center;
 }
 
-@media (min-width:0px)  {
-    #site-header {
-        background-image: url('/static/images/code2.png');
-        background-size: 100%;
-        background-repeat: no-repeat;
-        background-position: 0vw 80vh;
-        filter: grayscale(100%);
-    }
+.profile-image {
+  display: block;
+  margin: auto;
+  max-height: auto;
+  width: 15em;
+  border-radius: 50%;
 }
 
-#site-logo-wrapper {
-    height: 100vh;
+.profile-heading {
+  text-align: center;
+  font-weight: 600;
 }
 
-#site-logo-wrapper2 {
-    width: 100%;
+.small-separation {
+  margin-top: 1em;
 }
 
-.profile-wrapper {
-    height: 60vh;
+.medium-separation {
+  margin-top: 2em;
 }
 
-@media (min-width:641px)  {
-    .profile-wrapper {
-        height: 100vh;
-    }
+.small-text {
+  font-size: 0.75em;
 }
 
-.profile-text-wrapper {
-    height: 90vh;
-}
-
-@media (min-width:641px)  {
-    .profile-text-wrapper {
-        height: 100vh;
-    }
-}
-
-#profile-image {
-    max-width: 240px;
-    height: auto;
-}
-
-@media (max-width:641px)  {
-    #profile-image {
-        max-width: 120px;
-        margin: 0 auto;
-    }
-}
-
-#site-logo {
-    font-family: 'Gudea', sans-serif;
-    font-size: 4em;
-}
-
-#profile-logo {
-    font-family: 'Gudea', sans-serif;
-    font-size: 4em;
-}
-
-#site-main {
-    padding-top: 3%;
-}
-
-#shortcut-button {
-    font-size: 1vw;
-}
-
-.waves-effect.waves-black {
-    background-color: #000;
-}
-
-.footer-images {
-    margin-top: 1em;
-}
-
-.footer-image-a:hover{
-    opacity: 0.7;
-}
-
-hr {
-    display: block;
-    height: 1px;
-    border: 0;
-    border-top: 3px solid #4caf50;
-    margin: 1em 0;
-    padding: 0;
-}
