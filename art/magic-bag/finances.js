@@ -291,10 +291,13 @@ function updateGraphs() {
     monthlyRenewals[i + 1] = Math.round(monthlyRenewals[i + 1] * annualRenewals);
   }
 
+  var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   bb.generate({
     bindto: "#monthlySalesChart",
     data: {
+      x: "x",
       columns: [
+        ["x", 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
         monthlyPurchases,
         monthlyRenewals 
       ],
@@ -305,6 +308,15 @@ function updateGraphs() {
       colors: {
         purchases: "purple",
         renewals: "pink"
+      }
+    },
+    axis: {
+      x: {
+        tick: {
+          format: function(x) {
+            return months[x];
+          }
+        }
       }
     }
   });
