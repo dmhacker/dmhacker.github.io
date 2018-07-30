@@ -281,6 +281,34 @@ function updateGraphs() {
   var annualNetProfit = annualSales - annualExpenses;
   var netProfit = annualNetProfit * finances.numYears;
 
+  var annualPurchases = finances.annualBags;
+  var annualRenewals = annualRenewalProfits /  finances.renewalPrice;
+  var monthlyPurchases = ["purchases", 0.042, 0.049, 0.063, 0.110, 0.100, 0.075, 0.055, 0.047, 0.078, 0.118, 0.149, 0.114];
+  var monthlyRenewals = ["renewals", 0.114, 0.042, 0.049, 0.063, 0.110, 0.100, 0.075, 0.055, 0.047, 0.078, 0.118, 0.149];
+
+  for (var i = 0; i < 12; i++) {
+    monthlyPurchases[i + 1] *= annualPurchases.toFixed(0);
+    monthlyRenewals[i + 1] *= annualRenewals.toFixed(0);
+  }
+
+  bb.generate({
+    bindto: "#monthlySalesChart",
+    data: {
+      columns: [
+        monthlyPurchases,
+        monthlyRenewals 
+      ],
+      types: {
+        purchases: "spline",
+        renewals: "spline"
+      },
+      colors: {
+        purchases: "purple",
+        renewals: "pink"
+      }
+    }
+  });
+
   $("#annualSales").text(annualSales.toFixed(2));
   $("#annualExpenses").text(annualExpenses.toFixed(2));
   $("#annualNetProfit").text(annualNetProfit.toFixed(2));
