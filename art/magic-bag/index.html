@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Title -->
+    <title>Magic Bag Finances</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" rel="stylesheet">
+
+    <!-- CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" rel='stylesheet' type='text/css'>
+    <style>
+      .center {
+        text-align: center;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="twelve columns">
+          <h1 style="text-align: center">Magic Bag Financial Projections</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="twelve columns">
+          <h3>Variables</h3>
+          <form>
+            <div class="row">
+              <div class="three columns">
+                <label for="initialCosts">Initial costs</label>
+                <input class="u-full-width" value="1000000" id="initialCosts" type="number">
+                <label for="seedMoney">Seed money</label>
+                <input class="u-full-width" value="1000000" id="seedMoney" type="number">
+                <label for="annualBags">Annual bags sold</label>
+                <input class="u-full-width" value="10000000" id="annualBags" type="number">
+                <label for="numYears">Projected years</label>
+                <input class="u-full-width" value="3" id="numYears" type="number">
+              </div>
+              <div class="three columns">
+                <label for="rawMaterialsCost">Raw materials cost per bag</label>
+                <input class="u-full-width" value="10" id="rawMaterialsCost" type="number">
+                <label for="hardwareCost">Hardware cost per bag</label>
+                <input class="u-full-width" value="30" id="hardwareCost" type="number">
+                <label for="manufacturingCost">Manufacturing cost per bag</label>
+                <input class="u-full-width" value="5" id="manufacturingCost" type="number">
+                <label for="researchCost">R&D cost per bag</label>
+                <input class="u-full-width" value="5" id="researchCost" type="number">
+              </div>
+              <div class="three columns">
+                <label for="numEmployees">Number of employees</label>
+                <input class="u-full-width" value="100" id="numEmployees" type="number">
+                <label for="averageSalary">Average annual salary</label>
+                <input class="u-full-width" value="80000" id="averageSalary" type="number">
+                <label for="averageBenefits">Average annual benefits</label>
+                <input class="u-full-width" value="20000" id="averageBenfits" type="number">
+              </div>
+              <div class="three columns">
+                <label for="retailPrice">Retail price</label>
+                <input class="u-full-width" value="80" id="retailPrice" type="number">
+                <label for="renewalPrice">Renewal price</label>
+                <input class="u-full-width" value="20" id="renewalPrice" type="number">
+                <label for="renewalRate">Renewal rate (%)</label>
+                <input class="u-full-width" value="50" id="renewalRate" type="number">
+              </div>
+            </div>
+            <div class="row">
+              <div class="offset-by-five columns seven columns">
+                <button class="button-primary" type="submit" id="submit">Submit</button>
+              </div>
+            </div>
+          </form>            
+        </div>
+      </div>
+      <div class="row">
+        <div class="twelve columns">
+          <h3>Estimated Costs</h3>
+          <div id="annualCostsPieChart" class="center">
+        </div>
+        <div class="twelve columns">
+          <h3>Estimated Profits</h3>
+          <div id="annualProfitsPieChart" class="center">
+        </div>
+      </div>
+
+      <!-- Scripts -->
+      <script src="https://d3js.org/d3.v5.min.js"></script>
+      <script src="d3pie.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script src="finances.js"></script>
+  </body>
+
+</html>
