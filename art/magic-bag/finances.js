@@ -1,37 +1,42 @@
 var finances = {
-  initialCosts: 1000000,
-  seedMoney: 1000000,
-  annualBags: 10000000,
-  numYears: 3,
-  rawMaterialsCost: 10,
-  hardwareCost: 30,
-  manufacturingCost: 5,
-  researchCost: 5,
-  numEmployees: 100,
-  averageSalary: 80000,
-  averageBenefits: 20000,
-  retailPrice: 80,
-  renewalPrice: 20,
-  renewalRate: 50
+  initialCosts: 0,
+  seedMoney: 0,
+  maintenanceCosts: 0,
+  taxCosts: 0,
+  rawMaterialsCost: 0,
+  hardwareCost: 0,
+  manufacturingCost: 0,
+  researchCost: 0,
+  numEmployees: 0,
+  averageSalary: 0,
+  averageBenefits: 0,
+  numYears: 0,
+  retailPrice: 0,
+  renewalPrice: 0,
+  renewalRate: 0,
+  annualBags: 0
 };
 
 var pies = [];
 
-function onSubmit() {
+function updatePage() {
+  for (var index in pies) {
+    var pie = pies[index];
+    pie.destroy();
+  }
+  pies = [];
+
   // Set each input field to disabled and update global object
   for (var field in finances) {
     if (finances.hasOwnProperty(field)) {
       var element = $('#' + field);
       element.prop('disabled', true);
-      finances[field] = element.val();
+      finances[field] = parseInt(element.val(), 10);
     }
   }
 
-  console.log("Submitted!");
-  console.log(finances);
-
   // Generate new graphs using the refreshed global object
-  generateGraphs();
+  updateGraphs();
 
   // Set each input field to enabled again
   for (var field in finances) {
@@ -42,13 +47,15 @@ function onSubmit() {
   }
 }
 
-function generateGraphs() {
+function updateGraphs() {
   var annualInitialCosts = finances.initialCosts / finances.numYears;
   var annualEmployeeCosts = finances.numEmployees * (finances.averageSalary + finances.averageBenefits);
   var annualMaterialCosts = finances.annualBags * finances.rawMaterialsCost;
   var annualHardwareCosts = finances.annualBags * finances.hardwareCost;
   var annualManufacturingCosts = finances.annualBags * finances.manufacturingCost;
   var annualResearchCosts = finances.annualBags * finances.researchCost;
+  var annualMaintenanceCosts = finances.maintenanceCosts;
+  var annualTaxCosts = finances.taxCosts;
 
   pies.push(new d3pie("annualCostsPieChart", {
     "header": {
@@ -72,7 +79,7 @@ function generateGraphs() {
       "location": "bottom-left"
     },
     "size": {
-      "canvasWidth": 500,
+      "canvasWidth": 600,
       "pieOuterRadius": "90%"
     },
     "data": {
@@ -107,6 +114,16 @@ function generateGraphs() {
           "label": "R & D",
           "value": annualResearchCosts,
           "color": "#cc9fb1"
+        },
+        {
+          "label": "Maintenance & Customer Service",
+          "value": annualMaintenanceCosts,
+          "color": "#9e3fd8"
+        },
+        {
+          "label": "Taxes",
+          "value": annualTaxCosts,
+          "color": "#e65414"
         }
       ]
     },
@@ -190,7 +207,7 @@ function generateGraphs() {
       "location": "bottom-left"
     },
     "size": {
-      "canvasWidth": 590,
+      "canvasWidth": 600,
       "pieOuterRadius": "90%"
     },
     "data": {
@@ -257,10 +274,21 @@ function generateGraphs() {
       }
     }
   })); 
+
+  var annualSales = annualSeedMoney + annualBagProfits + annualRenewalProfits;
+  var annualExpenses = annualInitialCosts + annualEmployeeCosts + annualHardwareCosts 
+    + annualManufacturingCosts + annualResearchCosts + annualMaintenanceCosts + annualTaxCosts;
+  var annualNetProfit = annualSales - annualExpenses;
+  var netProfit = annualNetProfit * finances.numYears;
+
+  $("#annualSales").text(annualSales.toFixed(2));
+  $("#annualExpenses").text(annualExpenses.toFixed(2));
+  $("#annualNetProfit").text(annualNetProfit.toFixed(2));
+  $("#netProfit").text(netProfit.toFixed(2));
 }
 
-generateGraphs();
+updatePage();
 
 $(document).ready(function() {
-  $("#submit").click(onSubmit);
+  $("#submitButton").click(updatePage);
 });

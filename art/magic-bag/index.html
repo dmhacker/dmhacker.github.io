@@ -15,6 +15,10 @@
     <!-- CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" rel='stylesheet' type='text/css'>
     <style>
+      body {
+        background-color: whitesmoke; 
+      }
+
       .center {
         text-align: center;
         display: block;
@@ -26,8 +30,9 @@
   <body>
     <div class="container">
       <div class="row">
-        <div class="twelve columns">
-          <h1 style="text-align: center">Magic Bag Financial Projections</h1>
+        <div class="twelve columns center">
+          <img src="logo.png" width=100>
+          <h1>Financial Projections</h1>
         </div>
       </div>
       <div class="row">
@@ -40,10 +45,10 @@
                 <input class="u-full-width" value="1000000" id="initialCosts" type="number">
                 <label for="seedMoney">Seed money</label>
                 <input class="u-full-width" value="1000000" id="seedMoney" type="number">
-                <label for="annualBags">Annual bags sold</label>
-                <input class="u-full-width" value="10000000" id="annualBags" type="number">
-                <label for="numYears">Projected years</label>
-                <input class="u-full-width" value="3" id="numYears" type="number">
+                <label for="maintenanceCosts">Annual maintenance costs</label>
+                <input class="u-full-width" value="10000000" id="maintenanceCosts" type="number">
+                <label for="taxCosts">Annual taxes</label>
+                <input class="u-full-width" value="70000000" id="taxCosts" type="number">
               </div>
               <div class="three columns">
                 <label for="rawMaterialsCost">Raw materials cost per bag</label>
@@ -61,7 +66,9 @@
                 <label for="averageSalary">Average annual salary</label>
                 <input class="u-full-width" value="80000" id="averageSalary" type="number">
                 <label for="averageBenefits">Average annual benefits</label>
-                <input class="u-full-width" value="20000" id="averageBenfits" type="number">
+                <input class="u-full-width" value="20000" id="averageBenefits" type="number">
+                <label for="numYears">Projected years</label>
+                <input class="u-full-width" value="3" id="numYears" type="number">
               </div>
               <div class="three columns">
                 <label for="retailPrice">Retail price</label>
@@ -70,11 +77,13 @@
                 <input class="u-full-width" value="20" id="renewalPrice" type="number">
                 <label for="renewalRate">Renewal rate (%)</label>
                 <input class="u-full-width" value="50" id="renewalRate" type="number">
+                <label for="annualBags">Annual bags sold</label>
+                <input class="u-full-width" value="3000000" id="annualBags" type="number">
               </div>
             </div>
             <div class="row">
               <div class="offset-by-five columns seven columns">
-                <button class="button-primary" type="submit" id="submit">Submit</button>
+                <a href="#!" class="button button-primary" id="submitButton">Submit</a>
               </div>
             </div>
           </form>            
@@ -88,6 +97,15 @@
         <div class="twelve columns">
           <h3>Estimated Profits</h3>
           <div id="annualProfitsPieChart" class="center">
+        </div>
+        <div class="twelve columns">
+          <h3>Estimated Net Profits</h3>
+          <pre><code>
+            Annual Sales = $<span id="annualSales"></span>
+            Annual Expenses = $<span id="annualExpenses"></span>
+            Annual Net Profit = $<span id="annualNetProfit"></span>
+            Total Net Profit = $<span id="netProfit"></span>
+          </code></pre>
         </div>
       </div>
 
