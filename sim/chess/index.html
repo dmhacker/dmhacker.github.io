@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="../../static/css/chessboard-0.3.0.min.css" rel="stylesheet" type="text/css">
+    <link href="../../static/img/favicon.ico" rel="shortcut icon" type="image/x-icon">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css" rel='stylesheet' type='text/css'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css" rel="stylesheet" type='text/css'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      <div class="row" style="margin-top: 2em">
+        <div class="six columns">
+          <div id="board" style="width: 100%"></div>
+        </div>
+        <div class="six columns">
+        </div>
+      </div>
+      <div class="row" style="margin-top: 2em">
+        <div class="six columns" >
+          <div class="twelve columns">
+            <label for="move">Move Information</label>
+            <p><span id="move"></span></p>
+          </div>
+          <div class="row">
+            <div class="six columns">
+              <button class="u-full-width" id="back">Back</button>
+            </div>
+            <div class="six columns">
+              <button class="u-full-width" id="forward">Forward</button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="twelve columns">
+              <button class="u-full-width" id="reset">Reset to Saved Position</button>
+            </div>
+          </div>
+        </div>
+        <div class="six columns">
+          <form>
+            <div class="row">
+              <div class="twelve columns">
+                <label for="fen">FEN</label>
+                <p><span class="u-full-width" id="fen"></span></p>
+              </div>
+              <div class="twelve columns">
+                <label for="pgn">PGN</label>
+                <textarea class="u-full-width" id="pgn"></textarea>
+              </div>
+              <div class="twelve columns">
+                <a href="#" class="button button-primary u-full-width" id="pgnSubmit">Update PGN</a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.2/chess.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+    <script src="../../static/js/chessboard-0.3.0.min.js"></script>
+    <script src="viewer.js"></script>
+  </body>
+</html>
