@@ -157,7 +157,7 @@ $(document).ready(function() {
     onDragStart: onDragStart,
     onDrop: onDrop,
     onSnapEnd: onSnapEnd,
-    pieceTheme: '../../static/img/chesspieces/wikipedia/{piece}.png'
+    pieceTheme: '../../static/img/chesspieces/{piece}.png'
   };
   board = ChessBoard('board', board_config);
 
