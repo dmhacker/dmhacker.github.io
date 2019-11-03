@@ -1,0 +1,6 @@
+[submodule "old-website"]
+	path = old-website
+	url = https://github.com/TritonSE/old-website
+[submodule "tse"]
+	path = tse
+	url = https://github.com/TritonSE/old-website
