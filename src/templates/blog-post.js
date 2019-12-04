@@ -31,12 +31,18 @@ class BlogPostTemplate extends React.Component {
             <div className="twelve columns">
               <article>
                 <header>
-                  <p className="grey right">
-                    {post.frontmatter.date}
-                  </p>
-                  <h3>
-                    {post.frontmatter.title}
-                  </h3>
+                  <div className="row">
+                    <div className="six columns">
+                      <h3>
+                        {post.frontmatter.title}
+                      </h3>
+                    </div>
+                    <div className="six columns">
+                      <p className="grey right-on-large">
+                        {post.frontmatter.date}
+                      </p>
+                    </div>
+                  </div>
                 </header>
                 <section dangerouslySetInnerHTML={{ __html: post.html }} />
               </article>

@@ -10,9 +10,14 @@ class BlogList extends React.Component {
     return posts.map(({ node }) => {
       return (
         <p>
-          <Link to={node.fields.slug} className="title-text">{node.frontmatter.title}</Link>
-          <span className="grey right">{node.frontmatter.date}</span>
-          <br/>
+          <div class="row">
+            <div class="six columns">
+              <Link to={node.fields.slug} className="title-text">{node.frontmatter.title}</Link>
+            </div>
+            <div class="six columns">
+              <span className="grey right-on-large">{node.frontmatter.date}</span>
+            </div>
+          </div>
           <span className="small-text">{node.excerpt}</span>
         </p>
       )

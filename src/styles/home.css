@@ -55,6 +55,8 @@ a:hover {
   color: #767676;
 }
 
-.right {
-  float: right;
+@media (min-width: 550px) {
+  .right-on-large {
+    float: right;
+  }
 }
