@@ -61,7 +61,7 @@ class IndexPage extends React.Component {
 
     return (
     <div>
-      <SEO title="Home" keywords={["dmhacker", "computers", "student", "programming", "coding", "personal"]}/>
+      <SEO title="Home" keywords={[]}/>
       <div className="container">
         <div className="row medium-separation">
           <div className="twelve columns">

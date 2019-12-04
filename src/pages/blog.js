@@ -8,19 +8,19 @@ import BlogList from '../components/blog-list.js'
 
 import '../styles/skeleton.min.css'
 import '../styles/home.css'
-import 'katex/dist/katex.min.css'
 
 class BlogPage extends React.Component {
   render() {
     const {data} = this.props;
     return (
     <div>
-      <SEO title="Blog" keywords={["dmhacker", "computers", "student", "programming", "coding", "personal"]}/>
+      <SEO title="Blog Archive"/>
       <div className="container">
         <div className="row medium-separation">
           <div className="twelve columns">
             <h2 className="profile-heading">David's Musings</h2>
-            <Link to="/">{"<<"} Back to home</Link>
+            <Link to="/">← Back to home</Link>
+            <hr/>
           </div>
         </div>
         <div className="row medium-separation">

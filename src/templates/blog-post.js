@@ -1,12 +1,16 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 
-import SEO from "../components/seo"
+import SEO from "../components/seo.js"
+
+import '../styles/skeleton.min.css'
+import '../styles/home.css'
+
+import 'katex/dist/katex.min.css'
 
 class BlogPostTemplate extends React.Component {
   render() {
     const post = this.props.data.markdownRemark
-    const siteTitle = this.props.data.site.siteMetadata.title
     const { previous, next } = this.props.pageContext
 
     return (
@@ -15,59 +19,30 @@ class BlogPostTemplate extends React.Component {
           title={post.frontmatter.title}
           description={post.frontmatter.description || post.excerpt}
         />
-        <article>
-          <header>
-            <h1
-              style={{
-                marginTop: '1em',
-                marginBottom: 0,
-              }}
-            >
-              {post.frontmatter.title}
-            </h1>
-            <p
-              style={{
-                display: `block`,
-                marginBottom: '1em',
-              }}
-            >
-              {post.frontmatter.date}
-            </p>
-          </header>
-          <section dangerouslySetInnerHTML={{ __html: post.html }} />
-          <hr
-            style={{
-              marginBottom: '1em',
-            }}
-          />
-        </article>
-
-        <nav>
-          <ul
-            style={{
-              display: `flex`,
-              flexWrap: `wrap`,
-              justifyContent: `space-between`,
-              listStyle: `none`,
-              padding: 0,
-            }}
-          >
-            <li>
-              {previous && (
-                <Link to={previous.fields.slug} rel="prev">
-                  ← {previous.frontmatter.title}
-                </Link>
-              )}
-            </li>
-            <li>
-              {next && (
-                <Link to={next.fields.slug} rel="next">
-                  {next.frontmatter.title} →
-                </Link>
-              )}
-            </li>
-          </ul>
-        </nav>
+        <div className="container">
+          <div className="row medium-separation">
+            <div className="twelve columns">
+              <h2 className="profile-heading">David's Musings</h2>
+              <Link to="/blog">← Look at more posts</Link>
+              <hr/>
+            </div>
+          </div>
+          <div className="row small-separation">
+            <div className="twelve columns">
+              <article>
+                <header>
+                  <p className="grey right">
+                    {post.frontmatter.date}
+                  </p>
+                  <h3>
+                    {post.frontmatter.title}
+                  </h3>
+                </header>
+                <section dangerouslySetInnerHTML={{ __html: post.html }} />
+              </article>
+            </div>
+          </div>
+        </div>
       </div>
     )
   }
@@ -77,11 +52,6 @@ export default BlogPostTemplate
 
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
-    site {
-      siteMetadata {
-        title
-      }
-    }
     markdownRemark(fields: { slug: { eq: $slug } }) {
       id
       excerpt(pruneLength: 160)

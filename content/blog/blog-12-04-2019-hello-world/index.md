@@ -5,3 +5,7 @@ description: An introductory blog post
 ---
 
 This is intended to be a test blog post containing no meaningful content.
+
+$$
+a^2 + b^2 = c^2
+$$
