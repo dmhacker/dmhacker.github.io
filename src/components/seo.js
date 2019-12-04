@@ -36,8 +36,9 @@ function SEO({ title, description, keywords, meta, lang }) {
             }
           >
             <link rel="shortcut icon" href="/favicon.ico"/>
-            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type='text/css'/>
-            <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,600" rel="stylesheet" type='text/css'/>
+            <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+            <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,600" rel="stylesheet"/>
+            <link href="https://fonts.googleapis.com/css?family=Fira+Code&display=swap" rel="stylesheet"/>
           </Helmet>
         )
       }}

@@ -40,7 +40,7 @@ class IndexPage extends React.Component {
       {
         "key": "/sim/tsp",
         "title": "TSP Approximation Algorithms",
-        "description": <span className="small-text">Over 2900 upvotes on /r/InternetIsBeautiful. <a href="https://www.reddit.com/r/InternetIsBeautiful/comments/5rqirw/3d_visualization_of_the_travelling_salesman/">Link to the post.</a></span>
+          "description": <span className="small-text">A visual comparison of simulated annealing and hill climbing algorithms. <a href="https://www.reddit.com/r/InternetIsBeautiful/comments/5rqirw/3d_visualization_of_the_travelling_salesman/">Shared</a> on /r/InternetIsBeautiful.</span>
       },
       {
         "key": "/sim/nnet",
@@ -95,7 +95,8 @@ class IndexPage extends React.Component {
             <div className="row">
               <h4>My Blog</h4>
               <p>
-                I enjoy writing about topics that interest me, covering a broad spectrum of fields but mostly focusing on issues related to computer science, engineering, programming, and system design.
+                I enjoy writing about topics that interest me, covering a broad spectrum of fields but mostly focusing on issues related to 
+                computer science, engineering, programming, and system design.
               </p>
               <BlogList posts={data.allMarkdownRemark.edges}/>
             </div>
