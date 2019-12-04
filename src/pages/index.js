@@ -6,7 +6,7 @@ import GitHubButton from 'react-github-btn'
 import SEO from '../components/seo.js'
 
 import '../styles/skeleton.min.css'
-import '../styles/site.css'
+import '../styles/home.css'
 
 class IndexPage extends React.Component {
   render() {
