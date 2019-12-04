@@ -14,51 +14,51 @@ class IndexPage extends React.Component {
 
     let projects = [
       {
+        "key": "dmhacker/arch-linux-surface",
         "title": "Arch Linux Kernel Patcher for Surface Devices",
-        "tag": "dmhacker/arch-linux-surface",
         "description": <span className="small-text">Autogenerates PKGBUILDs and setup scripts for <a href="https://github.com/jakeday/linux-surface">jakeday's patched kernel</a>, so that you can run Arch Linux comfortably on a Microsoft Surface device.</span>
       },
       {
+        "key": "dmhacker/alexa-youtube-skill",
         "title": "Alexa YouTube Skill",
-        "tag": "dmhacker/alexa-youtube-skill",
         "description": <span className="small-text">Enables Alexa to play audio from YouTube. The project wiki has detailed instructions that walk you through the setup process.</span>
       },
       {
+        "key": "dmhacker/horcrux",
         "title": "Shamir's Secret Sharing Scheme",
-        "tag": "dmhacker/horcrux",
         "description": <span className="small-text">Provides a fast & practical implementation of <a href="https://dl.acm.org/citation.cfm?doid=359168.359176">Shamir's secret-sharing scheme</a> for Unix devices. The project extends the scheme so that it can split messages of any length while maintaining a 512-bit security level.</span>
       },
       {
+        "key": "dmhacker/rlwe",
         "title": "Ring Learning with Errors Cryptography",
-        "tag": "dmhacker/rlwe",
         "description": <span className="small-text">Implements several cryptographic schemes that are based off of the security of the RLWE problem: the <a href="https://eprint.iacr.org/2012/144.pdf">Fan-Vercauteren homomorphic cryptosystem</a>, the <a href="https://eprint.iacr.org/2016/030.pdf">Ring-TESLA digital signature</a> algorithm, etc.</span>
       },
       {
+        "key": "dmhacker/dual-ec-drbg",
         "title": "Dual_EC_DRBG Backdoor Demonstration",
-        "tag": "dmhacker/dual-ec-drbg",
         "description": <span className="small-text">Demonstrates how a <a href="http://rump2007.cr.yp.to/15-shumow.pdf">Shumlow-Ferguson attack</a> could be used to recover the internal state of any Dual_EC_DRBG pseudorandom number generator.</span>
       }
     ];
 
     let visualizations = [
       {
+        "key": "/sim/tsp",
         "title": "Travelling Salesman Problem: Hill Climbing v.s Simulated Annealing",
-        "link": "/sim/tsp",
         "description": <span className="small-text">Over 2900 upvotes on /r/InternetIsBeautiful. <a href="https://www.reddit.com/r/InternetIsBeautiful/comments/5rqirw/3d_visualization_of_the_travelling_salesman/">Link to the post.</a></span>
       },
       {
+        "key": "/sim/nnet",
         "title": "2D Feedforward Neural Network",
-        "link": "/sim/nnet",
         "description": <span className="small-text">Watch as a neural network is trained in your browser. Optionally supply your own training set.</span>
       },
       {
+        "key": "/sim/lant",
         "title": "3D Adaptation of Langton's Ant",
-        "link": "/sim/lant",
         "description": <span className="small-text">Based off of <a href="https://pdfs.semanticscholar.org/5738/247ce6f97ab59317f7a27ef9b03781c6d79b.pdf">this research paper</a>. Configure what path it generates using your own ruleset.</span>
       },
       {
+        "key": "/sim/geometric-plotter",
         "title": "3D Function Plotter & Grapher",
-        "link": "/sim/geometric-plotter",
         "description": <span className="small-text">Useful tool to help with visualizing volumes of solids of revolution (calculus I).</span>
       }
     ];
@@ -101,7 +101,7 @@ class IndexPage extends React.Component {
                 <p>
                   {project.title}<br/>
                   <GitHubButton 
-                    href={`https://github.com/${project.tag}`} 
+                    href={`https://github.com/${project.key}`} 
                     data-icon="octicon-star" 
                     data-show-count="true" 
                     aria-label={`Star ${project.tag} on GitHub`}>Star</GitHubButton><br/>
@@ -119,7 +119,7 @@ class IndexPage extends React.Component {
               <h3>Cool Visualizations</h3>
               {visualizations.map(visualization =>
                 <p>
-                  <a href={visualization.link}>{visualization.title}</a><br/>
+                  <a href={visualization.key}>{visualization.title}</a><br/>
                   {visualization.description}
                 </p>
               )}
