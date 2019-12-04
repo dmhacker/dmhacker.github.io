@@ -8,11 +8,14 @@ import SEO from '../components/seo.js'
 import '../styles/skeleton.min.css'
 import '../styles/home.css'
 
+import 'katex/dist/katex.min.css'
+
 class IndexPage extends React.Component {
   render() {
     const {data} = this.props;
+    const posts = data.allMarkdownRemark.edges
 
-    let projects = [
+    const projects = [
       {
         "key": "dmhacker/arch-linux-surface",
         "title": "Arch Linux Kernel Patcher for Surface Devices",
@@ -40,7 +43,7 @@ class IndexPage extends React.Component {
       }
     ];
 
-    let visualizations = [
+    const visualizations = [
       {
         "key": "/sim/tsp",
         "title": "Travelling Salesman Problem: Hill Climbing v.s Simulated Annealing",
@@ -93,6 +96,24 @@ class IndexPage extends React.Component {
             </p>
           </div>
         </div>
+        <hr/>
+        <div className="row medium-separation">
+          <div className="twelve columns">
+            <div className="row">
+              <h3>My Blog</h3>
+              {/* <ul> */}
+              {/*   {posts.map(({node}) => { */}
+              {/*     return ( */}
+              {/*       <li> */}
+              {/*         <a href={node.fields.slug}>{node.frontmatter.title}</a> */}
+              {/*       </li> */}
+              {/*     ) */}
+              {/*   })} */}
+              {/* </ul> */}
+            </div>
+          </div>
+        </div>
+        <hr/>
         <div className="row medium-separation">
           <div className="six columns">
             <div className="row">
@@ -162,6 +183,21 @@ export const query = graphql`
     }
     profile: file(relativePath: { eq: "profile.jpg" }) {
       ...FluidImage
+    }
+    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+      edges {
+        node {
+          excerpt
+          fields {
+            slug
+          }
+          frontmatter {
+            date(formatString: "MMMM DD, YYYY")
+            title
+            description
+          }
+        }
+      }
     }
   }
 `
