@@ -6,6 +6,14 @@ a {
   text-decoration: none;
 }
 
+a:visited {
+    color: #DA70D6;
+}
+
+a:hover {
+  opacity: 0.7;
+}
+
 .center {
   text-align: center;
 }
@@ -31,7 +39,22 @@ a {
   margin-top: 2em;
 }
 
-.small-text {
-  font-size: 0.75em;
+.title-text {
+  font-size: 1.2em;
 }
 
+.subtitle-text {
+  font-size: 1.1em;
+}
+
+.small-text {
+  font-size: 0.85em;
+}
+
+.grey {
+  color: #767676;
+}
+
+.right {
+  float: right;
+}

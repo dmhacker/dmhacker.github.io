@@ -1,20 +1,18 @@
 import React from 'react'
-import { Link, graphql } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 import Img from 'gatsby-image'
 import GitHubButton from 'react-github-btn'
 
 import SEO from '../components/seo.js'
+import BlogList from '../components/blog-list.js'
 
 import '../styles/skeleton.min.css'
 import '../styles/home.css'
-
 import 'katex/dist/katex.min.css'
 
 class IndexPage extends React.Component {
   render() {
     const {data} = this.props;
-    const posts = data.allMarkdownRemark.edges
-
     const projects = [
       {
         "key": "dmhacker/arch-linux-surface",
@@ -25,11 +23,6 @@ class IndexPage extends React.Component {
         "key": "dmhacker/alexa-youtube-skill",
         "title": "Alexa YouTube Skill",
         "description": <span className="small-text">Enables Alexa to play audio from YouTube. The project wiki has detailed instructions that walk you through the setup process.</span>
-      },
-      {
-        "key": "dmhacker/horcrux",
-        "title": "Shamir's Secret Sharing Scheme",
-        "description": <span className="small-text">Provides a fast & practical implementation of <a href="https://dl.acm.org/citation.cfm?doid=359168.359176">Shamir's secret-sharing scheme</a> for Unix devices. The project extends the scheme so that it can split messages of any length while maintaining a 512-bit security level.</span>
       },
       {
         "key": "dmhacker/rlwe",
@@ -46,7 +39,7 @@ class IndexPage extends React.Component {
     const visualizations = [
       {
         "key": "/sim/tsp",
-        "title": "Travelling Salesman Problem: Hill Climbing v.s Simulated Annealing",
+        "title": "TSP Approximation Algorithms",
         "description": <span className="small-text">Over 2900 upvotes on /r/InternetIsBeautiful. <a href="https://www.reddit.com/r/InternetIsBeautiful/comments/5rqirw/3d_visualization_of_the_travelling_salesman/">Link to the post.</a></span>
       },
       {
@@ -77,10 +70,10 @@ class IndexPage extends React.Component {
         </div>
         <div className="row small-separation">
           <div className="twelve columns">
-            <h1 className="profile-heading">David Hacker</h1>
+            <h2 className="profile-heading">David Hacker</h2>
           </div>
         </div>
-        <div className="row medium-separation">
+        <div className="row small-separation">
           <div className="twelve columns">
             <p>
               Hello! I'm an undergraduate at the University of California San Diego (UCSD), and I am pursuing a B.S in computer science 
@@ -96,31 +89,31 @@ class IndexPage extends React.Component {
             </p>
           </div>
         </div>
-        {/* <hr/> */}
-        {/* <div className="row medium-separation"> */}
-        {/*   <div className="twelve columns"> */}
-        {/*     <div className="row"> */}
-        {/*       <h3>My Blog</h3> */}
-        {/*       <ul> */}
-        {/*         {posts.map(({node}) => { */}
-        {/*           return ( */}
-        {/*             <li> */}
-        {/*               <a href={node.fields.slug}>{node.frontmatter.title}</a> */}
-        {/*             </li> */}
-        {/*           ) */}
-        {/*         })} */}
-        {/*       </ul> */}
-        {/*     </div> */}
-        {/*   </div> */}
-        {/* </div> */}
-        {/* <hr/> */}
-        <div className="row medium-separation">
+        <hr/>
+        <div className="row small-separation">
+          <div className="twelve columns">
+            <div className="row">
+              <h4>My Blog</h4>
+              <p>
+                I enjoy writing about topics that interest me, covering a broad spectrum of fields but mostly focusing on issues related to computer science, engineering, programming, and system design.
+              </p>
+              <BlogList posts={data.allMarkdownRemark.edges}/>
+            </div>
+          </div>
+          <div className="twelve columns">
+            <div className="row center">
+              <Link to="/blog">View All Posts ...</Link>
+            </div>
+          </div>
+        </div>
+        <hr/>
+        <div className="row small-separation">
           <div className="six columns">
             <div className="row">
-              <h3>Some Projects</h3>
+              <h4>Some Projects</h4>
               {projects.map(project =>
                 <p>
-                  {project.title}<br/>
+                  <span className="subtitle-text">{project.title}</span><br/>
                   <GitHubButton 
                     href={`https://github.com/${project.key}`} 
                     data-icon="octicon-star" 
@@ -137,21 +130,13 @@ class IndexPage extends React.Component {
           </div>
           <div className="six columns">
             <div className="row">
-              <h3>Cool Visualizations</h3>
+              <h4>Cool Visualizations</h4>
               {visualizations.map(visualization =>
                 <p>
-                  <a href={visualization.key}>{visualization.title}</a><br/>
+                  <a className="subtitle-text" href={visualization.key}>{visualization.title}</a><br/>
                   {visualization.description}
                 </p>
               )}
-            </div>
-            <div className="row">
-              <h3>My PGP Key</h3>
-              <p>You can acquire my PGP key by running:</p>
-              <pre><code>gpg --recv-keys 377FDEEC2D355771</code></pre>
-              <p>You can also <a href="dmhacker.asc">download</a> it manually and then import it using:</p>
-              <pre><code>gpg --armor --import dmhacker.asc</code></pre>
-              <p>If you don't trust the key, shoot me an email and I'll send you the key's fingerprint for verification.</p>
             </div>
           </div>
         </div>
@@ -175,16 +160,10 @@ fragment FluidImage on File {
 
 export const query = graphql`
   query {
-    site {
-      siteMetadata {
-        title
-        description
-      }
-    }
     profile: file(relativePath: { eq: "profile.jpg" }) {
       ...FluidImage
     }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMarkdownRemark(limit: 3, sort: { fields: [frontmatter___date], order: DESC }) {
       edges {
         node {
           excerpt
@@ -194,7 +173,6 @@ export const query = graphql`
           frontmatter {
             date(formatString: "MMMM DD, YYYY")
             title
-            description
           }
         }
       }
