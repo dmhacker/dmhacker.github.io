@@ -96,24 +96,24 @@ class IndexPage extends React.Component {
             </p>
           </div>
         </div>
-        <hr/>
-        <div className="row medium-separation">
-          <div className="twelve columns">
-            <div className="row">
-              <h3>My Blog</h3>
-              {/* <ul> */}
-              {/*   {posts.map(({node}) => { */}
-              {/*     return ( */}
-              {/*       <li> */}
-              {/*         <a href={node.fields.slug}>{node.frontmatter.title}</a> */}
-              {/*       </li> */}
-              {/*     ) */}
-              {/*   })} */}
-              {/* </ul> */}
-            </div>
-          </div>
-        </div>
-        <hr/>
+        {/* <hr/> */}
+        {/* <div className="row medium-separation"> */}
+        {/*   <div className="twelve columns"> */}
+        {/*     <div className="row"> */}
+        {/*       <h3>My Blog</h3> */}
+        {/*       <ul> */}
+        {/*         {posts.map(({node}) => { */}
+        {/*           return ( */}
+        {/*             <li> */}
+        {/*               <a href={node.fields.slug}>{node.frontmatter.title}</a> */}
+        {/*             </li> */}
+        {/*           ) */}
+        {/*         })} */}
+        {/*       </ul> */}
+        {/*     </div> */}
+        {/*   </div> */}
+        {/* </div> */}
+        {/* <hr/> */}
         <div className="row medium-separation">
           <div className="six columns">
             <div className="row">
