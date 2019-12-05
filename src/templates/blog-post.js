@@ -11,8 +11,7 @@ import 'katex/dist/katex.min.css'
 class BlogPostTemplate extends React.Component {
   render() {
     const post = this.props.data.markdownRemark
-    const { previous, next } = this.props.pageContext
-
+    // const { previous, next } = this.props.pageContext
     return (
       <div>
         <SEO
@@ -23,7 +22,7 @@ class BlogPostTemplate extends React.Component {
           <div className="row medium-separation">
             <div className="twelve columns">
               <h2 className="profile-heading">David's Musings</h2>
-              <Link to="/blog">← Look at more posts</Link>
+              <Link to="/blog">← View more posts</Link>
               <hr/>
             </div>
           </div>

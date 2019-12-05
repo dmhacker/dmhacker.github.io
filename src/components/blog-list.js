@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, graphql } from 'gatsby'
+import { Link } from 'gatsby'
 
 import '../styles/skeleton.min.css'
 import '../styles/home.css'

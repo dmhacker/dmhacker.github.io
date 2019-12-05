@@ -1,7 +1,5 @@
 import React from 'react'
 import { graphql, Link  } from 'gatsby'
-import Img from 'gatsby-image'
-import GitHubButton from 'react-github-btn'
 
 import SEO from '../components/seo.js'
 import BlogList from '../components/blog-list.js'
