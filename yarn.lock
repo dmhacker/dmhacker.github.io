@@ -6388,6 +6388,11 @@ iferr@^0.1.5:
   resolved "https://registry.yarnpkg.com/iferr/-/iferr-0.1.5.tgz#c60eed69e6d8fdb6b3104a1fcbca1c192dc5b501"
   integrity sha1-xg7taebY/bazEEofy8ocGS3FtQE=
 
+iframe-resizer@^3.6.3:
+  version "3.6.6"
+  resolved "https://registry.yarnpkg.com/iframe-resizer/-/iframe-resizer-3.6.6.tgz#ece6a0b7e879cfe3783a1003261408152ff9bd9b"
+  integrity sha512-WYprloB8s18Be9wbybQZmeEWueEczJH2is/5DxDn4jH8Bs2DuaSuaOeYICe6IvmF04SBy4mQ+pX4Xc+E9FEMSg==
+
 ignore-walk@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/ignore-walk/-/ignore-walk-3.0.1.tgz#a83e62e7d272ac0e3b551aaa82831a19b69f82f8"
@@ -10120,6 +10125,14 @@ react-reconciler@^0.21.0:
     object-assign "^4.1.1"
     prop-types "^15.6.2"
     scheduler "^0.15.0"
+
+react-remarkbox@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/react-remarkbox/-/react-remarkbox-0.2.0.tgz#36e92717c0890cdadbfe6fbcd7aa6a6a4df88221"
+  integrity sha512-jG9+pvkEbl/3kIL2qNfZ4A6BE0Ou0onshv1cRbTiu2Fn2x7aCZW0IofBDdNEyJDUoEzzU8QN5VqLXco+pKMl8g==
+  dependencies:
+    iframe-resizer "^3.6.3"
+    prop-types "^15.6.2"
 
 react-side-effect@^1.1.0:
   version "1.1.5"

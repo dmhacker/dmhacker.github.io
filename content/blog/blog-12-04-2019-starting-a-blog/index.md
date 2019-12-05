@@ -249,8 +249,8 @@ still remains both minimalist & modern.
 There is always room for improvement however. In the future, I would like to look into:
 
 1. Hooking an RSS feed up to my blog so news aggregators can track posts.
-2. Adding comment sections so that anonymous users can provide feedback on blog posts.
-Considering using [Remarkbox](https://www.remarkbox.com/) to do this.
+2. <span style="text-decoration:line-through;">Adding comment sections so that anonymous users can provide feedback on blog posts.
+Considering using [Remarkbox](https://www.remarkbox.com/) to do this.</span> Done as of 12/05/2020.
 3. Enabling keyword tagging in blog posts, similar to tags in YouTube videos.
 4. Creating a search feature that searches posts by content, keywords, titles, etc.
 

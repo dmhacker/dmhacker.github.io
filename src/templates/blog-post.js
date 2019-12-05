@@ -3,6 +3,8 @@ import { Link, graphql } from "gatsby"
 
 import SEO from "../components/seo.js"
 
+import Remarkbox from 'react-remarkbox';
+
 import '../styles/skeleton.min.css'
 import '../styles/home.css'
 
@@ -11,6 +13,7 @@ import 'katex/dist/katex.min.css'
 class BlogPostTemplate extends React.Component {
   render() {
     const post = this.props.data.markdownRemark
+    const slug = this.props.path;
     // const { previous, next } = this.props.pageContext
     return (
       <div>
@@ -45,6 +48,16 @@ class BlogPostTemplate extends React.Component {
                 </header>
                 <section dangerouslySetInnerHTML={{ __html: post.html }} />
               </article>
+            </div>
+          </div>
+          <div className="row small-separation">
+            <div className="twelve columns">
+              <Remarkbox
+                remarkboxKey={'c6fc9353-1776-11ea-8c00-040140774501'}
+                threadUri={`http://dmhacker.github.io${slug}`}
+                threadTitle={post.frontmatter.title}
+                className="full-width"
+              />
             </div>
           </div>
         </div>
