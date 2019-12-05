@@ -28,7 +28,7 @@ Even companies these days are starting to maintain their own technical blogs:
 When designing my blog, I drew inspiration from many of these existing sites.
 3. It was the perfect time to do so. As part of my general education requirements
 at UCSD, I am required to take a class called [CAT 125](https://sixth.ucsd.edu/cat/courses/cat-125/index.html),
-focusing on improving our public rhetoric. The goals of the class and this blog 
+focusing on improving my public rhetoric skills. The goals of the class and this blog 
 lined up perfectly, so this will serve as an extremely useful, long-lasting final
 project. Through immediate development of my blog, I am essentially killing two birds 
 with one stone.
@@ -44,7 +44,7 @@ to connect a blog to it.
 Well, actually, let me be more specific. I did design the interface to be as
 extensible as possible, and with regards to the UI, my website did not actually
 have to change that much to accomodate the blog. However, the internals (my
-codebase) would have to change dramatically to support the dynamic functionality
+codebase) had to change dramatically to support the dynamic functionality
 that blogging requires.
 
 Ultimately, however, the main constraint that my website faces is my reliance on 
@@ -140,7 +140,7 @@ a static web server that just maps the files in the repository directly to
 website routes. It doesn't perform any compilation, code execution, or
 database queries.
 
-One solution is, after making a change to our Gatsby/JSX source code,
+One solution is, after making a change to my Gatsby/JSX source code,
 I manually re-compile the codebase on my machine and then upload
 the results to a separate branch that GitHub Pages can serve. However,
 this solution has the dreaded word 'manually' as a part of it. Engineers
