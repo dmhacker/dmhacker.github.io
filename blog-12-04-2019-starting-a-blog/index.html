@@ -87,7 +87,7 @@ I’ve still stayed true to these minimalist ideals.</p>
     </span></p>
 <p>Because of the website just had to support a single page with some assets, the
 codebase was extremely small. In fact, it was almost entirely raw HTML with a
-scattering of CSS and JS supporting legacy visualizations. The two important files:</p>
+scattering of CSS and JS. The two important files:</p>
 <ul>
 <li>index.html</li>
 <li>static/css/site.css</li>
@@ -147,7 +147,7 @@ I won’t really go over the nuances behind static site generators, but if you�
 interested in learning more about them, David Welsh wrote
 <a href="https://davidwalsh.name/introduction-static-site-generators">a good blog post</a>
 describing their features, use case scenarios, advantages, and disadvantages.</p>
-<p>I choose to use a static site generator called <a href="https://www.gatsbyjs.org/">GatsbyJS</a>. Gatsby allows people
+<p>I choose to use a static site generator called <a href="https://www.gatsbyjs.org/">Gatsby</a>. Gatsby allows people
 to write websites using their version of <a href="https://reactjs.org/">React</a> and then compiles the JSX
 you write into static HTML files. This flexibility is perfect for a blog,
 because it allows you to write posts in your scripting language of choice
@@ -168,11 +168,134 @@ visualizations sections.</p>
 reasons I put off this project for so long, but I am relieved that the
 transition went by rather painlessly in the end.</p>
 <h5>Continuous Compilation</h5>
-<p>TODO</p>
+<p>At this point, I’ve now written the JSX code that can be compiled down to
+HTML by Gatsby. But, now, how do we get GitHub Pages to show the
+compiled HTML and not the source code? Recall that GitHub Pages is basically
+a static web server that just maps the files in the repository directly to
+website routes. It doesn’t perform any compilation, code execution, or
+database queries.</p>
+<p>One solution is, after making a change to our Gatsby/JSX source code,
+I manually re-compile the codebase on my machine and then upload
+the results to a separate branch that GitHub Pages can serve. However,
+this solution has the dreaded word ‘manually’ as a part of it. Engineers
+should never strive to do tasks manually, especially when they are easily
+automated. In this case, the manual part is re-compiling and then uploading
+compiled HTML files. I want a way to automate that portion, such that that step
+occurs automatically after I make a change.</p>
+<p>Therefore, I enlisted the help of a continuous integration service that has
+been integrated into GitHub. Normally, CI services are used for projects that
+have unit tests to run, and whenever a change occurs in that project, the CI
+service will automatically run the unit tests to make sure they still pass.
+In my case, I wanted the CI service to ignore tests and instead re-compile
+my JSX source code and then push the results to a branch that GitHub Pages
+recognizes.</p>
+<p>To do this, I made use of <a href="https://travis-ci.com/">TravisCI</a>, which is one of the more popular CI
+services. Other notable continuous integration services include <a href="https://jenkins.io/">Jenkins</a>
+and <a href="https://circleci.com/">CircleCI</a>, both of which I have also used in other projects. Travis
+seemed like the most reasonable choice to me because they natively support
+GitHub pages integration using simple configuration directives:</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">deploy:
+  local-dir: public
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN  
+  on:
+    branch: source
+  target_branch: master
+  keep_history: true</code></pre></div>
+<p>This tells Travis to monitor the <code class="language-text">source</code> branch for commits and whenever
+a commit is detected, re-compile and then push the build directory “public”
+to the <code class="language-text">master</code> branch. The interface looks something like this:</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;"
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/b5ac5d2a51a5775131786b41a0e67e53/5db5b/travis-ci-interface.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 34.64528668610301%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAHABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAAEF/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEAMQAAAB3aAH/8QAFxABAAMAAAAAAAAAAAAAAAAAAQAQEf/aAAgBAQABBQIrCf/EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8BP//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8BP//EABQQAQAAAAAAAAAAAAAAAAAAABD/2gAIAQEABj8Cf//EABkQAAMAAwAAAAAAAAAAAAAAAAABIRFhgf/aAAgBAQABPyFJXnhDQf/aAAwDAQACAAMAAAAQc8//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAEDAQE/ED//xAAUEQEAAAAAAAAAAAAAAAAAAAAQ/9oACAECAQE/ED//xAAZEAEAAwEBAAAAAAAAAAAAAAARAAEhMUH/2gAIAQEAAT8QOu3qKYV8iaNn/9k='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="TravisCI Interface"
+        title="TravisCI Interface"
+        src="/static/b5ac5d2a51a5775131786b41a0e67e53/c739e/travis-ci-interface.jpg"
+        srcset="/static/b5ac5d2a51a5775131786b41a0e67e53/8ee9c/travis-ci-interface.jpg 148w,
+/static/b5ac5d2a51a5775131786b41a0e67e53/ebbe7/travis-ci-interface.jpg 295w,
+/static/b5ac5d2a51a5775131786b41a0e67e53/c739e/travis-ci-interface.jpg 590w,
+/static/b5ac5d2a51a5775131786b41a0e67e53/5413e/travis-ci-interface.jpg 885w,
+/static/b5ac5d2a51a5775131786b41a0e67e53/4efde/travis-ci-interface.jpg 1180w,
+/static/b5ac5d2a51a5775131786b41a0e67e53/5db5b/travis-ci-interface.jpg 2058w"
+        sizes="(max-width: 590px) 100vw, 590px"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>You can see that after every commit, the continuous integration server is
+notified and triggers a rebuild. If the rebuild fails, it will mark the build
+as failed and then notify me via email.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;"
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/c9ce51ae642a8b16788868daa313672a/fde8b/travis-ci-builds.jpg"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 69.2117005453644%; position: relative; bottom: 0; left: 0; background-image: url('data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAOABQDASIAAhEBAxEB/8QAFgABAQEAAAAAAAAAAAAAAAAAAQAF/8QAFAEBAAAAAAAAAAAAAAAAAAAAAP/aAAwDAQACEAMQAAAB3URqP//EABYQAQEBAAAAAAAAAAAAAAAAAAEQMf/aAAgBAQABBQIpk//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8BP//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8BP//EABQQAQAAAAAAAAAAAAAAAAAAACD/2gAIAQEABj8CX//EABYQAQEBAAAAAAAAAAAAAAAAABAxAf/aAAgBAQABPyGMYP8A/9oADAMBAAIAAwAAABDQD//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQMBAT8QP//EABQRAQAAAAAAAAAAAAAAAAAAABD/2gAIAQIBAT8QP//EABkQAAIDAQAAAAAAAAAAAAAAAAABQXGhMf/aAAgBAQABPxDEOaFxGAc0Qj//2Q=='); background-size: cover; display: block;"
+  ></span>
+  <img
+        class="gatsby-resp-image-image"
+        alt="TravisCI Build History"
+        title="TravisCI Build History"
+        src="/static/c9ce51ae642a8b16788868daa313672a/c739e/travis-ci-builds.jpg"
+        srcset="/static/c9ce51ae642a8b16788868daa313672a/8ee9c/travis-ci-builds.jpg 148w,
+/static/c9ce51ae642a8b16788868daa313672a/ebbe7/travis-ci-builds.jpg 295w,
+/static/c9ce51ae642a8b16788868daa313672a/c739e/travis-ci-builds.jpg 590w,
+/static/c9ce51ae642a8b16788868daa313672a/5413e/travis-ci-builds.jpg 885w,
+/static/c9ce51ae642a8b16788868daa313672a/4efde/travis-ci-builds.jpg 1180w,
+/static/c9ce51ae642a8b16788868daa313672a/fde8b/travis-ci-builds.jpg 2017w"
+        sizes="(max-width: 590px) 100vw, 590px"
+        loading="lazy"
+      />
+  </a>
+    </span></p>
+<p>After setting up continuous integration, I now have a fully functioning website
+again, looking exactly the same as what I started with. Whenever I make a change
+to the <code class="language-text">source</code> branch, the website will automatically update on GitHub Pages.
+It’s finally time to add blogging functionality.</p>
 <h5>Blogging in Gatsby</h5>
 <p>TODO</p>
 <h4>Future Plans</h4>
-<p>TODO</p></section></article></div></div></div></div></div></div><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-133924101-1"></script><script>
+<p>I am pretty satisfied with the current state of my website and blog.
+The basics of a blog are all present: there’s a centralized list of posts, people
+are able to view a condensed version of the list from the home page, and posts are
+tagged with a unique slug generated from their file names. Additionally, the interface
+is consistent across both the blog and portfolio portions of my website, and everything
+still remains both minimalist &#x26; modern.</p>
+<p>There is always room for improvement however. In the future, I would like to look into:</p>
+<ol>
+<li>Hooking an RSS feed up to my blog so news aggregators can track posts.</li>
+<li>Adding comment sections so that anonymous users can provide feedback on blog posts.</li>
+<li>Enabling keyword tagging in blog posts, similar to tags in YouTube videos.</li>
+<li>Creating a search feature that searches posts by content, keywords, titles, etc.</li>
+</ol>
+<p>Before tackling these updates, I hope to, foremost, continue writing blog posts in a
+consistent fashion. My goal is write at least one post every week or at minimum, biweekly.
+Since each post takes around 3-6 hours for me to write, this should be a reasonable
+amount of work.</p>
+<p>Thanks for reading this (long) article. Until next time!</p></section></article></div></div></div></div></div></div><script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-133924101-1"></script><script>
     window.GATSBY_GTAG_PLUGIN_GA_TRACKING_ID = (
       'UA-133924101-1'
     );
