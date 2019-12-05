@@ -194,7 +194,48 @@ It's finally time to add blogging functionality.
 
 ##### Blogging in Gatsby
 
-TODO
+It turns out that static site blogging using Gatsby is a pretty common paradigm (go figure).
+It's so common that Gatsby provides almost perfect out-of-the-box support for it. With a
+bit of tweaking, I was able to adapt this to work on my own site.
+
+The key to all of this can be found in the [gatsby-starter-blog](https://github.com/gatsbyjs/gatsby-starter-blog) repository.
+I suspected that the infrastructure in this starter blog was almost exactly what I
+needed, and my hunch turned out to be correct. However, the starter blog meshes
+this infrastructure with a lot of their own UI cruft, which I did not need. My task
+thus become separating out the necessary blogging components from the UI components
+and then incorporating the blogging components into my own website and rebuilding the UI.
+This process was accomplished in the following manner.
+
+1. Identify the files and code that would remain mostly unchanged when moved to my repository.
+This was the "gatsby-node.js" file (responsible for turning Markdown blog posts into GraphQL nodes)
+and then the GraphQL* queries themselves.
+
+2. Add the MarkdownRemark Gatsby plugin to my "gatsby-config.js" file. This loads the MarkdownRemark
+plugin and does the heavy lifting when it comes to converting Markdown posts to HTML abstract
+syntax trees, which can then be loaded directly into my JSX components. The MarkdownRemark plugin
+also had to be added via `yarn` to my Node dependencies list.
+
+3. Create the "src/templates/blog-post.js" file. This is the external template for each blog
+post mentioned earlier (contains things like a header and navigation bar). The template is
+used to bring a blog post to life.
+
+4. Create the "src/pages/blog.js" file. This is a centralized blog archive, a list of blog
+posts arranged in descending order by time. It allows for viewers to browse past blog posts.
+You can find [this page here](/blog).
+
+5. Integrate a minified version of the above list into the "src/pages/index.js" file. In the
+home page, I wanted a small list of the 3 most recent blog posts as a subsection underneath the
+about section.
+
+6. Create the folder "content/blog". This is where all my blog posts would go.
+
+<sup>*As an aside, GraphQL is a flexible query language developed alongside React by Facebook that
+Gatsby incorporated into their build system. You can store data as GraphQL 'nodes' and then
+access those nodes by making queries inside JSX components. This allows for data to be
+transmitted effectively throughout the website; the data can come from a wide variety of
+sources, for example from directories or from a remote database.</sup>
+
+With these steps completed, I had a working blog site. I then went about writing this post!
 
 #### Future Plans
 
@@ -209,6 +250,7 @@ There is always room for improvement however. In the future, I would like to loo
 
 1. Hooking an RSS feed up to my blog so news aggregators can track posts.
 2. Adding comment sections so that anonymous users can provide feedback on blog posts.
+Considering using [Remarkbox](https://www.remarkbox.com/) to do this.
 3. Enabling keyword tagging in blog posts, similar to tags in YouTube videos.
 4. Creating a search feature that searches posts by content, keywords, titles, etc.
 
