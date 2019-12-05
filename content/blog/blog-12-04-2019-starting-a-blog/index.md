@@ -73,7 +73,7 @@ This is what the home page used to look like. That's all the website really was.
 
 Because of the website just had to support a single page with some assets, the
 codebase was extremely small. In fact, it was almost entirely raw HTML with a
-scattering of CSS and JS supporting legacy visualizations. The two important files:
+scattering of CSS and JS. The two important files:
 
 * index.html
 * static/css/site.css
@@ -108,7 +108,7 @@ interested in learning more about them, David Welsh wrote
 [a good blog post](https://davidwalsh.name/introduction-static-site-generators)
 describing their features, use case scenarios, advantages, and disadvantages.
 
-I choose to use a static site generator called [GatsbyJS](https://www.gatsbyjs.org/). Gatsby allows people
+I choose to use a static site generator called [Gatsby](https://www.gatsbyjs.org/). Gatsby allows people
 to write websites using their version of [React](https://reactjs.org/) and then compiles the JSX
 you write into static HTML files. This flexibility is perfect for a blog,
 because it allows you to write posts in your scripting language of choice
@@ -133,7 +133,64 @@ transition went by rather painlessly in the end.
 
 ##### Continuous Compilation 
 
-TODO
+At this point, I've now written the JSX code that can be compiled down to
+HTML by Gatsby. But, now, how do we get GitHub Pages to show the
+compiled HTML and not the source code? Recall that GitHub Pages is basically
+a static web server that just maps the files in the repository directly to
+website routes. It doesn't perform any compilation, code execution, or
+database queries.
+
+One solution is, after making a change to our Gatsby/JSX source code,
+I manually re-compile the codebase on my machine and then upload
+the results to a separate branch that GitHub Pages can serve. However,
+this solution has the dreaded word 'manually' as a part of it. Engineers
+should never strive to do tasks manually, especially when they are easily
+automated. In this case, the manual part is re-compiling and then uploading
+compiled HTML files. I want a way to automate that portion, such that that step
+occurs automatically after I make a change.
+
+Therefore, I enlisted the help of a continuous integration service that has
+been integrated into GitHub. Normally, CI services are used for projects that
+have unit tests to run, and whenever a change occurs in that project, the CI
+service will automatically run the unit tests to make sure they still pass. 
+In my case, I wanted the CI service to ignore tests and instead re-compile
+my JSX source code and then push the results to a branch that GitHub Pages
+recognizes.
+
+To do this, I made use of [TravisCI](https://travis-ci.com/), which is one of the more popular CI
+services. Other notable continuous integration services include [Jenkins](https://jenkins.io/)
+and [CircleCI](https://circleci.com/), both of which I have also used in other projects. Travis
+seemed like the most reasonable choice to me because they natively support
+GitHub pages integration using simple configuration directives:
+
+```
+deploy:
+  local-dir: public
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN  
+  on:
+    branch: source
+  target_branch: master
+  keep_history: true
+```
+
+This tells Travis to monitor the `source` branch for commits and whenever
+a commit is detected, re-compile and then push the build directory "public"
+to the `master` branch. The interface looks something like this:
+
+![TravisCI Interface](./travis-ci-interface.jpg)
+
+You can see that after every commit, the continuous integration server is
+notified and triggers a rebuild. If the rebuild fails, it will mark the build
+as failed and then notify me via email.
+
+![TravisCI Build History](./travis-ci-builds.jpg)
+
+After setting up continuous integration, I now have a fully functioning website
+again, looking exactly the same as what I started with. Whenever I make a change
+to the `source` branch, the website will automatically update on GitHub Pages. 
+It's finally time to add blogging functionality.
 
 ##### Blogging in Gatsby
 
@@ -141,4 +198,23 @@ TODO
 
 #### Future Plans
 
-TODO
+I am pretty satisfied with the current state of my website and blog.
+The basics of a blog are all present: there's a centralized list of posts, people 
+are able to view a condensed version of the list from the home page, and posts are 
+tagged with a unique slug generated from their file names. Additionally, the interface
+is consistent across both the blog and portfolio portions of my website, and everything
+still remains both minimalist & modern.
+
+There is always room for improvement however. In the future, I would like to look into:
+
+1. Hooking an RSS feed up to my blog so news aggregators can track posts.
+2. Adding comment sections so that anonymous users can provide feedback on blog posts.
+3. Enabling keyword tagging in blog posts, similar to tags in YouTube videos.
+4. Creating a search feature that searches posts by content, keywords, titles, etc.
+
+Before tackling these updates, I hope to, foremost, continue writing blog posts in a
+consistent fashion. My goal is write at least one post every week or at minimum, biweekly.
+Since each post takes around 3-6 hours for me to write, this should be a reasonable 
+amount of work.
+
+Thanks for reading this (long) article. Until next time!
