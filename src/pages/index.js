@@ -77,8 +77,9 @@ class IndexPage extends React.Component {
           <div className="twelve columns">
             <p>
               Hello! I'm an undergraduate at the University of California San Diego (UCSD), and I am pursuing a B.S in computer science 
-              with a minor in mathematics. I am particularly interested in cryptography, distributed computing, program synthesis, and 
-              natural language processing. I also enjoy learning about and working with graphics & data visualization techniques.
+              with a minor in mathematics, likely graduating 2021. I am particularly interested in cryptography, distributed computing, 
+              program synthesis, and natural language processing. I also enjoy learning about and working with graphics & data 
+              visualization techniques.
             </p>
             <p>
               Last summer, I worked at <a href="https://www.linkedin.com/in/dmhacker/">Bloomberg</a> as a software engineering intern.
