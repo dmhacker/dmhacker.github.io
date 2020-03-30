@@ -91,9 +91,6 @@ class IndexPage extends React.Component {
               I'm a big fan of the Unix philosophy, *nix systems in general, vim and zsh. 
               You can find my dotfiles <a href="https://github.com/dmhacker/dotfiles">here</a>.
             </p>
-            <p>
-              You can usually reach me at <b>dmhacker (at) protonmail (dot) com</b>.
-            </p>
           </div>
         </div>
         <hr/>
