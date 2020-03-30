@@ -25,14 +25,14 @@ class IndexPage extends React.Component {
         "description": <span className="small-text">Enables Alexa to play audio from YouTube. The project wiki has detailed instructions that walk you through the setup process.</span>
       },
       {
-        "key": "dmhacker/rlwe",
-        "title": "Ring Learning with Errors Cryptography",
-        "description": <span className="small-text">Implements several cryptographic schemes that are based off of the security of the RLWE problem: the <a href="https://eprint.iacr.org/2012/144.pdf">Fan-Vercauteren homomorphic cryptosystem</a>, the <a href="https://eprint.iacr.org/2016/030.pdf">Ring-TESLA digital signature</a> algorithm, etc.</span>
-      },
-      {
         "key": "dmhacker/dual-ec-drbg",
         "title": "Dual_EC_DRBG Backdoor Demonstration",
         "description": <span className="small-text">Demonstrates how a <a href="http://rump2007.cr.yp.to/15-shumow.pdf">Shumlow-Ferguson attack</a> could be used to recover the internal state of any Dual_EC_DRBG pseudorandom number generator.</span>
+      },
+      {
+        "key": "dmhacker/rlwe",
+        "title": "Ring Learning with Errors Cryptography",
+        "description": <span className="small-text">Implements several cryptographic schemes that are based off of the security of the RLWE problem: the <a href="https://eprint.iacr.org/2012/144.pdf">Fan-Vercauteren homomorphic cryptosystem</a>, the <a href="https://eprint.iacr.org/2016/030.pdf">Ring-TESLA digital signature</a> algorithm, etc.</span>
       }
     ];
 
@@ -55,7 +55,7 @@ class IndexPage extends React.Component {
       {
         "key": "/sim/geometric-plotter",
         "title": "3D Function Plotter & Grapher",
-        "description": <span className="small-text">Useful tool to help with visualizing volumes of solids of revolution (calculus I).</span>
+        "description": <span className="small-text">3D graphing tool to help with visualizing volumes of solids of revolution (calculus I).</span>
       }
     ];
 
