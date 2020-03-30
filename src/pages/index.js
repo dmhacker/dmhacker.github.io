@@ -55,7 +55,7 @@ class IndexPage extends React.Component {
       {
         "key": "/sim/geometric-plotter",
         "title": "3D Function Plotter & Grapher",
-        "description": <span className="small-text">3D graphing tool to help with visualizing volumes of solids of revolution (calculus I).</span>
+        "description": <span className="small-text">Calculus I tool to help with visualizing volumes of solids of revolution.</span>
       }
     ];
 
