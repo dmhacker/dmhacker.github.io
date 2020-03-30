@@ -81,9 +81,10 @@ class IndexPage extends React.Component {
               natural language processing. I also enjoy learning about and working with graphics & data visualization techniques.
             </p>
             <p>
-              Last summer, I worked at <a href="https://www.linkedin.com/in/dmhacker/">Bloomberg</a> as a software engineering intern,
-              as part of their market data infrastructure team, which relays equities data from various stock exchanges to applications on the
-              Bloomberg Terminal. This summer, I'll be a software engineering intern at <a href="https://www.citadel.com/">Citadel</a>.
+              Last summer, I worked at <a href="https://www.linkedin.com/in/dmhacker/">Bloomberg</a> as a software engineering intern.
+              I was part of their market data infrastructure team, which manages the systems that relays equities data 
+              from various stock exchanges to applications on the Bloomberg Terminal. This summer, I'll be a software 
+              engineering intern at <a href="https://www.citadel.com/">Citadel</a>.
             </p>
             <p>
               I'm a big fan of the Unix philosophy, *nix systems in general, vim and zsh. 
