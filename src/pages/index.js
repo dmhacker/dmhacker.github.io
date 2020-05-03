@@ -82,7 +82,7 @@ class IndexPage extends React.Component {
               visualization techniques.
             </p>
             <p>
-              Last summer, I worked at <a href="https://www.linkedin.com/in/dmhacker/">Bloomberg</a> as a software engineering intern.
+              Last summer, I worked at <a href="https://www.techatbloomberg.com/">Bloomberg</a> as a software engineering intern.
               I was part of their market data infrastructure team, which manages the systems that relay equities data 
               from various stock exchanges to applications on the Bloomberg Terminal. This summer, I'll be a software 
               engineering intern at <a href="https://www.citadelsecurities.com/">Citadel Securities</a>.
