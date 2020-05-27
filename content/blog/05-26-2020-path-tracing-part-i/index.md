@@ -191,9 +191,68 @@ Perfect. The materials with no textures, such as the tungsten cube and
 Rubik's cube, looked very realistic without much adjustment, owing to
 the microfacet BRDF implemented previously. For more context on what
 this BRDF is, please see [this paper](http://www.graphics.cornell.edu/~bjw/microfacetbsdf.pdf).
-The microfacet distribution used is GGX.
+The microfacet distribution used is GGX. BRDF importance sampling,
+next event estimation, and multiple importance sampling were all 
+enabled. 64 samples per pixel were taken. These contants remain
+the same for all subsequent images.
 
 #### The Depth of Field Effect
+
+My next step was tackling depth of field. My current path tracer was
+assuming that a "pinhole" camera model is in use. This means that
+the camera is treated as a fixed point in space; all camera rays
+start at the camera's origin position.
+
+Obviously, this is not physically accurate. In real life, cameras have a
+lens through which light is captured. Not all light is directed
+to a single point in the camera. This is what results in depth of field,
+wherein a camera is able to focus on an object and make the rest of the
+scene blurry. There are two parameters that control this depth of field
+effect:
+
+1. Focal distance. The focal distance of a camera specifies how far out
+it focuses. For a real camera, this is usually given in terms of millimeters.
+2. Aperture size. The aperture size controls the blurriness of the objects
+not in focus. For a real camera, the aperture is usually specified in
+an inverted fashion, such that a small aperture usually means an out-of-focus 
+background. A wide aperture, conversely, would indicate that the background
+is more in-focus.
+
+This effect can be simulated in my path tracer by making a modification
+to how my camera is set up. I added two additional parameters to describe
+my camera, focal distance and aperture size. Then, I modified my camera ray
+generation algorithm as such:
+
+1. Calculate the camera's origin and outgoing ray direction as one would
+in a pinhole camera.
+2. Generate a focal point by computing origin + direction * focal length.
+3. Generate any perpindicular vector to the outgoing ray direction 
+and normalize it. I did this by taking the cross product of my camera's
+up vector and the ray direction and then normalizing the result. This
+vector I call "offset vector 1".
+4. Generate a third perpindicular vector by taking the cross product
+of offset vector 1 and the outgoing ray direction. I call this vector
+"offset vector 2".
+5. Now, generate a random float between [-0.5, 0.5] and multiply it
+by the aperture size. Then, scale "offset vector 1" by this random
+float.
+6. Do the same for "offset vector 2".
+7. Add both offset vector 1 and offset vector 2 to the camera origin.
+This is the new origin of the outgoing ray.
+8. Finally, generate a new outgoing direction by subtracting the focal
+point from the new origin and normalizing the subtraction.
+
+This algorithm effectively simulates an aperture. The ray's origins are
+perturbed such that they could be anywhere in the aperture circle
+that is perpindicular to the direction the camera is facing. If the aperture 
+size is set to a very large number, then the simulated aperture will be
+very large and you will get rays that start at a completely different
+distance from the origin of the camera. If the aperture is small, the
+camera ray's origins will be very close to the original camera position. If the
+aperture is 0, then you effectively have a pinhole camera again.
+
+I set my camera to focus on the glass cup and use a big-enough aperture size
+to produce visibly distinct blurring.
 
 ![DOF Render](./render2.png)
 
