@@ -5,13 +5,13 @@ description: Crafting a scene, implementing texture mapping and depth-of-field e
 ---
 
 Ray tracing and to a greater extent, its sister algorithm, path tracing, have always 
-fascinated me, beginning back in my high school days. At its core, the idea of ray
-tracing is remarkably elegant: simulate the bounces of light in a scene and capture
+fascinated me. At its core, the idea of ray tracing is remarkably elegant: 
+simulate the bounces of light in a scene and capture
 those photons that manage to make it to a camera. This is unlike rasterization,
 which, although fast, is inelegant and not physically accurate.
 
-In fact, here was one of the very first images I rendered back then with a
-simple recursive ray tracer:
+In fact, here was one of the very first images I rendered back in high school
+with a simple recursive ray tracer written in Java:
 
 ![Old Ray Tracer](./high_school.jpg)
 
