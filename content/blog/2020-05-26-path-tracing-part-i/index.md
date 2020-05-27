@@ -331,7 +331,7 @@ Wait ... these textures look off! Even though the textures are associating
 correctly with each object, they aren't being mapped properly, which is producing
 weird jagged lines of diffuse color.
 
-It must be an issue with our barycentric coordinates then. The barycentric coordinates
+It must be an issue with the barycentric coordinates then. The barycentric coordinates
 I am generating have been well tested in the 
 [Moller-Trumbore intersection algorithm](https://en.wikipedia.org/wiki/M%C3%B6ller%E2%80%93Trumbore_intersection_algorithm)
 I have been using for triangles. Therefore, it must be an issue with my interpolation.
@@ -354,7 +354,9 @@ of refraction of 1.003.
 
 This BTDF isn't fully finished yet. There are a lot of tweaks that need to be
 made to the sampling procedure before it is ready, as well as possibly to
-the evaluation and PDF functions.
+the evaluation and PDF functions. As you can see in the glass, the transmission
+is oddly mirrored, which is likely the result of an incorrect refraction 
+implementation. I am still actively looking into this.
 
 I'm hoping to have a basic form of volumetric path tracing implementing after
 the glass BTDF is wrapped up, at which point my scene will be fully complete.
