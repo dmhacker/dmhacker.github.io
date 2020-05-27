@@ -87,14 +87,14 @@ swapped it out with a microcontroller breadboard.
 them is half the battle. In addition to all of the models,
 I also set up where my camera and light should be.
 
-[Blender WIP](./blender.png)
+![Blender WIP](./blender.png)
 
 At the end, I found myself with a pretty nice scene. I
 rendered a preview using Blender's Cycles engine, which
 provided me with a benchmark from which I could gauge
 progress on my own path tracer.
 
-[Cycles Preview](./preview.png)
+![Cycles Preview](./preview.png)
 
 Do note that I didn't enable any smoke or depth effects
 when using Cycles, so this image isn't completely accurate.
@@ -168,7 +168,7 @@ the original scene in Blender to a reasonable extent.
 
 This left me with the following scene.
 
-[No Shading Render](./render0.png)
+![No Shading Render](./render0.png)
 
 It's not very pretty, but you can see the outlines of all of the different
 objects, which is exactly what I needed.
@@ -185,7 +185,7 @@ parameters until I was satisfied that they looked natural.
 
 After some fiddling, I managed to get this scene.
 
-[With Shading Render](./render1.png)
+![With Shading Render](./render1.png)
 
 Perfect. The materials with no textures, such as the tungsten cube and
 Rubik's cube, looked very realistic without much adjustment, owing to
@@ -195,12 +195,18 @@ The microfacet distribution used is GGX.
 
 #### The Depth of Field Effect
 
-TODO
+![DOF Render](./render2.png)
 
 #### Texture Mapping
 
-TODO
+![Bad Texture Render](./render3.png)
+
+![Correct Texture Render](./render4.png)
+
+![Combined Render](./render5.png)
 
 #### What's Next?
 
-TODO
+![Bad Glass Render](./render6.png)
+
+![Bronze Render](./render7.png)
