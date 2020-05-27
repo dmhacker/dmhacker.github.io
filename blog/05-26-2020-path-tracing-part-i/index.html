@@ -43,7 +43,7 @@ the duration of this course, we’ve begin incrementally building up a modern
 path tracer, starting with a path tracer handling only direct light and
 adding indirect lighting, next event estimation, Russian Roulette,
 physically-based GGX BRDFs, and multiple importance sampling features.
-The path tracer also runs using Nvidia’s OptiX 6.5 framework,
+The path tracer also runs using <a href="https://developer.nvidia.com/optix">NVIDIA’s OptiX 6.5</a> framework,
 which allowed me to take advantage of my laptop’s GTX 1050 to gain
 a significant speed improvement.</p>
 <p>For my final project in this class, I will be extending the path
@@ -98,7 +98,7 @@ objects since they were readily available in my room.</p>
 like so. You can read more in my <a href="http://dmhacker.github.io/cse168/proposal.pdf">proposal</a>.</p>
 <h4>Crafting a 3D Scene using Blender</h4>
 <p>The next step was to recreate this scene using a 3D computer
-graphics modeling suite. I choose to use Blender, since it
+graphics modeling suite. I choose to use <a href="https://www.blender.org/">Blender</a>, since it
 works reasonably well on Linux, is free, and comes with
 many handy features, such as imports/exports to and from
 a variety of different formats, path tracing and rasterizer
@@ -145,8 +145,8 @@ I also set up where my camera and light should be.</li>
   ></span>
   <img
         class="gatsby-resp-image-image"
-        alt="Blender WIP"
-        title="Blender WIP"
+        alt="Blender Application"
+        title="Blender Application"
         src="/static/35cf043e911e64ae60bede461818a7b1/b9e4f/blender.png"
         srcset="/static/35cf043e911e64ae60bede461818a7b1/cf440/blender.png 148w,
 /static/35cf043e911e64ae60bede461818a7b1/d2d38/blender.png 295w,
@@ -443,7 +443,7 @@ coordinates if their corresponding mesh material has a mapped image.</li>
 material has a diffuse texture map (hence the <code class="language-text">Kd</code>) located at the file
 found at <code class="language-text">&lt;FILE&gt;</code>.</li>
 </ol>
-<p>Because textures are so commonplace, Nvidia’s OptiX framework piggy-backs
+<p>Because textures are so commonplace, NVIDIA’s OptiX framework piggy-backs
 off of CUDA’s own support for OpenGL textures and adds additional
 parameters specifying mipmap levels, read modes, and more. Most importantly,
 they provide support for reading an image at a specific texture
@@ -465,7 +465,8 @@ to produce a diffuse color.</li>
 <p>Steps 1-4 can be accomplished by reading the OptiX documentation (specifically,
 the texture section 3.3). Step 5 is a bit more tricky.</p>
 <p>To get step 5 to work, it’s important to first understand briefly what barycentric
-coordinates are. Barycentric coordinates are the product of a special coordinate
+coordinates are. <a href="https://mathworld.wolfram.com/BarycentricCoordinates.html">Barycentric coordinates</a>
+are the product of a special coordinate
 system that essentially assigns uniquely a triplet of numbers to every point in the
 area of the triangle. This triplet has the special property that the sum of its
 components is 1. Whenever we intersect a ray with a triangle, we can calculate the
