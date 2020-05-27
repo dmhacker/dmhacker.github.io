@@ -22,7 +22,7 @@ the duration of this course, we've begin incrementally building up a modern
 path tracer, starting with a path tracer handling only direct light and
 adding indirect lighting, next event estimation, Russian Roulette, 
 physically-based GGX BRDFs, and multiple importance sampling features.
-The path tracer also runs using Nvidia's OptiX 6.5 framework,
+The path tracer also runs using [NVIDIA's OptiX 6.5](https://developer.nvidia.com/optix) framework,
 which allowed me to take advantage of my laptop's GTX 1050 to gain
 a significant speed improvement.
 
@@ -54,7 +54,7 @@ like so. You can read more in my [proposal](http://dmhacker.github.io/cse168/pro
 #### Crafting a 3D Scene using Blender
 
 The next step was to recreate this scene using a 3D computer 
-graphics modeling suite. I choose to use Blender, since it
+graphics modeling suite. I choose to use [Blender](https://www.blender.org/), since it
 works reasonably well on Linux, is free, and comes with 
 many handy features, such as imports/exports to and from
 a variety of different formats, path tracing and rasterizer
@@ -87,7 +87,7 @@ swapped it out with a microcontroller breadboard.
 them is half the battle. In addition to all of the models,
 I also set up where my camera and light should be.
 
-![Blender WIP](./blender.png)
+![Blender Application](./blender.png)
 
 At the end, I found myself with a pretty nice scene. I
 rendered a preview using Blender's Cycles engine, which
@@ -280,7 +280,7 @@ coordinates if their corresponding mesh material has a mapped image.
 material has a diffuse texture map (hence the `Kd`) located at the file
 found at `<FILE>`.
 
-Because textures are so commonplace, Nvidia's OptiX framework piggy-backs
+Because textures are so commonplace, NVIDIA's OptiX framework piggy-backs
 off of CUDA's own support for OpenGL textures and adds additional 
 parameters specifying mipmap levels, read modes, and more. Most importantly,
 they provide support for reading an image at a specific texture
@@ -303,7 +303,8 @@ Steps 1-4 can be accomplished by reading the OptiX documentation (specifically,
 the texture section 3.3). Step 5 is a bit more tricky.
 
 To get step 5 to work, it's important to first understand briefly what barycentric
-coordinates are. Barycentric coordinates are the product of a special coordinate 
+coordinates are. [Barycentric coordinates](https://mathworld.wolfram.com/BarycentricCoordinates.html) 
+are the product of a special coordinate 
 system that essentially assigns uniquely a triplet of numbers to every point in the
 area of the triangle. This triplet has the special property that the sum of its
 components is 1. Whenever we intersect a ray with a triangle, we can calculate the 
