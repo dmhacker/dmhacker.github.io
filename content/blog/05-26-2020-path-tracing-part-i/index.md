@@ -258,9 +258,89 @@ to produce visibly distinct blurring.
 
 #### Texture Mapping
 
+Next up is texture mapping. When implementing texture mapping, I disabled
+my depth of field effect temporarily so that I could verify that my
+textures were appearing correctly on my background objects.
+
+Textures are very well understood in the realm of computer graphics,
+and there exist many different types of texture mappings, for example,
+roughness maps, normal maps, diffuse maps, and displacement maps. For
+this project, I wanted to focus on diffuse maps, that is, images that
+take the place of the diffuse color of the object.
+
+When Blender exports a scene as a Wavefront object file, it encodes
+two parameters into the resultant object and material files that are
+necessary for texture mapping.
+
+1. In the object file, each vertex has a texture coordinate added to it.
+A texture coordinate (u, v) describes where that vertex maps to in the 
+texture image (more on this later). Note that vertices only have texture
+coordinates if their corresponding mesh material has a mapped image.
+2. In the material file, the `map_Kd <FILE>` parameter specifies that a
+material has a diffuse texture map (hence the `Kd`) located at the file
+found at `<FILE>`.
+
+Because textures are so commonplace, Nvidia's OptiX framework piggy-backs
+off of CUDA's own support for OpenGL textures and adds additional 
+parameters specifying mipmap levels, read modes, and more. Most importantly,
+they provide support for reading an image at a specific texture
+coordinate, essentially abstracting away much of the math (behind the scenes,
+I set my texture sampler to linearly interpolate between pixels). This simplifies
+the texture mapping process greatly, effectively reducing it to this process:
+
+1. Read the image into a GPU buffer that OptiX can pass to my CUDA shader.
+2. Attach this GPU buffer to an OptiX texture sampler object, which then yields
+an immutable device ID that can be used to query the sampler.
+3. Store this device ID in a separate GPU buffer. Store the device ID's index
+in this buffer in each of the mesh's triangles.
+4. Repeat steps 1-3 for all textures.
+5. Inside the shader, in the intersection program, calculate texture coordinates
+at a triangle hit point. Look up the device ID using the triangle's device index
+and then use index into the associated texture sampler using the texture coordinate 
+to produce a diffuse color.
+
+Steps 1-4 can be accomplished by reading the OptiX documentation (specifically,
+the texture section 3.3). Step 5 is a bit more tricky.
+
+To get step 5 to work, it's important to first understand briefly what barycentric
+coordinates are. Barycentric coordinates are the product of a special coordinate 
+system that essentially assigns uniquely a triplet of numbers to every point in the
+area of the triangle. This triplet has the special property that the sum of its
+components is 1. Whenever we intersect a ray with a triangle, we can calculate the 
+barycentric coordinates of the intersection point. But how does this relate to
+texture mapping?
+
+The texture mapping process described in steps 1-4 assigns every
+vertex in every triangle a unique pair of coordinates, referred to as texture 
+coordinates. A texture coordinate uniquely maps to a point on the image, much
+like a barycentric coordinate uniquely maps to a point on a triangle.
+
+When we calculate the barycentric coordinates of an intersection point, we also
+have available the texture coordinates of each of the triangle's 3 vertices. We
+can then use the barycentric coordinates (u, v, 1 - u - v) to linearly interpolate 
+between the 3 texture coordinates to produce a new texture coordinate. This new
+texture coordinate can then be looked up in the image with this part being
+handled by OptiX.
+
+Let's try this out.
+
 ![Bad Texture Render](./render3.png)
 
+Wait ... these textures look off! Even though the textures are associating
+correctly with each object, they aren't being mapped properly, which is producing
+weird jagged lines of diffuse color.
+
+It must be an issue with our barycentric coordinates then. The barycentric coordinates
+I am generating have been well tested in the 
+[Moller-Trumbore intersection algorithm](https://en.wikipedia.org/wiki/M%C3%B6ller%E2%80%93Trumbore_intersection_algorithm)
+I have been using for triangles. Therefore, it must be an issue with my interpolation.
+
+Indeed, permuting the barycentric coordinates in the correct fashion yields the correct image.
+
 ![Correct Texture Render](./render4.png)
+
+Now that textures are working properly, I can combine it with the depth of field effect to
+produce a crisp render.
 
 ![Combined Render](./render5.png)
 
