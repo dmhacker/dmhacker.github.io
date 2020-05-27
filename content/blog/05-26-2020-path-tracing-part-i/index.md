@@ -347,6 +347,20 @@ produce a crisp render.
 
 #### What's Next?
 
+The next steps for me are implementing the refractive BTDF described in the
+microfacet BSDF paper listed above. The glass cup is assumed to be made out of
+Flint glass, with an index of refraction of 1.51. In contrast, air has an index
+of refraction of 1.003.
+
+This BTDF isn't fully finished yet. There are a lot of tweaks that need to be
+made to the sampling procedure before it is ready, as well as possibly to
+the evaluation and PDF functions.
+
+I'm hoping to have a basic form of volumetric path tracing implementing after
+the glass BTDF is wrapped up, at which point my scene will be fully complete.
+
 ![Bad Glass Render](./render6.png)
+
+In meantime, here's the scene rendered with a bronze cup instead of a glass cup!
 
 ![Bronze Render](./render7.png)
