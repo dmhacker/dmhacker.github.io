@@ -584,6 +584,15 @@ produce a crisp render.</p>
   </a>
     </span></p>
 <h4>What’s Next?</h4>
+<p>The next steps for me are implementing the refractive BTDF described in the
+microfacet BSDF paper listed above. The glass cup is assumed to be made out of
+Flint glass, with an index of refraction of 1.51. In contrast, air has an index
+of refraction of 1.003.</p>
+<p>This BTDF isn’t fully finished yet. There are a lot of tweaks that need to be
+made to the sampling procedure before it is ready, as well as possibly to
+the evaluation and PDF functions.</p>
+<p>I’m hoping to have a basic form of volumetric path tracing implementing after
+the glass BTDF is wrapped up, at which point my scene will be fully complete.</p>
 <p><span
       class="gatsby-resp-image-wrapper"
       style="position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;"
@@ -614,6 +623,7 @@ produce a crisp render.</p>
       />
   </a>
     </span></p>
+<p>In meantime, here’s the scene rendered with a bronze cup instead of a glass cup!</p>
 <p><span
       class="gatsby-resp-image-wrapper"
       style="position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;"
