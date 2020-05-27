@@ -1,7 +1,7 @@
 ---
 title: Realistic Path Tracing (part I)
 date: "2020-05-27T02:41:41+0000"
-description: Crafting a scene, implementing textures and depth-of-field effects using OptiX
+description: Crafting a scene, implementing texture mapping and depth-of-field effects using OptiX
 ---
 
 Ray tracing and to a greater extent, its sister algorithm, path tracing, have always 
