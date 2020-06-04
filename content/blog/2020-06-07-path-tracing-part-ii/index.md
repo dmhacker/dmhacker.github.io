@@ -121,15 +121,76 @@ object during the estimation).
 
 #### Rendering Participating Media
 
-TODO
+For the final step of my project, I choose to render some form
+of a homogeneous participating medium that will surround most of
+the scene. Unfortunately, due to the unforeseen amount of time that the
+glass implementation took, I was unable to complete it in a visually
+appealing manner. However, I will still document the implementation
+details, even though it did not contribute to my final render. The
+following resources were helpful in my implementation: the
+[smallvpt](https://github.com/seifeddinedridi/smallvpt) renderer, a modification
+of the smallpt renderer to support volumetric path tracing, as well
+as [this Stack Exchange post](https://computergraphics.stackexchange.com/questions/227/how-are-volumetric-effects-handled-in-raytracing) on volumetric path tracing.
+
+In order to implement a partipicating medium, you need to use
+volumetric path tracing. Volumetric path tracing extends the
+rendering equation with additional terms that describe how a
+ray moves through a semi-transculent container of particles.
+For this project, I assumed that the particles were homogeneous,
+in that they were evenly dispersed through the volume.
+
+Whenever a light ray passes through this volume, there are 3 situations
+that can occur:
+
+* Nothing happens, the ray passes through as normal.
+* The ray hits one of the particles and is absorbed.
+* The ray hits one of the particles and is scattered.
+
+These frequency of these events occurring are given by two probabilities:
+the scattering probability and the absorption probability. The
+scattering probability is a function of both the distance the ray
+must travel through in the medium and a constant dependent on the
+medium, known as $sigma_s$. Likewise, the absorption probability
+is a function of the distance the ray must travel and a constant that
+acts as a property of the medium ($sigma_a$). Both of these probabilities
+are given as exponential functions that converge to 1 with respect to
+distance; that is, as the ray travels through the medium, a longer 
+distance implies a smaller chance that the ray will make it through
+unscathed (not reflected or absorbed).
+
+In the case where the ray is absorbed, the ray can simply be stopped
+and contribute a reduced amount of radiance.
+
+In the case where the ray is scattered, a new direction and origin has 
+to be computed for the incident, scattered ray. The origin of this
+ray is usually given by picking a random "scatter point" that lies in
+between the first surface that the original ray intersects with and
+the original origin. The direction of the new ray is a bit more complicated.
+This is where phase functions come into play, which describe how rays
+are scattered in the participating medium. I choose to use the
+[Henyey-Greenstein phase function](http://www.astro.umd.edu/~jph/HG_note.pdf) to describe my medium.
+
+Using this algorithm, I was able to produce the following image:
+
+![Homogeneous Participating Medium](./render4.png)
+
+As you can see, the scattering of the rays is producing noticeable
+darkening, as well as visible blurring that complements the
+depth-of-field effect. This is an intended effect, as fog/smoke
+often results in the same. However, the image was too noisy and
+even with tweaking, still did not capture the realistic fog
+effect I was intending to recreate, and without enough time to
+modify it any further, I decided to drop the effect from my final
+image. Despite this, I would still like to potentially work on this 
+as an improvement to my image in the future.
 
 #### Final Remarks
 
 Given that the participating media render didn't look as
 realistic as I would have liked it to look, I ultimately decided
 to drop the fog/smoke effect from the final render. Here is the
-final scene rendered, with depth-of-field brought back in and
-using 1024 samples per pixel (instead of the usual 64):
+final scene rendered, with depth-of-field added back in and
+with 1024 samples per pixel (instead of the usual 64):
 
 ![Final Render](./render5.png)
 
@@ -157,4 +218,5 @@ No one deserves to have their livelihood destroyed at random.
 * Sign petitions regarding policy changes.
 * Vote in whatever elections you can!
 
-Thanks for reading this! :)
+Just remember: methods in path tracing are suppose to remain unbiased, as is
+the justice system in America. With that being said, thanks for reading this! :)
