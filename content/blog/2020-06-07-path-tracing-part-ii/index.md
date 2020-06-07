@@ -1,6 +1,6 @@
 ---
 title: Realistic Path Tracing (part II)
-date: "2020-05-27T02:41:41+0000"
+date: "2020-06-07T17:20:00+00:00"
 description: Rendering glass and wrapping up my path tracer
 ---
 
