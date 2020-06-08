@@ -198,25 +198,3 @@ Ultimately, this was a very enjoyable project and, in my opinion,
 was a successful end to a very enjoyable class. I hope to work
 more with rendering in the future, perhaps continuing with
 a real-time path tracer outside of the CSE 168 class.
-
-Lastly, unrelated to path tracing and the aforementioned class, I 
-realize that we are living through extraordinary times and that
-I am writing this in the midst of ongoing social unrest throughout
-the United States regarding police brutality. To anyone who is reading 
-this blog, whether at the time this was published or in the distant future, I 
-encourage you to stand in solidarity with the [Black Lives Matter](https://blacklivesmatters.carrd.co/)
-movement. I have supported the following causes and urge you to do the same:
-
-* Donate to a national or local bail fund to help peaceful protestors who
-were wrongfully jailed. The Minnesota Freedom Fund or the National Bail
-Fund Network are good choices.
-* Donate to an organization whose mission is to advocate and fight for 
-civil rights, new policing laws, and systemic change within the U.S. 
-legal system to address the problems at hand.
-* Donate to a family-owned business that has been affected by the rioting.
-No one deserves to have their livelihood destroyed at random.
-* Sign petitions regarding policy changes.
-* Vote in whatever elections you can!
-
-Just remember: methods in path tracing are suppose to remain unbiased, as is
-the justice system in America. With that being said, thanks for reading this! :)
