@@ -77,15 +77,9 @@ class IndexPage extends React.Component {
           <div className="twelve columns">
             <p>
               Hello! I'm an undergraduate at the University of California San Diego (UCSD), and I am pursuing a B.S in computer science 
-              with a minor in mathematics, likely graduating 2021. I am particularly interested in cryptography, distributed computing, 
-              program synthesis, and natural language processing. I also enjoy learning about and working with graphics & data 
+              with a minor in mathematics, graduating 2021. I am very interested in distributed computing, low-latency computing,
+              operating systems, and software engineering. I also enjoy learning about and working with graphics & data 
               visualization techniques.
-            </p>
-            <p>
-              Last summer, I worked at <a href="https://www.techatbloomberg.com/">Bloomberg</a> as a software engineering intern.
-              I was part of their market data infrastructure team, which manages the systems that relay equities data 
-              from various stock exchanges to applications on the Bloomberg Terminal. This summer, I'll be a software 
-              engineering intern at <a href="https://www.citadelsecurities.com/">Citadel Securities</a>.
             </p>
             <p>
               I'm a big fan of the Unix philosophy, *nix systems in general, vim and zsh. 
