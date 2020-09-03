@@ -4,6 +4,7 @@ node_js:
 install: 
   - yarn install 
   - yarn build
+  - ls -la
 os: linux
 dist: xenial
 deploy:
