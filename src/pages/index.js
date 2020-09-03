@@ -76,9 +76,9 @@ class IndexPage extends React.Component {
         <div className="row small-separation">
           <div className="twelve columns">
             <p>
-              Hello! I'm an undergraduate at the University of California San Diego (UCSD), and I am pursuing a B.S in computer science 
-              with a minor in mathematics, graduating 2021. I am very interested in distributed computing, low-latency computing,
-              operating systems, and software engineering. I also enjoy learning about and working with graphics & data 
+              Hello! I'm an undergraduate at the University of California San Diego (UCSD), where I study computer science 
+              and will be graduating in 2021. My main interests are in distributed computing, low-latency computing,
+              operating systems, and software engineering, but I also enjoy learning about and working with graphics & data 
               visualization techniques.
             </p>
             <p>
