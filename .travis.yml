@@ -4,7 +4,6 @@ node_js:
 install: 
   - yarn install 
   - yarn build
-  - ls -la
 os: linux
 dist: xenial
 deploy:
@@ -12,8 +11,9 @@ deploy:
   local_dir: public
   provider: pages
   token: $GITHUB_TOKEN
-  cleanup: false
   on:
     branch: master
   target_branch: gh-pages
+  cleanup: false
   keep_history: true
+  edge: true
