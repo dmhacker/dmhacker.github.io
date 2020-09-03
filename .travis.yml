@@ -5,11 +5,13 @@ install:
   - yarn install 
   - yarn build
 os: linux
+dist: xenial
 deploy:
   strategy: git
   local_dir: public
   provider: pages
   token: $GITHUB_TOKEN
+  skip_cleanup: true
   on:
     branch: master
   target_branch: gh-pages
