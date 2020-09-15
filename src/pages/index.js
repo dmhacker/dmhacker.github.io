@@ -28,11 +28,6 @@ class IndexPage extends React.Component {
         "key": "dmhacker/dual-ec-drbg",
         "title": "Dual_EC_DRBG Backdoor Demonstration",
         "description": <span className="small-text">Demonstrates how a <a href="http://rump2007.cr.yp.to/15-shumow.pdf">Shumlow-Ferguson attack</a> could be used to recover the internal state of any Dual_EC_DRBG pseudorandom number generator.</span>
-      },
-      {
-        "key": "dmhacker/temple",
-        "title": "Church Numerals using C++ Templates",
-        "description": <span className="small-text">Implements a representation of <a href="https://www.cs.rice.edu/~javaplt/311/Readings/supplemental.pdf">Church numerals & booleans</a> using only C++ templates via <a href="https://en.wikipedia.org/wiki/Template_metaprogramming">template metaprogramming</a>. This effectively provides g++/clang compile-time constructs for any Church numeral.</span>
       }
     ];
 
