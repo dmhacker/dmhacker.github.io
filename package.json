@@ -3,7 +3,6 @@
   "private": true,
   "description": "Source code for dmhacker.github.io",
   "version": "1.0.0",
-  "author": "David Hacker <dmhacker@protonmail.com>",
   "dependencies": {
     "add": "^2.0.6",
     "gatsby": "^2.18.4",
