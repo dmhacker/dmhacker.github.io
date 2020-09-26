@@ -77,6 +77,11 @@ class IndexPage extends React.Component {
               visualization techniques.
             </p>
             <p>
+              In the past, I've worked at <a href="https://www.techatbloomberg.com/">Bloomberg</a> and 
+              <a href="https://www.citadelsecurities.com/">Citadel Securities</a> as a software engineering intern, where I was
+              a part of their market data infrastructure and options market making teams respectively.
+            </p>
+            <p>
               I'm a big fan of the Unix philosophy, *nix systems in general, vim and zsh. 
               You can find my dotfiles <a href="https://github.com/dmhacker/dotfiles">here</a>.
             </p>
