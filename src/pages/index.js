@@ -71,15 +71,14 @@ class IndexPage extends React.Component {
         <div className="row small-separation">
           <div className="twelve columns">
             <p>
-              Hello! I'm an undergraduate at the University of California San Diego (UCSD), where I study computer science 
-              and will be graduating in 2021. My main interests are in distributed computing, low-latency computing,
-              operating systems, and software engineering, but I also enjoy learning about and working with graphics & data 
-              visualization techniques.
+              Hello! I'm a software engineer at Citadel | Citadel Securities. My main interests are in distributed computing,
+              low-latency computing, operating systems, and software engineering, but I enjoy learning about and
+              working with just about anything computing-related.
             </p>
             <p>
-              In the past, I've worked 
-              at <a href="https://www.techatbloomberg.com/">Bloomberg</a> and <a href="https://www.citadelsecurities.com/">Citadel Securities</a> as 
-              a software engineering intern, where I was
+              I graduated from the University of California San Diego (UCSD) in 2021, where I majored in computer science
+              and minored in mathematics. Prior to graduation, I worked at <a href="https://www.techatbloomberg.com/">Bloomberg</a> and
+              <a href="https://www.citadelsecurities.com/">Citadel Securities</a> as a software engineering intern, where I was
               a part of their market data infrastructure and options market making teams respectively.
             </p>
             <p>
