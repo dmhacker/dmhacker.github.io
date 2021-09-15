@@ -76,8 +76,8 @@ class IndexPage extends React.Component {
             </p>
             <p>
               I graduated from the University of California San Diego (UCSD) in 2021, where I majored in computer science
-              and minored in mathematics. Prior to graduation, I worked at <a href="https://www.techatbloomberg.com/">Bloomberg</a> 
-              and <a href="https://www.citadelsecurities.com/">Citadel Securities</a> as a software engineering intern, where I was
+              and minored in mathematics. Prior to graduation, I worked at <a href="https://www.techatbloomberg.com/">Bloomberg</a> and 
+              <a href="https://www.citadelsecurities.com/">Citadel Securities</a> as a software engineering intern, where I was
               a part of their market data infrastructure and options market making teams respectively.
             </p>
             <p>
