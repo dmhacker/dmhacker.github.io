@@ -71,8 +71,7 @@ class IndexPage extends React.Component {
         <div className="row small-separation">
           <div className="twelve columns">
             <p>
-              Hello! I'm a software engineer at Citadel | Citadel Securities. My main interests are in distributed computing,
-              low-latency computing, operating systems, and software engineering, but I enjoy learning about nearly anything computing-related.
+              Hello! I'm a software engineer at Citadel. My main interests are in distributed systems and software engineering, but I enjoy learning about anything computing-related.
             </p>
             <p>
               I graduated from the University of California San Diego (UCSD) in 2021, where I majored in computer science
