@@ -71,17 +71,18 @@ class IndexPage extends React.Component {
         <div className="row small-separation">
           <div className="twelve columns">
             <p>
-              Hello! I'm a software engineer at Citadel. My main interests are in distributed systems and software engineering, but I enjoy learning about anything computing-related.
+              Hello and welcome to my little corner of the Internet! I'm David.
             </p>
             <p>
-              I graduated from the University of California San Diego (UCSD) in 2021, where I majored in computer science
-              and minored in mathematics. Prior to graduation, I worked at <a href="https://www.techatbloomberg.com/">Bloomberg</a> and 
-              <a href="https://www.citadelsecurities.com/">Citadel Securities</a> as a software engineering intern, where I was
-              a part of their market data infrastructure and options market making teams respectively.
+              I graduated from the University of California San Diego (UCSD) in 2021, where I majored in computer science.
+              Prior to graduation, I was a software engineering intern at <a href="https://www.techatbloomberg.com/">Bloomberg</a> and <a href="https://www.citadelsecurities.com/">Citadel Securities</a>, where I was a part of their market data infrastructure and options market making teams respectively.
+              I decided to stay on with Citadel, where I currently work as a software engineer. 
             </p>
             <p>
-              I'm a big fan of the Unix philosophy, *nix systems in general, vim and zsh. 
+              My main interests are in systems and software engineering, but I enjoy learning about anything computing-related.
+              I love building compact, modular systems and am a big fan of the Unix philosophy, *nix systems in general, vim and zsh. 
               You can find my dotfiles <a href="https://github.com/dmhacker/dotfiles">here</a>.
+              Below is a curated selection of my blog and a few of my projects.
             </p>
           </div>
         </div>
