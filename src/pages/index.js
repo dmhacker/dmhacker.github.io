@@ -82,7 +82,6 @@ class IndexPage extends React.Component {
               My main interests are in systems and software engineering, but I enjoy learning about anything computing-related.
               I love building compact, modular systems and am a big fan of the Unix philosophy, *nix systems in general, vim and zsh. 
               You can find my dotfiles <a href="https://github.com/dmhacker/dotfiles">here</a>.
-              Below is a curated selection of my blog and a few of my projects.
             </p>
           </div>
         </div>
